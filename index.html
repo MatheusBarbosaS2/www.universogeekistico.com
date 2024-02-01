@@ -1,29 +1,74 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universo Geekistico</title>
     <link rel="stylesheet" href="style.css">
-    <title>Universo Geekistico - Notícias</title>
+    <script src="script.js"></script>
 </head>
 <body>
-    <header>
-        <div id="logo">
-            <img src="imagem/Logo UG.png" alt="Logo">
-            Universo Geekistico
-        </div>
-        <div id="social-buttons">
-            <a href="https://www.youtube.com/c/universogeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
-            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
-            <a href="https://www.instagram.com/universogeekistico" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
-            <a href="https://twitter.com/ugeekistico?s=21" target="_blank"><img src="imagem/x.webp" alt="Twitter"></a>
-        </div>
-    </header>
-
-    <div class="noticias" id="noticias">
-        <!-- As notícias serão carregadas dinamicamente aqui usando JavaScript -->
+    <h1>Universo Geekistico</h1>
+    <p>Um site de notícias para os fãs de cultura geek.</p>
+    <div id="posts">
+        <!-- Aqui vão aparecer as postagens novas -->
     </div>
+    <a href="postagemnova.html">Criar uma postagem nova</a>
 
-    <script src="script.js"></script>
+    <script>
+        // Adicionando uma função para excluir a postagem
+        function deletePost(index) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+        }
+
+        // Função para carregar as postagens do localStorage
+        function loadPosts() {
+            var postsDiv = document.getElementById("posts");
+            postsDiv.innerHTML = "";
+            var posts = JSON.parse(localStorage.getItem("posts"));
+
+            if (posts) {
+                for (var i = 0; i < posts.length; i++) {
+                    var post = posts[i];
+
+                    var postDiv = document.createElement("div");
+                    var postTitle = document.createElement("h2");
+                    var postImage = document.createElement("img");
+                    var postText = document.createElement("p");
+                    var deleteButton = document.createElement("button"); // Novo botão de exclusão
+
+                    postDiv.className = "post";
+                    postTitle.className = "post-title";
+                    postImage.className = "post-image";
+                    postText.className = "post-text";
+
+                    postTitle.textContent = post.title;
+                    postImage.src = post.image;
+                    postText.textContent = post.text;
+
+                    // Configurar o botão de exclusão
+                    deleteButton.textContent = "Excluir";
+                    deleteButton.onclick = (function (index) {
+                        return function () {
+                            deletePost(index);
+                        }
+                    })(i);
+
+                    postDiv.appendChild(postTitle);
+                    postDiv.appendChild(postImage);
+                    postDiv.appendChild(postText);
+                    postDiv.appendChild(deleteButton); // Adicionar o botão de exclusão
+
+                    postsDiv.appendChild(postDiv);
+                }
+            }
+        }
+
+        // Carregar as postagens quando a página inicial for carregada
+        window.onload = loadPosts;
+    </script>
 </body>
 </html>
