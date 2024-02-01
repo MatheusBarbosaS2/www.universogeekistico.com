@@ -1,24 +1,65 @@
-<!-- postagemnova.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Criar uma postagem nova</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>Universo Geekistico - Nova Notícia</title>
 </head>
 <body>
-    <h1>Criar uma postagem nova</h1>
-    <p>Preencha os campos abaixo e clique em "Postar".</p>
-    <form>
-        <label for="title">Título:</label>
-        <input type="text" id="title" name="title" required>
-        <label for="post-image">Imagem:</label>
-        <input type="file" id="post-image" name="post-image">
-        <label for="text">Texto:</label>
-        <textarea id="text" name="text" required></textarea>
-        <button type="button" onclick="createPost()">Postar</button>
-    </form>
+    <header>
+        <div id="logo">
+            <img src="imagem/Logo UG.png" alt="Logo">
+            Universo Geekistico
+        </div>
+    </header>
+
+    <div class="formulario-noticia">
+        <form id="formNoticia">
+            <label for="imagem">Imagem da Notícia:</label>
+            <input type="file" id="imagem" accept="image/*">
+
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" required>
+
+            <label for="descricao1">Descrição 1:</label>
+            <textarea id="descricao1" rows="4" required></textarea>
+
+            <label for="descricao2">Descrição 2:</label>
+            <textarea id="descricao2" rows="8" required></textarea>
+
+            <button type="button" onclick="adicionarNoticia()">Adicionar Notícia</button>
+        </form>
+    </div>
+
     <a href="index.html">Voltar para o site</a>
+
+    <script>
+        // Função para criar uma postagem nova a partir do formulário
+        function adicionarNoticia() {
+            var tituloInput = document.getElementById("titulo");
+            var imagemInput = document.getElementById("imagem");
+            var descricao1Input = document.getElementById("descricao1");
+            var descricao2Input = document.getElementById("descricao2");
+
+            var titulo = tituloInput.value;
+            var imagem = imagemInput.files[0];
+            var descricao1 = descricao1Input.value;
+            var descricao2 = descricao2Input.value;
+
+            if (titulo && imagem && descricao1 && descricao2) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    addPost(titulo, e.target.result, descricao1, descricao2);
+                    window.location.href = "index.html";
+                };
+                reader.readAsDataURL(imagem);
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
