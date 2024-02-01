@@ -10,15 +10,25 @@
 <body>
     <h1>Criar uma postagem nova</h1>
     <p>Preencha os campos abaixo e clique em "Postar".</p>
+    <div id="recent-posts">
+        <!-- Exibir as postagens mais recentes -->
+    </div>
     <form>
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
         <label for="post-image">Imagem:</label>
-        <input type="file" id="image" name="image">
+        <input type="file" id="post-image" name="post-image">
         <label for="text">Texto:</label>
         <textarea id="text" name="text" required></textarea>
         <button type="button" onclick="createPost()">Postar</button>
     </form>
     <a href="index.html">Voltar para o site</a>
+
+    <script>
+        // Carregar as postagens recentes quando a página de criação de postagem for carregada
+        window.onload = function () {
+            loadPosts();
+        }
+    </script>
 </body>
 </html>
