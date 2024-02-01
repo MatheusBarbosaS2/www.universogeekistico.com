@@ -1,4 +1,3 @@
-/* style.css */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -27,7 +26,36 @@ header {
     margin-right: 10px;
 }
 
-#noticias {
+#social-buttons a {
+    margin-right: 10px;
+}
+
+#social-buttons img {
+    width: 30px;
+    transition: filter 0.3s ease;
+}
+
+#social-buttons a:hover img {
+    filter: brightness(1.5);
+}
+
+#social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+}
+
+#social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+}
+
+#social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+}
+
+#social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+}
+
+.noticias {
     max-width: 800px;
     margin: 20px auto;
 }
@@ -41,17 +69,18 @@ header {
 
 .noticia img {
     max-width: 100%;
+    width: 400px;
+    height: auto;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
-.noticia-title {
+.noticia-content {
     padding: 15px;
-    margin-top: 0;
 }
 
-.noticia-text {
-    padding: 15px;
+.noticia h2 {
+    margin-top: 0;
 }
 
 button {
