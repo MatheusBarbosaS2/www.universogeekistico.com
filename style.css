@@ -6,12 +6,57 @@ body {
     color: #333;
 }
 
-h1 {
-    color: #333;
-    text-align: center;
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#noticias-admin {
+#logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+#social-buttons a {
+    margin-right: 10px;
+}
+
+#social-buttons img {
+    width: 30px;
+    transition: filter 0.3s ease;
+}
+
+#social-buttons a:hover img {
+    filter: brightness(1.5);
+}
+
+#social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+}
+
+#social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+}
+
+#social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+}
+
+#social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+}
+
+.noticias {
     max-width: 800px;
     margin: 20px auto;
 }
@@ -39,8 +84,8 @@ h1 {
     margin-top: 0;
 }
 
-.delete-button {
-    background-color: #ff5252;
+button {
+    background-color: #000;
     color: #fff;
     padding: 10px;
     border: none;
@@ -48,6 +93,6 @@ h1 {
     cursor: pointer;
 }
 
-.delete-button:hover {
-    background-color: #ff0000;
+button:hover {
+    background-color: #333;
 }
