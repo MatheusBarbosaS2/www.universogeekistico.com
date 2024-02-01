@@ -14,7 +14,7 @@
         <!-- Aqui vão aparecer as postagens novas -->
     </div>
     <a href="postagemnova.html">Criar uma postagem nova</a>
-
+    
     <script>
         // Adicionando uma função para excluir a postagem
         function deletePost(index) {
@@ -23,52 +23,50 @@
             localStorage.setItem("posts", JSON.stringify(posts));
             loadPosts();
         }
-
+    
         // Função para carregar as postagens do localStorage
         function loadPosts() {
             var postsDiv = document.getElementById("posts");
             postsDiv.innerHTML = "";
             var posts = JSON.parse(localStorage.getItem("posts"));
-
+    
             if (posts) {
                 for (var i = 0; i < posts.length; i++) {
                     var post = posts[i];
-
+    
                     var postDiv = document.createElement("div");
                     var postTitle = document.createElement("h2");
                     var postImage = document.createElement("img");
                     var postText = document.createElement("p");
-                    var deleteButton = document.createElement("button"); // Novo botão de exclusão
-
+                    var deleteButton = document.createElement("button");
+    
                     postDiv.className = "post";
                     postTitle.className = "post-title";
                     postImage.className = "post-image";
                     postText.className = "post-text";
-
+    
                     postTitle.textContent = post.title;
-                    postImage.src = post.image;
+                    postImage.src = post.image; // Usar o caminho da imagem diretamente
                     postText.textContent = post.text;
-
-                    // Configurar o botão de exclusão
+    
                     deleteButton.textContent = "Excluir";
                     deleteButton.onclick = (function (index) {
                         return function () {
                             deletePost(index);
                         }
                     })(i);
-
+    
                     postDiv.appendChild(postTitle);
                     postDiv.appendChild(postImage);
                     postDiv.appendChild(postText);
-                    postDiv.appendChild(deleteButton); // Adicionar o botão de exclusão
-
+                    postDiv.appendChild(deleteButton);
+    
                     postsDiv.appendChild(postDiv);
                 }
             }
         }
-
-        // Carregar as postagens quando a página inicial for carregada
-        window.onload = loadPosts;
+    
+        // ... (restante do código existente) ...
     </script>
 </body>
 </html>
