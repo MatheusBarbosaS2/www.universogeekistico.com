@@ -1,38 +1,47 @@
 // script.js
 // Função para carregar as postagens do localStorage
 function loadPosts() {
-    // Pegar o elemento div que vai conter as postagens
     var postsDiv = document.getElementById("posts");
-    // Limpar o conteúdo da div
     postsDiv.innerHTML = "";
-    // Pegar o array de postagens do localStorage
     var posts = JSON.parse(localStorage.getItem("posts"));
-    // Se o array não for nulo, iterar sobre ele
     if (posts) {
         for (var i = 0; i < posts.length; i++) {
-            // Pegar a postagem atual
             var post = posts[i];
-            // Criar os elementos html para a postagem
             var postDiv = document.createElement("div");
             var postTitle = document.createElement("h2");
             var postImage = document.createElement("img");
             var postText = document.createElement("p");
-            // Atribuir as classes css aos elementos
+
             postDiv.className = "post";
             postTitle.className = "post-title";
             postImage.className = "post-image";
             postText.className = "post-text";
-            // Atribuir os valores da postagem aos elementos
+
             postTitle.textContent = post.title;
-            postImage.src = post.image;
+
+            // Corrigindo o caminho da imagem
+            postImage.src = resolveImagePath(post.image);
+
             postText.textContent = post.text;
-            // Adicionar os elementos à div da postagem
+
             postDiv.appendChild(postTitle);
             postDiv.appendChild(postImage);
             postDiv.appendChild(postText);
-            // Adicionar a div da postagem à div principal
+
             postsDiv.appendChild(postDiv);
         }
+    }
+}
+
+// Função para resolver o caminho da imagem
+function resolveImagePath(imagePath) {
+    // Verifica se o caminho começa com "http" (indicando URL externa)
+    if (imagePath.startsWith("http")) {
+        return imagePath;
+    } else {
+        // Caso contrário, assume que é um caminho relativo local
+        // Pode ser necessário ajustar conforme a estrutura do seu projeto
+        return "./" + imagePath;
     }
 }
 
