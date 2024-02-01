@@ -1,18 +1,20 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Universo Geekistico</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>Universo Geekistico - Nova Postagem</title>
 </head>
 <body>
-    <h1>Universo Geekistico</h1>
-    <p>Um site de notícias para os fãs de cultura geek.</p>
-    <div id="posts">
-        <!-- Aqui vão aparecer as postagens novas -->
-    </div>
-    <a href="postagemnova.html">Criar uma postagem nova</a>
+    <h1>Universo Geekistico - Nova Postagem</h1>
+    <form id="newPostForm">
+        <label for="title">Título:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="img">URL da Imagem:</label><br>
+        <input type="text" id="img" name="img"><br>
+        <label for="content">Conteúdo:</label><br>
+        <textarea id="content" name="content"></textarea><br>
+        <input type="submit" value="Postar">
+    </form>
+
+    <script src="script.js"></script>
 </body>
 </html>
