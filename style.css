@@ -2,14 +2,11 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
 }
 
 h1 {
     color: #333;
     text-align: center;
-    margin-top: 20px;
 }
 
 p {
@@ -26,6 +23,7 @@ p {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .post-title {
@@ -42,14 +40,13 @@ p {
     font-size: 16px;
 }
 
-button {
-    background-color: #d9534f;
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff5050;
     color: #fff;
-    padding: 5px 10px;
     border: none;
+    padding: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #c9302c;
 }
