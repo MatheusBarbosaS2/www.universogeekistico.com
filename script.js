@@ -1,85 +1,61 @@
 // script.js
+// ... (código existente) ...
 
-// Função para carregar as notícias do localStorage
-function loadNoticias() {
-    var noticiasDiv = document.getElementById("noticias");
-    noticiasDiv.innerHTML = "";
-    var noticias = JSON.parse(localStorage.getItem("noticias"));
+// Modificando a função loadPosts para incluir o botão de exclusão
+function loadPosts() {
+    var postsDiv = document.getElementById("posts");
+    postsDiv.innerHTML = "";
+    var posts = JSON.parse(localStorage.getItem("posts"));
 
-    if (noticias) {
-        for (var i = 0; i < noticias.length; i++) {
-            var noticia = noticias[i];
-            var noticiaDiv = document.createElement("div");
-            noticiaDiv.className = "noticia";
+    if (posts) {
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i];
 
-            var noticiaContent = document.createElement("div");
-            noticiaContent.className = "noticia-content";
+            var postDiv = document.createElement("div");
+            var postTitle = document.createElement("h2");
+            var postImage = document.createElement("img");
+            var postText = document.createElement("p");
+            var deleteButton = document.createElement("button"); // Novo botão de exclusão
 
-            var noticiaTitle = document.createElement("h2");
-            var noticiaImage = document.createElement("img");
-            var noticiaText = document.createElement("p");
+            postDiv.className = "post";
+            postTitle.className = "post-title";
+            postImage.className = "post-image";
+            postText.className = "post-text";
 
-            noticiaTitle.textContent = noticia.titulo;
-            noticiaImage.src = noticia.imagem;
-            noticiaText.textContent = noticia.descricao1;
+            postTitle.textContent = post.title;
+            postImage.src = post.image;
+            postText.textContent = post.text;
 
-            noticiaContent.appendChild(noticiaTitle);
-            noticiaContent.appendChild(noticiaImage);
-            noticiaContent.appendChild(noticiaText);
+            // Configurar o botão de exclusão
+            deleteButton.textContent = "Excluir";
+            deleteButton.onclick = (function (index) {
+                return function () {
+                    deletePost(index);
+                }
+            })(i);
 
-            noticiaDiv.appendChild(noticiaContent);
+            postDiv.appendChild(postTitle);
+            postDiv.appendChild(postImage);
+            postDiv.appendChild(postText);
+            postDiv.appendChild(deleteButton); // Adicionar o botão de exclusão
 
-            noticiasDiv.appendChild(noticiaDiv);
+            postsDiv.appendChild(postDiv);
         }
     }
-}
-
-// Função para adicionar uma notícia nova ao localStorage
-function addNoticia(titulo, imagem, descricao1, descricao2) {
-    var noticias = JSON.parse(localStorage.getItem("noticias"));
-
-    if (!noticias) {
-        noticias = [];
+    // Função para adicionar uma postagem nova ao localStorage
+function addPost(title, image, text) {
+    var posts = JSON.parse(localStorage.getItem("posts"));
+    if (!posts) {
+        posts = [];
     }
-
-    var noticia = {
-        titulo: titulo,
-        imagem: imagem,
-        descricao1: descricao1,
-        descricao2: descricao2
+    var post = {
+        title: title,
+        image: image,
+        text: text
     };
-
-    noticias.unshift(noticia);
-    localStorage.setItem("noticias", JSON.stringify(noticias));
+    posts.unshift(post);
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
 }
 
-function redirectToAddPost() {
-    window.location.href = "post.html";
-}
-
-// Função para criar uma notícia nova a partir do formulário
-function adicionarNoticia() {
-    var tituloInput = document.getElementById("titulo");
-    var imagemInput = document.getElementById("imagem");
-    var descricao1Input = document.getElementById("descricao1");
-    var descricao2Input = document.getElementById("descricao2");
-
-    var titulo = tituloInput.value;
-    var imagem = imagemInput.files[0];
-    var descricao1 = descricao1Input.value;
-    var descricao2 = descricao2Input.value;
-
-    if (titulo && imagem && descricao1 && descricao2) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            addNoticia(titulo, e.target.result, descricao1, descricao2);
-            window.location.href = "index.html";
-        };
-        reader.readAsDataURL(imagem);
-    } else {
-        alert("Por favor, preencha todos os campos.");
-    }
-}
-
-// Carregar as notícias quando a página inicial for carregada
-window.onload = loadNoticias;
+// ... (restante do código existente) ...
