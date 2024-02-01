@@ -44,21 +44,16 @@ function loadPosts() {
 
 // Função para adicionar uma postagem nova ao localStorage
 function addPost(title, image, text) {
-    // Pegar o array de postagens do localStorage
     var posts = JSON.parse(localStorage.getItem("posts"));
-    // Se o array for nulo, criar um novo
     if (!posts) {
         posts = [];
     }
-    // Criar um objeto para a postagem nova
     var post = {
         title: title,
-        image: image,
+        image: image, // Armazenar apenas o caminho da imagem
         text: text
     };
-    // Adicionar a postagem nova ao início do array
     posts.unshift(post);
-    // Salvar o array no localStorage
     localStorage.setItem("posts", JSON.stringify(posts));
 }
 
