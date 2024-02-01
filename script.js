@@ -1,73 +1,56 @@
 // script.js
-function loadNoticias() {
-    var noticiasDiv = document.getElementById("noticias");
-    noticiasDiv.innerHTML = "";
-    var noticias = JSON.parse(localStorage.getItem("noticias"));
-    
-    if (noticias) {
-        for (var i = 0; i < noticias.length; i++) {
-            var noticia = noticias[i];
-            var noticiaDiv = document.createElement("div");
-            var noticiaTitle = document.createElement("h2");
-            var noticiaImage = document.createElement("img");
-            var noticiaText = document.createElement("p");
+// Função para carregar as postagens do localStorage
+function loadPosts() {
+    var postsDiv = document.getElementById("noticias");
+    postsDiv.innerHTML = "";
 
-            noticiaDiv.className = "noticia";
-            noticiaTitle.className = "noticia-title";
-            noticiaImage.className = "noticia-image";
-            noticiaText.className = "noticia-text";
+    var posts = JSON.parse(localStorage.getItem("posts"));
 
-            noticiaTitle.textContent = noticia.title;
-            noticiaImage.src = noticia.image;
-            noticiaText.textContent = noticia.text;
+    if (posts) {
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i];
+            var postDiv = document.createElement("div");
+            var postTitle = document.createElement("h2");
+            var postImage = document.createElement("img");
+            var postText = document.createElement("p");
 
-            noticiaDiv.appendChild(noticiaTitle);
-            noticiaDiv.appendChild(noticiaImage);
-            noticiaDiv.appendChild(noticiaText);
+            postDiv.className = "noticia";
+            postTitle.className = "noticia-title";
+            postImage.className = "noticia-image";
+            postText.className = "noticia-text";
 
-            // Adicionar botão para excluir a notícia
-            var deleteButton = document.createElement("button");
-            deleteButton.textContent = "Excluir";
-            deleteButton.onclick = function () {
-                excluirNoticia(i);
-            };
+            postTitle.textContent = post.title;
+            postImage.src = post.image;
+            postText.textContent = post.text;
 
-            noticiaDiv.appendChild(deleteButton);
+            postDiv.appendChild(postTitle);
+            postDiv.appendChild(postImage);
+            postDiv.appendChild(postText);
 
-            noticiasDiv.appendChild(noticiaDiv);
+            postsDiv.appendChild(postDiv);
         }
     }
 }
 
-function adicionarNoticia(title, image, text) {
-    var noticias = JSON.parse(localStorage.getItem("noticias"));
-    
-    if (!noticias) {
-        noticias = [];
+// Função para adicionar uma postagem nova ao localStorage
+function addPost(title, image, text) {
+    var posts = JSON.parse(localStorage.getItem("posts"));
+
+    if (!posts) {
+        posts = [];
     }
 
-    var noticia = {
+    var post = {
         title: title,
         image: image,
         text: text
     };
 
-    noticias.unshift(noticia);
-    localStorage.setItem("noticias", JSON.stringify(noticias));
+    posts.unshift(post);
+    localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-function excluirNoticia(index) {
-    var noticias = JSON.parse(localStorage.getItem("noticias"));
-
-    if (noticias && noticias.length > index) {
-        noticias.splice(index, 1);
-        localStorage.setItem("noticias", JSON.stringify(noticias));
-        loadNoticias(); // Recarregar as notícias após excluir
-    }
-}
-
-window.onload = loadNoticias;
-
+// Função para criar uma postagem nova a partir do formulário
 function adicionarNoticia() {
     var tituloInput = document.getElementById("titulo");
     var imagemInput = document.getElementById("imagem");
@@ -82,7 +65,7 @@ function adicionarNoticia() {
     if (titulo && imagem && descricao1 && descricao2) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            adicionarNoticia(titulo, e.target.result, descricao1, descricao2);
+            addPost(titulo, e.target.result, descricao1 + " " + descricao2);
             window.location.href = "index.html";
         };
         reader.readAsDataURL(imagem);
@@ -90,3 +73,6 @@ function adicionarNoticia() {
         alert("Por favor, preencha todos os campos.");
     }
 }
+
+// Carregar as postagens quando a página inicial for carregada
+window.onload = loadPosts;
