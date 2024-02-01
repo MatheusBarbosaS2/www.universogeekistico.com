@@ -13,11 +13,11 @@
     <div id="recent-posts">
         <!-- Exibir as postagens mais recentes -->
     </div>
-    <form>
+    <form id="postForm" enctype="multipart/form-data">
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
         <label for="image">Imagem:</label>
-        <input type="text" id="image" name="image" required>
+        <input type="file" id="image" name="image" accept="image/*" required>
         <label for="text">Texto:</label>
         <textarea id="text" name="text" required></textarea>
         <button type="button" onclick="createPost()">Postar</button>
