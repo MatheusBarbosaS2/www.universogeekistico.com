@@ -1,0 +1,24 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Administração - Universo Geekistico</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Administração - Universo Geekistico</h1>
+    <p>Página de administração para excluir postagens.</p>
+    <div id="posts">
+        <!-- Aqui vão aparecer as postagens novas -->
+    </div>
+    
+    <script>
+        // Carregar as postagens quando a página de administração for carregada
+        window.onload = function () {
+            loadPosts(true); // Passa true para indicar que é a página de admin
+        }
+    </script>
+</body>
+</html>
