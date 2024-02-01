@@ -1,9 +1,11 @@
+<!-- postagemnova.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <title>Universo Geekistico - Nova Notícia</title>
 </head>
 <body>
@@ -12,12 +14,18 @@
             <img src="imagem/Logo UG.png" alt="Logo">
             Universo Geekistico
         </div>
+        <div id="social-buttons">
+            <a href="https://www.youtube.com/c/universogeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
+            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
+            <a href="https://www.instagram.com/universogeekistico" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com/ugeekistico?s=21" target="_blank"><img src="imagem/x.webp" alt="Twitter"></a>
+        </div>
     </header>
 
     <div class="formulario-noticia">
         <form id="formNoticia">
             <label for="imagem">Imagem da Notícia:</label>
-            <input type="text" id="imagem" placeholder="Insira o URL da imagem" required>
+            <input type="file" id="imagem" accept="image/*">
 
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" required>
@@ -28,12 +36,8 @@
             <label for="descricao2">Descrição 2:</label>
             <textarea id="descricao2" rows="8" required></textarea>
 
-            <button type="button" onclick="createPost()">Adicionar Notícia</button>
+            <button type="button" onclick="adicionarNoticia()">Adicionar Notícia</button>
         </form>
     </div>
-
-    <a href="index.html">Voltar para o site</a>
-
-    <script src="script.js"></script>
 </body>
 </html>
