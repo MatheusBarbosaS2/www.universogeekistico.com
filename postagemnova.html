@@ -1,24 +1,20 @@
-<!-- postagemnova.html -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Criar uma postagem nova</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>Universo Geekistico - Nova Postagem</title>
 </head>
 <body>
-    <h1>Criar uma postagem nova</h1>
-    <p>Preencha os campos abaixo e clique em "Postar".</p>
-    <form>
-        <label for="title">Título:</label>
-        <input type="text" id="title" name="title" required>
-        <label for="image">URL da imagem:</label>
-        <input type="url" id="image" name="image" required>
-        <label for="text">Texto:</label>
-        <textarea id="text" name="text" required></textarea>
-        <button type="button" onclick="createPost()">Postar</button>
+    <h1>Universo Geekistico - Nova Postagem</h1>
+    <form id="newPostForm">
+        <label for="title">Título:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="img">URL da Imagem:</label><br>
+        <input type="text" id="img" name="img"><br>
+        <label for="content">Conteúdo:</label><br>
+        <textarea id="content" name="content"></textarea><br>
+        <input type="submit" value="Postar">
     </form>
-    <a href="index.html">Voltar para o site</a>
+
+    <script src="script.js"></script>
 </body>
 </html>
