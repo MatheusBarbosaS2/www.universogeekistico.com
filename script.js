@@ -1,4 +1,5 @@
 // script.js
+
 // Função para carregar as notícias do localStorage
 function loadNoticias() {
     // Pegar o elemento div que vai conter as notícias
@@ -17,21 +18,35 @@ function loadNoticias() {
             var noticiaTitle = document.createElement("h2");
             var noticiaImage = document.createElement("img");
             var noticiaText = document.createElement("p");
+            var deleteButton = document.createElement("button");
+
             // Atribuir as classes css aos elementos
             noticiaDiv.className = "noticia";
             noticiaTitle.className = "noticia-title";
             noticiaImage.className = "noticia-image";
             noticiaText.className = "noticia-text";
+            deleteButton.className = "delete-button";
+
             // Atribuir os valores da notícia aos elementos
             noticiaTitle.textContent = noticia.title;
             noticiaImage.src = noticia.image;
             noticiaText.textContent = noticia.text;
+            deleteButton.textContent = "Excluir";
+
             // Adicionar os elementos à div da notícia
             noticiaDiv.appendChild(noticiaTitle);
             noticiaDiv.appendChild(noticiaImage);
             noticiaDiv.appendChild(noticiaText);
+            noticiaDiv.appendChild(deleteButton);
+
             // Adicionar a div da notícia à div principal
             noticiasDiv.appendChild(noticiaDiv);
+
+            // Adicionar evento de exclusão
+            deleteButton.addEventListener("click", function() {
+                excluirNoticia(i);
+                loadNoticias(); // Recarregar as notícias após a exclusão
+            }.bind(null, i));
         }
     }
 }
@@ -54,6 +69,15 @@ function adicionarNoticia(title, image, text) {
     noticias.unshift(noticia);
     // Salvar o array no localStorage
     localStorage.setItem("noticias", JSON.stringify(noticias));
+}
+
+// Função para excluir uma notícia do localStorage
+function excluirNoticia(index) {
+    var noticias = JSON.parse(localStorage.getItem("noticias"));
+    if (noticias) {
+        noticias.splice(index, 1);
+        localStorage.setItem("noticias", JSON.stringify(noticias));
+    }
 }
 
 // Restante do código do script.js permanece inalterado
