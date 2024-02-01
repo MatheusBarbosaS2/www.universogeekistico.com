@@ -52,22 +52,31 @@ function deletePost(index) {
 
 // Função para criar uma postagem nova a partir do formulário
 function createPost() {
-    // Pegar os elementos do formulário
     var titleInput = document.getElementById("title");
     var imageInput = document.getElementById("image");
     var textInput = document.getElementById("text");
-    // Pegar os valores do formulário
+
     var title = titleInput.value;
-    var image = imageInput.value;
     var text = textInput.value;
-    // Validar os valores
-    if (title && image && text) {
-        // Adicionar a postagem nova ao localStorage
-        addPost(title, image, text);
-        // Redirecionar para a página inicial
-        window.location.href = "index.html";
+
+    // Validar se os campos foram preenchidos
+    if (title && text) {
+        var imageFile = imageInput.files[0];
+
+        // Validar se um arquivo de imagem foi selecionado
+        if (imageFile) {
+            // Usar FileReader para ler o conteúdo do arquivo
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var imageBase64 = event.target.result;
+                addPost(title, imageBase64, text);
+                window.location.href = "index.html";
+            };
+            reader.readAsDataURL(imageFile);
+        } else {
+            alert("Por favor, selecione uma imagem.");
+        }
     } else {
-        // Mostrar uma mensagem de erro
         alert("Por favor, preencha todos os campos.");
     }
 }
