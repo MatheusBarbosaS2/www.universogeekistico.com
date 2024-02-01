@@ -1,48 +1,76 @@
-<!-- postagemnova.html -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Criar uma postagem nova</title>
+    <title>Universo Geekistico</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
-    <h1>Criar uma postagem nova</h1>
-    <p>Preencha os campos abaixo e clique em "Postar".</p>
-    <form>
-        <label for="title">Título:</label>
-        <input type="text" id="title" name="title" required>
-        <label for="image">Imagem:</label>
-        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
-        <label for="text">Texto:</label>
-        <textarea id="text" name="text" required></textarea>
-        <button type="button" onclick="createPost()">Postar</button>
-    </form>
-    <a href="index.html">Voltar para o site</a>
+    <h1>Universo Geekistico</h1>
+    <p>Um site de notícias para os fãs de cultura geek.</p>
+    <div id="posts">
+        <!-- Aqui vão aparecer as postagens novas -->
+    </div>
+    <a href="postagemnova.html">Criar uma postagem nova</a>
 
     <script>
-        // Função para criar uma postagem nova a partir do formulário
-        function createPost() {
-            var titleInput = document.getElementById("title");
-            var imageInput = document.getElementById("image");
-            var textInput = document.getElementById("text");
-            var title = titleInput.value;
-            var image = imageInput.files[0]; // Obter o arquivo da entrada de arquivo
-            var text = textInput.value;
+        // Adicionando uma função para excluir a postagem
+        function deletePost(index) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+        }
 
-            if (title && image && text) {
-                // Use a função FileReader para ler o conteúdo da imagem como uma URL de dados
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    addPost(title, e.target.result, text);
-                    window.location.href = "index.html";
-                };
-                reader.readAsDataURL(image); // Lê a imagem como uma URL de dados
-            } else {
-                alert("Por favor, preencha todos os campos.");
+        // Função para carregar as postagens do localStorage
+        function loadPosts() {
+            var postsDiv = document.getElementById("posts");
+            postsDiv.innerHTML = "";
+            var posts = JSON.parse(localStorage.getItem("posts"));
+
+            if (posts) {
+                for (var i = 0; i < posts.length; i++) {
+                    var post = posts[i];
+
+                    var postDiv = document.createElement("div");
+                    var postTitle = document.createElement("h2");
+                    var postImage = document.createElement("img");
+                    var postText = document.createElement("p");
+                    var deleteButton = document.createElement("button"); // Novo botão de exclusão
+
+                    postDiv.className = "post";
+                    postTitle.className = "post-title";
+                    postImage.className = "post-image";
+                    postText.className = "post-text";
+
+                    postTitle.textContent = post.title;
+                    postImage.src = post.image;
+                    postText.textContent = post.text;
+
+                    // Configurar o botão de exclusão
+                    deleteButton.textContent = "Excluir";
+                    deleteButton.onclick = (function (index) {
+                        return function () {
+                            deletePost(index);
+                        }
+                    })(i);
+
+                    postDiv.appendChild(postTitle);
+                    postDiv.appendChild(postImage);
+                    postDiv.appendChild(postText);
+                    postDiv.appendChild(deleteButton); // Adicionar o botão de exclusão
+
+                    postsDiv.appendChild(postDiv);
+                }
             }
         }
+
+        // ... (restante do código existente) ...
+
+        // Carregar as postagens quando a página inicial for carregada
+        window.onload = loadPosts;
     </script>
 </body>
 </html>
