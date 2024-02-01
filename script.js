@@ -12,7 +12,7 @@ function loadPosts() {
             var post = posts[i];
             var postDiv = document.createElement("div");
             var postTitle = document.createElement("h2");
-            var postImage = document.createElement("image");
+            var postImage = document.createElement("img");
             var postText = document.createElement("p");
             var showMoreButton = document.createElement("button");
 
@@ -47,7 +47,7 @@ window.onload = loadPosts;
 // Função para criar uma postagem nova a partir do formulário
 function createPost() {
     var titleInput = document.getElementById("titulo");
-    var imageInput = document.getElementById("imagem");
+    var imageInput = document.getElementById("image");
     var desc1Input = document.getElementById("descricao1");
     var desc2Input = document.getElementById("descricao2");
 
