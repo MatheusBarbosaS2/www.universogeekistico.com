@@ -44,18 +44,4 @@ function loadPosts() {
     }
 }
 
-function addPost(title, image, text) {
-    var posts = JSON.parse(localStorage.getItem("posts"));
-    if (!posts) {
-        posts = [];
-    }
-    var post = {
-        title: title,
-        image: image,
-        text: text
-    };
-    posts.unshift(post);
-    localStorage.setItem("posts", JSON.stringify(posts));
-}
-
 // ... (restante do código existente) ...
