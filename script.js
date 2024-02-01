@@ -6,25 +6,31 @@ function loadNoticias() {
     noticiasDiv.innerHTML = "";
     var noticias = JSON.parse(localStorage.getItem("noticias"));
 
-    for (var i = 0; i < posts.length; i++) {
-        // ... (código anterior)
+    if (noticias) {
+        for (var i = 0; i < noticias.length; i++) {
+            var noticia = noticias[i];
+            var noticiaDiv = document.createElement("div");
+            noticiaDiv.className = "noticia";
 
-        // Adicionar os elementos à div da postagem
-        postDiv.appendChild(postTitle);
-        postDiv.appendChild(postImage);
-        postDiv.appendChild(postText);
+            var noticiaContent = document.createElement("div");
+            noticiaContent.className = "noticia-content";
 
-        // Adicionar o botão "Saiba Mais"
-        var saibaMaisButton = document.createElement("button");
-        saibaMaisButton.textContent = "Saiba Mais";
-        saibaMaisButton.addEventListener("click", function () {
-            expandirConteudo(postDiv.id, saibaMaisButton.id);
-        });
-        saibaMaisButton.id = "saibaMaisButton" + i;
-        postDiv.appendChild(saibaMaisButton);
+            var noticiaTitle = document.createElement("h2");
+            var noticiaImage = document.createElement("img");
+            var noticiaText = document.createElement("p");
 
-        // Adicionar a div da postagem à div principal
-        postsDiv.appendChild(postDiv);
+            noticiaTitle.textContent = noticia.titulo;
+            noticiaImage.src = noticia.imagem;
+            noticiaText.textContent = noticia.descricao1;
+
+            noticiaContent.appendChild(noticiaTitle);
+            noticiaContent.appendChild(noticiaImage);
+            noticiaContent.appendChild(noticiaText);
+
+            noticiaDiv.appendChild(noticiaContent);
+
+            noticiasDiv.appendChild(noticiaDiv);
+        }
     }
 }
 
@@ -45,6 +51,10 @@ function addNoticia(titulo, imagem, descricao1, descricao2) {
 
     noticias.unshift(noticia);
     localStorage.setItem("noticias", JSON.stringify(noticias));
+}
+
+function redirectToAddPost() {
+    window.location.href = "post.html";
 }
 
 // Função para criar uma notícia nova a partir do formulário
@@ -73,7 +83,3 @@ function adicionarNoticia() {
 
 // Carregar as notícias quando a página inicial for carregada
 window.onload = loadNoticias;
-
-function redirectToAddPost() {
-    window.location.href = "post.html";
-}
