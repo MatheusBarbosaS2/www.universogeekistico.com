@@ -26,12 +26,6 @@ header {
     margin-right: 10px;
 }
 
-.fixed-bottom-right {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-}
-
 #social-buttons a {
     margin-right: 10px;
 }
@@ -131,12 +125,6 @@ button:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.fixed-top-right {
-    position: fixed;
-    top: 20px;
-    right: 20px;
 }
 
 #formNoticia button:hover {
