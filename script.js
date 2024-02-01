@@ -2,7 +2,7 @@
 // Função para carregar as postagens do localStorage
 function loadPosts() {
     // Pegar o elemento div que vai conter as postagens
-    var postsDiv = document.getElementById("posts");
+    var postsDiv = document.getElementById("noticias");
     // Limpar o conteúdo da div
     postsDiv.innerHTML = "";
     // Pegar o array de postagens do localStorage
@@ -18,10 +18,10 @@ function loadPosts() {
             var postImage = document.createElement("img");
             var postText = document.createElement("p");
             // Atribuir as classes css aos elementos
-            postDiv.className = "post";
-            postTitle.className = "post-title";
-            postImage.className = "post-image";
-            postText.className = "post-text";
+            postDiv.className = "noticia";
+            postTitle.className = "noticia-title";
+            postImage.className = "noticia-image";
+            postText.className = "noticia-text";
             // Atribuir os valores da postagem aos elementos
             postTitle.textContent = post.title;
             postImage.src = post.image;
@@ -56,27 +56,31 @@ function addPost(title, image, text) {
     localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-// Função para criar uma postagem nova a partir do formulário
-function createPost() {
-    // Pegar os elementos do formulário
-    var titleInput = document.getElementById("title");
-    var imageInput = document.getElementById("image");
-    var textInput = document.getElementById("text");
-    // Pegar os valores do formulário
-    var title = titleInput.value;
-    var image = imageInput.value;
-    var text = textInput.value;
-    // Validar os valores
-    if (title && image && text) {
-        // Adicionar a postagem nova ao localStorage
-        addPost(title, image, text);
-        // Redirecionar para a página inicial
-        window.location.href = "index.html";
-    } else {
-        // Mostrar uma mensagem de erro
-        alert("Por favor, preencha todos os campos.");
-    }
-}
+// Restante do código do script.js permanece inalterado
 
 // Carregar as postagens quando a página inicial for carregada
 window.onload = loadPosts;
+
+// Função para criar uma postagem nova a partir do formulário
+function adicionarNoticia() {
+    var tituloInput = document.getElementById("titulo");
+    var imagemInput = document.getElementById("imagem");
+    var descricao1Input = document.getElementById("descricao1");
+    var descricao2Input = document.getElementById("descricao2");
+
+    var titulo = tituloInput.value;
+    var imagem = imagemInput.files[0];
+    var descricao1 = descricao1Input.value;
+    var descricao2 = descricao2Input.value;
+
+    if (titulo && imagem && descricao1 && descricao2) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            addPost(titulo, e.target.result, descricao1, descricao2);
+            window.location.href = "index.html";
+        };
+        reader.readAsDataURL(imagem);
+    } else {
+        alert("Por favor, preencha todos os campos.");
+    }
+}
