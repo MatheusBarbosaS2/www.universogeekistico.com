@@ -26,14 +26,18 @@ function loadPosts() {
             var deleteButton = document.createElement("button");
             deleteButton.className = "delete-button";
             deleteButton.textContent = "Excluir";
-            deleteButton.onclick = function() {
-                deletePost(i);
-            };
+            deleteButton.onclick = createDeleteHandler(i);
             postDiv.appendChild(deleteButton);
 
             postsDiv.appendChild(postDiv);
         }
     }
+}
+
+function createDeleteHandler(index) {
+    return function() {
+        deletePost(index);
+    };
 }
 
 function deletePost(index) {
