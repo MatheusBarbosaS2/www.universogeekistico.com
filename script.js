@@ -1,67 +1,67 @@
 // script.js
-// Função para carregar as postagens do localStorage
-function loadPosts() {
-    // Pegar o elemento div que vai conter as postagens
-    var postsDiv = document.getElementById("noticias");
+// Função para carregar as notícias do localStorage
+function loadNoticias() {
+    // Pegar o elemento div que vai conter as notícias
+    var noticiasDiv = document.getElementById("noticias");
     // Limpar o conteúdo da div
-    postsDiv.innerHTML = "";
-    // Pegar o array de postagens do localStorage
-    var posts = JSON.parse(localStorage.getItem("posts"));
+    noticiasDiv.innerHTML = "";
+    // Pegar o array de notícias do localStorage
+    var noticias = JSON.parse(localStorage.getItem("noticias"));
     // Se o array não for nulo, iterar sobre ele
-    if (posts) {
-        for (var i = 0; i < posts.length; i++) {
-            // Pegar a postagem atual
-            var post = posts[i];
-            // Criar os elementos html para a postagem
-            var postDiv = document.createElement("div");
-            var postTitle = document.createElement("h2");
-            var postImage = document.createElement("img");
-            var postText = document.createElement("p");
+    if (noticias) {
+        for (var i = 0; i < noticias.length; i++) {
+            // Pegar a notícia atual
+            var noticia = noticias[i];
+            // Criar os elementos html para a notícia
+            var noticiaDiv = document.createElement("div");
+            var noticiaTitle = document.createElement("h2");
+            var noticiaImage = document.createElement("img");
+            var noticiaText = document.createElement("p");
             // Atribuir as classes css aos elementos
-            postDiv.className = "noticia";
-            postTitle.className = "noticia-title";
-            postImage.className = "noticia-image";
-            postText.className = "noticia-text";
-            // Atribuir os valores da postagem aos elementos
-            postTitle.textContent = post.title;
-            postImage.src = post.image;
-            postText.textContent = post.text;
-            // Adicionar os elementos à div da postagem
-            postDiv.appendChild(postTitle);
-            postDiv.appendChild(postImage);
-            postDiv.appendChild(postText);
-            // Adicionar a div da postagem à div principal
-            postsDiv.appendChild(postDiv);
+            noticiaDiv.className = "noticia";
+            noticiaTitle.className = "noticia-title";
+            noticiaImage.className = "noticia-image";
+            noticiaText.className = "noticia-text";
+            // Atribuir os valores da notícia aos elementos
+            noticiaTitle.textContent = noticia.title;
+            noticiaImage.src = noticia.image;
+            noticiaText.textContent = noticia.text;
+            // Adicionar os elementos à div da notícia
+            noticiaDiv.appendChild(noticiaTitle);
+            noticiaDiv.appendChild(noticiaImage);
+            noticiaDiv.appendChild(noticiaText);
+            // Adicionar a div da notícia à div principal
+            noticiasDiv.appendChild(noticiaDiv);
         }
     }
 }
 
-// Função para adicionar uma postagem nova ao localStorage
-function addPost(title, image, text) {
-    // Pegar o array de postagens do localStorage
-    var posts = JSON.parse(localStorage.getItem("posts"));
+// Função para adicionar uma notícia nova ao localStorage
+function adicionarNoticia(title, image, text) {
+    // Pegar o array de notícias do localStorage
+    var noticias = JSON.parse(localStorage.getItem("noticias"));
     // Se o array for nulo, criar um novo
-    if (!posts) {
-        posts = [];
+    if (!noticias) {
+        noticias = [];
     }
-    // Criar um objeto para a postagem nova
-    var post = {
+    // Criar um objeto para a notícia nova
+    var noticia = {
         title: title,
         image: image,
         text: text
     };
-    // Adicionar a postagem nova ao início do array
-    posts.unshift(post);
+    // Adicionar a notícia nova ao início do array
+    noticias.unshift(noticia);
     // Salvar o array no localStorage
-    localStorage.setItem("posts", JSON.stringify(posts));
+    localStorage.setItem("noticias", JSON.stringify(noticias));
 }
 
 // Restante do código do script.js permanece inalterado
 
-// Carregar as postagens quando a página inicial for carregada
-window.onload = loadPosts;
+// Carregar as notícias quando a página inicial for carregada
+window.onload = loadNoticias;
 
-// Função para criar uma postagem nova a partir do formulário
+// Função para criar uma notícia nova a partir do formulário
 function adicionarNoticia() {
     var tituloInput = document.getElementById("titulo");
     var imagemInput = document.getElementById("imagem");
@@ -76,7 +76,7 @@ function adicionarNoticia() {
     if (titulo && imagem && descricao1 && descricao2) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            addPost(titulo, e.target.result, descricao1, descricao2);
+            adicionarNoticia(titulo, e.target.result, descricao1, descricao2);
             window.location.href = "index.html";
         };
         reader.readAsDataURL(imagem);
