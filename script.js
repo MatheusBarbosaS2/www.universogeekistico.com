@@ -1,60 +1,80 @@
 // script.js
+
 // Função para carregar as postagens do localStorage
 function loadPosts() {
+    // Pegar o elemento div que vai conter as postagens
     var postsDiv = document.getElementById("posts");
+    // Limpar o conteúdo da div
     postsDiv.innerHTML = "";
+    // Pegar o array de postagens do localStorage
     var posts = JSON.parse(localStorage.getItem("posts"));
-
+    // Se o array não for nulo, iterar sobre ele
     if (posts) {
         for (var i = 0; i < posts.length; i++) {
+            // Pegar a postagem atual
             var post = posts[i];
-
+            // Criar os elementos html para a postagem
             var postDiv = document.createElement("div");
             var postTitle = document.createElement("h2");
             var postImage = document.createElement("img");
             var postText = document.createElement("p");
-            var deleteButton = document.createElement("button"); // Novo botão de exclusão
-
+            var deleteButton = document.createElement("button");
+            // Atribuir as classes css aos elementos
             postDiv.className = "post";
             postTitle.className = "post-title";
             postImage.className = "post-image";
             postText.className = "post-text";
-
+            deleteButton.className = "delete-button";
+            // Atribuir os valores da postagem aos elementos
             postTitle.textContent = post.title;
             postImage.src = post.image;
             postText.textContent = post.text;
-
-            // Configurar o botão de exclusão
             deleteButton.textContent = "Excluir";
-            deleteButton.onclick = (function (index) {
-                return function () {
-                    deletePost(index);
-                }
-            })(i);
-
+            // Adicionar os elementos à div da postagem
             postDiv.appendChild(postTitle);
             postDiv.appendChild(postImage);
             postDiv.appendChild(postText);
-            postDiv.appendChild(deleteButton); // Adicionar o botão de exclusão
-
+            postDiv.appendChild(deleteButton);
+            // Adicionar a div da postagem à div principal
             postsDiv.appendChild(postDiv);
         }
     }
+
+    // Adicionar evento de exclusão a cada botão
+    var deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(function (button, index) {
+        button.addEventListener('click', function () {
+            deletePost(index);
+        });
+    });
 }
 
 // Função para adicionar uma postagem nova ao localStorage
 function addPost(title, image, text) {
+    // Pegar o array de postagens do localStorage
     var posts = JSON.parse(localStorage.getItem("posts"));
+    // Se o array for nulo, criar um novo
     if (!posts) {
         posts = [];
     }
+    // Criar um objeto para a postagem nova
     var post = {
         title: title,
-        image: image, // Armazenar apenas o caminho da imagem
+        image: image,
         text: text
     };
+    // Adicionar a postagem nova ao início do array
     posts.unshift(post);
+    // Salvar o array no localStorage
     localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+// Função para excluir uma postagem do localStorage
+function deletePost(index) {
+    var posts = JSON.parse(localStorage.getItem("posts"));
+    posts.splice(index, 1);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    loadPosts();
 }
 
 // Função para criar uma postagem nova a partir do formulário
