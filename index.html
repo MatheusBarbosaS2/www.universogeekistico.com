@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,13 +13,10 @@
         <!-- Aqui vão aparecer as postagens novas -->
     </div>
     <a href="postagemnova.html">Criar uma postagem nova</a>
-    
+
     <script>
-        // Adicionando uma função para excluir a postagem
-        function deletePost(index) {
-            var posts = JSON.parse(localStorage.getItem("posts"));
-            posts.splice(index, 1);
-            localStorage.setItem("posts", JSON.stringify(posts));
+        // Carregar as postagens quando a página inicial for carregada
+        window.onload = function () {
             loadPosts();
         }
     </script>
