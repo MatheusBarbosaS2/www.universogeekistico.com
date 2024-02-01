@@ -12,7 +12,7 @@ function loadPosts() {
             var post = posts[i];
             var postDiv = document.createElement("div");
             var postTitle = document.createElement("h2");
-            var postImage = document.createElement("img");
+            var postImage = document.createElement("image");
             var postText = document.createElement("p");
             var showMoreButton = document.createElement("button");
 
