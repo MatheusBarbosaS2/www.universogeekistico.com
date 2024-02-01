@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Universo Geekistico - Notícias</title>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="imagem/Logo UG.png" alt="Logo">
+            Universo Geekistico
+        </div>
+        <div id="social-buttons">
+            <a href="https://www.youtube.com/c/universogeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
+            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
+            <a href="https://www.instagram.com/universogeekistico" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com/ugeekistico?s=21" target="_blank"><img src="imagem/x.webp" alt="Twitter"></a>
+        </div>
+    </header>
+
+    <div class="noticias" id="noticias">
+        <!-- As notícias serão carregadas dinamicamente aqui usando JavaScript -->
+    </div>
+
+    <button onclick="redirectToAddPost()">Criar uma postagem nova</button>
+
+    <!-- Botão de Excluir Publicação -->
+    <button id="excluirPublicacaoBtn" onclick="excluirPublicacao()" class="fixed-top-right">Excluir Publicação</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
