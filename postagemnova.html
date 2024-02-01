@@ -1,0 +1,43 @@
+<!-- postagemnova.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar uma postagem nova</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Criar uma postagem nova</h1>
+    <p>Preencha os campos abaixo e clique em "Postar".</p>
+    <form>
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="image">Imagem:</label>
+        <input type="text" id="image" name="image" required>
+        <label for="text">Texto:</label>
+        <textarea id="text" name="text" required></textarea>
+        <button type="button" onclick="createPost()">Postar</button>
+    </form>
+    <a href="index.html">Voltar para o site</a>
+
+    <script>
+        // Função para criar uma postagem nova a partir do formulário
+        function createPost() {
+            var titleInput = document.getElementById("title");
+            var imageInput = document.getElementById("image");
+            var textInput = document.getElementById("text");
+            var title = titleInput.value;
+            var image = imageInput.value;
+            var text = textInput.value;
+
+            if (title && image && text) {
+                addPost(title, image, text);
+                window.location.href = "index.html";
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+    </script>
+</body>
+</html>
