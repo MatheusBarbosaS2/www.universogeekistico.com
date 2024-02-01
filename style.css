@@ -1,40 +1,175 @@
 /* style.css */
+
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
-
-h1 {
+    background-color: #f4f4f4;
     color: #333;
-    text-align: center;
 }
 
-p {
-    color: #666;
-    text-align: center;
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#posts {
+#logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+#social-buttons a {
+    margin-right: 10px;
+}
+
+#social-buttons img {
+    width: 30px;
+    transition: filter 0.3s ease;
+}
+
+#social-buttons a:hover img {
+    filter: brightness(1.5);
+}
+
+#social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+}
+
+#social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+}
+
+#social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+}
+
+#social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+}
+
+.noticias {
+    max-width: 800px;
     margin: 20px auto;
-    width: 80%;
 }
 
-.post {
-    border: 1px solid #ccc;
+.noticia {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.noticia img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.noticia-content {
+    padding: 15px;
+}
+
+.noticia h2 {
+    margin-top: 0;
+}
+
+.noticia button {
+    background-color: #000;
+    color: #fff;
     padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.noticia button:hover {
+    background-color: #333;
+}
+
+.formulario-noticia {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.formulario-noticia form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-noticia label {
+    margin-top: 10px;
+}
+
+.formulario-noticia input,
+.formulario-noticia textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.formulario-noticia button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formulario-noticia button:hover {
+    background-color: #333;
+}
+
+.adm-posts {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.adm-posts .post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.adm-posts .post img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     margin-bottom: 10px;
 }
 
-.post-title {
-    font-weight: bold;
+.adm-posts .post-title {
     font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.post-image {
-    max-width: 100%;
-    height: auto;
+.adm-posts .delete-button {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.post-text {
-    font-size: 16px;
+.adm-posts .delete-button:hover {
+    background-color: #cc0000;
 }
