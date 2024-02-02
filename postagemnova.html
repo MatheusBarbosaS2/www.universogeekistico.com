@@ -10,12 +10,11 @@
 <body>
     <h1>Criar uma postagem nova</h1>
     <p>Preencha os campos abaixo e clique em "Postar".</p>
-    <form id="postForm" enctype="multipart/form-data">
+    <form>
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
-        <label for="image">Imagem:</label>
-        <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" required onchange="displayImagePreview(this)">
-        <img id="image-preview" alt="Preview da Imagem" style="max-width: 100%; height: auto; margin-top: 10px;">
+        <label for="image">Imagem (jpg, jpeg, png):</label>
+        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
         <label for="text">Texto:</label>
         <textarea id="text" name="text" required></textarea>
         <button type="button" onclick="createPost()">Postar</button>
