@@ -15,11 +15,10 @@ function createPost() {
         reader.onload = function (e) {
             var imageBase64 = e.target.result;
             addPost(title, imageBase64, text);
+            // Redirecionar para a página inicial
+            window.location.href = "index.html";
         };
         reader.readAsDataURL(image);
-
-        // Redirecionar para a página inicial
-        window.location.href = "index.html";
     } else {
         alert("Por favor, preencha todos os campos.");
     }
