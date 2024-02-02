@@ -4,18 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar uma postagem nova</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <style>
+        /* style.css (pode ser copiado diretamente aqui, pois será usado no mesmo contexto) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+        }
+
+        label, input, textarea, button {
+            display: block;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        // script.js (pode ser copiado diretamente aqui, pois será usado no mesmo contexto) 
+        // Função para adicionar uma postagem nova ao localStorage
+        function addPost(title, image, text) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            if (!posts) {
+                posts = [];
+            }
+            var post = {
+                title: title,
+                image: image, // Armazenar apenas o caminho da imagem
+                text: text
+            };
+            posts.unshift(post);
+            localStorage.setItem("posts", JSON.stringify(posts));
+        }
+
+        // Função para criar uma postagem nova a partir do formulário
+        function createPost() {
+            // Pegar os elementos do formulário
+            var titleInput = document.getElementById("title");
+            var imageInput = document.getElementById("image");
+            var textInput = document.getElementById("text");
+
+            // Pegar os valores do formulário
+            var title = titleInput.value;
+            var image = URL.createObjectURL(imageInput.files[0]); // Usar URL.createObjectURL para exibir a imagem
+            var text = textInput.value;
+
+            // Validar os valores
+            if (title && image && text) {
+                // Adicionar a postagem nova ao localStorage
+                addPost(title, image, text);
+                // Redirecionar para a página inicial
+                window.location.href = "index.html";
+            } else {
+                // Mostrar uma mensagem de erro
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Criar uma postagem nova</h1>
     <p>Preencha os campos abaixo e clique em "Postar".</p>
-    <form id="createForm">
+    <form>
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
 
         <label for="image">Imagem:</label>
-        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
+        <input type="file" id="image" name="image" accept="image/jpeg, image/png" required>
 
         <label for="text">Texto:</label>
         <textarea id="text" name="text" required></textarea>
