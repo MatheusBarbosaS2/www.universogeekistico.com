@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <title>Universo Geekistico</title>
     <style>
-        /* style.css */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
+            text-align: center;
         }
 
         h1 {
             color: #333;
-            text-align: center;
         }
 
         p {
             color: #666;
-            text-align: center;
         }
 
         #posts {
@@ -45,9 +43,46 @@
             font-size: 16px;
         }
     </style>
+</head>
+<body>
+    <h1>Universo Geekistico</h1>
+    <p>Um site de notícias para os fãs de cultura geek.</p>
+    <div id="posts">
+        <!-- Aqui vão aparecer as postagens novas -->
+    </div>
+    <a href="#" onclick="toggleForm()">Criar uma postagem nova</a>
+
+    <div id="postForm" style="display: none;">
+        <h2>Criar uma postagem nova</h2>
+        <p>Preencha os campos abaixo e clique em "Postar".</p>
+        <form id="createForm">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="image">Imagem:</label>
+            <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
+
+            <label for="text">Texto:</label>
+            <textarea id="text" name="text" required></textarea>
+
+            <button type="button" onclick="createPost()">Postar</button>
+        </form>
+        <a href="#" onclick="toggleForm()">Cancelar</a>
+    </div>
+
     <script>
-        // script.js
-        // Função para carregar as postagens do localStorage
+        function toggleForm() {
+            var form = document.getElementById("postForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function deletePost(index) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+        }
+
         function loadPosts() {
             var postsDiv = document.getElementById("posts");
             postsDiv.innerHTML = "";
@@ -76,7 +111,7 @@
                     deleteButton.onclick = (function (index) {
                         return function () {
                             deletePost(index);
-                        }
+                        };
                     })(i);
 
                     postDiv.appendChild(postTitle);
@@ -89,7 +124,6 @@
             }
         }
 
-        // Função para adicionar uma postagem nova ao localStorage
         function addPost(title, image, text) {
             var posts = JSON.parse(localStorage.getItem("posts"));
             if (!posts) {
@@ -104,52 +138,25 @@
             localStorage.setItem("posts", JSON.stringify(posts));
         }
 
-        // Função para excluir uma postagem
-        function deletePost(index) {
-            var posts = JSON.parse(localStorage.getItem("posts"));
-            posts.splice(index, 1);
-            localStorage.setItem("posts", JSON.stringify(posts));
-            loadPosts();
-        }
-
-        // Função para criar uma postagem nova a partir do formulário
         function createPost() {
             var titleInput = document.getElementById("title");
             var imageInput = document.getElementById("image");
             var textInput = document.getElementById("text");
 
             var title = titleInput.value;
-            var image = imageInput.value;
+            var image = URL.createObjectURL(imageInput.files[0]);
             var text = textInput.value;
 
             if (title && image && text) {
                 addPost(title, image, text);
                 loadPosts();
+                toggleForm();
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
         }
 
-        // Carregar as postagens quando a página inicial for carregada
         window.onload = loadPosts;
     </script>
-</head>
-<body>
-    <h1>Universo Geekistico</h1>
-    <p>Um site de notícias para os fãs de cultura geek.</p>
-    <div id="posts">
-        <!-- Aqui vão aparecer as postagens novas -->
-    </div>
-    <a href="postagemnova.html">Criar uma postagem nova</a>
-    <form>
-        <label for="title">Título:</label>
-        <input type="text" id="title" name="title" required>
-        <label for="image">Imagem:</label>
-        <input type="text" id="image" name="image" required>
-        <label for="text">Texto:</label>
-        <textarea id="text" name="text" required></textarea>
-        <button type="button" onclick="createPost()">Postar</button>
-    </form>
-    <a href="index.html">Voltar para o site</a>
 </body>
 </html>
