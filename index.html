@@ -1,0 +1,114 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Universo Geekistico</title>
+    <style>
+        /* style.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+        }
+
+        #posts {
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .post-title {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .post-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .post-text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Universo Geekistico</h1>
+    <p>Um site de notícias para os fãs de cultura geek.</p>
+    <div id="posts">
+        <!-- Aqui vão aparecer as postagens novas -->
+    </div>
+    <a href="postagemnova.html">Criar uma postagem nova</a>
+    
+    <script>
+        // script.js
+        // Adicionando uma função para excluir a postagem
+        function deletePost(index) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+        }
+    
+        // Função para carregar as postagens do localStorage
+        function loadPosts() {
+            var postsDiv = document.getElementById("posts");
+            postsDiv.innerHTML = "";
+            var posts = JSON.parse(localStorage.getItem("posts"));
+    
+            if (posts) {
+                for (var i = 0; i < posts.length; i++) {
+                    var post = posts[i];
+    
+                    var postDiv = document.createElement("div");
+                    var postTitle = document.createElement("h2");
+                    var postImage = document.createElement("img");
+                    var postText = document.createElement("p");
+                    var deleteButton = document.createElement("button");
+    
+                    postDiv.className = "post";
+                    postTitle.className = "post-title";
+                    postImage.className = "post-image";
+                    postText.className = "post-text";
+    
+                    postTitle.textContent = post.title;
+                    postImage.src = post.image; // Usar o caminho da imagem diretamente
+                    postText.textContent = post.text;
+    
+                    deleteButton.textContent = "Excluir";
+                    deleteButton.onclick = (function (index) {
+                        return function () {
+                            deletePost(index);
+                        }
+                    })(i);
+    
+                    postDiv.appendChild(postTitle);
+                    postDiv.appendChild(postImage);
+                    postDiv.appendChild(postText);
+                    postDiv.appendChild(deleteButton);
+    
+                    postsDiv.appendChild(postDiv);
+                }
+            }
+        }
+    
+        // Carregar as postagens quando a página inicial for carregada
+        window.onload = loadPosts;
+    </script>
+</body>
+</html>
