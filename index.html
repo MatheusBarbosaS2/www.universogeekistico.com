@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Universo Geekistico</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -13,6 +13,24 @@
     <div id="posts">
         <!-- Aqui vão aparecer as postagens novas -->
     </div>
-    <a href="postagemnova.html">Criar uma postagem nova</a>
+    <a href="#" onclick="toggleForm()">Criar uma postagem nova</a>
+
+    <div id="postForm" style="display: none;">
+        <h2>Criar uma postagem nova</h2>
+        <p>Preencha os campos abaixo e clique em "Postar".</p>
+        <form id="createForm">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="image">Imagem:</label>
+            <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
+
+            <label for="text">Texto:</label>
+            <textarea id="text" name="text" required></textarea>
+
+            <button type="button" onclick="createPost()">Postar</button>
+        </form>
+        <a href="#" onclick="toggleForm()">Cancelar</a>
+    </div>
 </body>
 </html>
