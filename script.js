@@ -1,4 +1,3 @@
-// script.js
 // Função para carregar as postagens do localStorage
 function loadPosts() {
     var postsDiv = document.getElementById("posts");
@@ -21,7 +20,11 @@ function loadPosts() {
             postText.className = "post-text";
 
             postTitle.textContent = post.title;
-            postImage.src = post.image;
+
+            // Construir o caminho completo para a imagem
+            var imagePath = "uploads/" + post.image; // Supondo que as imagens estejam na pasta "uploads"
+            postImage.src = imagePath;
+
             postText.textContent = post.text;
 
             // Configurar o botão de exclusão
