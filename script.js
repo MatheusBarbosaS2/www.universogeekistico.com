@@ -73,18 +73,30 @@ function createPost() {
 
     // Pegar os valores do formulário
     var title = titleInput.value;
-    var image = URL.createObjectURL(imageInput.files[0]); // Correção para obter o caminho do arquivo
-    var text = textInput.value;
-
-    // Validar os valores
-    if (title && image && text) {
-        // Adicionar a postagem nova ao localStorage
-        addPost(title, image, text);
-        // Redirecionar para a página inicial
-        window.location.href = "index.html";
+    
+    // Nova lógica para obter o caminho da imagem
+    var image = "";
+    var file = imageInput.files[0];
+    
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            image = e.target.result;
+            // Validar os valores
+            if (title && image && text) {
+                // Adicionar a postagem nova ao localStorage
+                addPost(title, image, text);
+                // Redirecionar para a página inicial
+                window.location.href = "index.html";
+            } else {
+                // Mostrar uma mensagem de erro
+                alert("Por favor, preencha todos os campos.");
+            }
+        };
+        reader.readAsDataURL(file);
     } else {
-        // Mostrar uma mensagem de erro
-        alert("Por favor, preencha todos os campos.");
+        // Se não houver arquivo, mostrar mensagem de erro
+        alert("Por favor, selecione uma imagem.");
     }
 }
 
