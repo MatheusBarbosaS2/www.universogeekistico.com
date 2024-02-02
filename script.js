@@ -48,9 +48,13 @@ function addPost(title, image, text) {
     if (!posts) {
         posts = [];
     }
+    
+    // Armazenar apenas o nome do arquivo
+    var fileName = imageInput.files[0].name;
+
     var post = {
         title: title,
-        image: image, // Armazenar apenas o caminho da imagem
+        image: fileName, // Armazenar apenas o nome do arquivo
         text: text
     };
     posts.unshift(post);
