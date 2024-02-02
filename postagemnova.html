@@ -14,7 +14,8 @@
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
         <label for="image">Imagem:</label>
-        <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" required>
+        <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png" required onchange="displayImagePreview(this)">
+        <img id="image-preview" alt="Preview da Imagem" style="max-width: 100%; height: auto; margin-top: 10px;">
         <label for="text">Texto:</label>
         <textarea id="text" name="text" required></textarea>
         <button type="button" onclick="createPost()">Postar</button>
