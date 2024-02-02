@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+#social-buttons a {
+    margin-right: 10px;
+}
+
+#social-buttons img {
+    width: 30px;
+    transition: filter 0.3s ease;
+}
+
+#social-buttons a:hover img {
+    filter: brightness(1.5);
+}
+
+#social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+}
+
+#social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+}
+
+#social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+}
+
+#social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+}
+
+.noticias {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.noticia {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.noticia img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.noticia-content {
+    padding: 15px;
+}
+
+.noticia h2 {
+    margin-top: 0;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
+}
