@@ -14,7 +14,7 @@ p {
     text-align: center;
 }
 
-#posts, #admin-posts {
+#posts {
     margin: 20px auto;
     width: 80%;
 }
@@ -37,8 +37,4 @@ p {
 
 .post-text {
     font-size: 16px;
-}
-
-button {
-    margin-top: 10px;
 }
