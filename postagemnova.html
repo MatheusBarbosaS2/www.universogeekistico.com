@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar uma postagem nova</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Corrigido para 'styles.css' -->
+    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -13,13 +13,10 @@
     <form>
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
-
-        <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" name="image/*">
-
+        <label for="post-image">Imagem:</label>
+        <input type="file" id="post-image" name="post-image">
         <label for="text">Texto:</label>
         <textarea id="text" name="text" required></textarea>
-
         <button type="button" onclick="createPost()">Postar</button>
     </form>
     <a href="index.html">Voltar para o site</a>
