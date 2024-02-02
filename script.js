@@ -20,7 +20,7 @@ function loadPosts() {
             // Atribuir as classes css aos elementos
             postDiv.className = "post";
             postTitle.className = "post-title";
-            postImage.className = "image";
+            postImage.className = "post-image";
             postText.className = "post-text";
             // Atribuir os valores da postagem aos elementos
             postTitle.textContent = post.title;
@@ -60,12 +60,14 @@ function addPost(title, image, text) {
 function createPost() {
     // Pegar os elementos do formulário
     var titleInput = document.getElementById("title");
-    var imageInput = document.getElementById("image"); // Corrigido para 'post-image'
+    var imageInput = document.getElementById("post-image"); // Corrigido o ID aqui
     var textInput = document.getElementById("text");
+
     // Pegar os valores do formulário
     var title = titleInput.value;
-    var image = imageInput.value;
+    var image = imageInput.files[0]; // Usar files para campos de arquivo
     var text = textInput.value;
+
     // Validar os valores
     if (title && image && text) {
         // Adicionar a postagem nova ao localStorage
