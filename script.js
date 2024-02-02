@@ -1,11 +1,8 @@
 // script.js
-
-// Função para carregar as postagens do localStorage
 function loadPosts() {
     var postsDiv = document.getElementById("posts");
     postsDiv.innerHTML = "";
     var posts = JSON.parse(localStorage.getItem("posts"));
-
     if (posts) {
         for (var i = 0; i < posts.length; i++) {
             var post = posts[i];
@@ -32,10 +29,84 @@ function loadPosts() {
     }
 }
 
-// Função para adicionar uma postagem nova ao localStorage
+function loadAdminPosts() {
+    var adminPostsDiv = document.getElementById("admin-posts");
+    adminPostsDiv.innerHTML = "";
+    var posts = JSON.parse(localStorage.getItem("posts"));
+    if (posts) {
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i];
+            var postDiv = document.createElement("div");
+            var postTitle = document.createElement("h2");
+            var postImage = document.createElement("img");
+            var postText = document.createElement("p");
+
+            postDiv.className = "post";
+            postTitle.className = "post-title";
+            postImage.className = "post-image";
+            postText.className = "post-text";
+
+            postTitle.textContent = post.title;
+            postImage.src = post.image;
+            postText.textContent = post.text;
+
+            postDiv.appendChild(postTitle);
+            postDiv.appendChild(postImage);
+            postDiv.appendChild(postText);
+
+            var editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.onclick = function () {
+                // Adicione a lógica para editar a postagem
+                // (pode redirecionar para uma página de edição)
+            };
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Excluir";
+            deleteButton.onclick = function () {
+                // Adicione a lógica para excluir a postagem
+                // (pode pedir confirmação antes de excluir)
+            };
+
+            postDiv.appendChild(editButton);
+            postDiv.appendChild(deleteButton);
+
+            adminPostsDiv.appendChild(postDiv);
+        }
+    }
+}
+
+function moveImageToFolder(imagePath) {
+    var destinationFolder = "imagem/";
+    var fileName = imagePath.split('/').pop();
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Imagem movida com sucesso para " + destinationFolder + fileName);
+        }
+    };
+    xhr.open("GET", imagePath, true);
+    xhr.responseType = "blob";
+    xhr.onload = function () {
+        var blob = xhr.response;
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+
+        var clickEvent = new MouseEvent("click", {
+            view: window,
+            bubbles: true,
+            cancelable: false
+        });
+
+        link.dispatchEvent(clickEvent);
+    };
+    xhr.send();
+}
+
 function addPost(title, image, text) {
     var posts = JSON.parse(localStorage.getItem("posts"));
-
     if (!posts) {
         posts = [];
     }
@@ -48,9 +119,10 @@ function addPost(title, image, text) {
 
     posts.unshift(post);
     localStorage.setItem("posts", JSON.stringify(posts));
+
+    moveImageToFolder(image);
 }
 
-// Função para criar uma postagem nova a partir do formulário
 function createPost() {
     var titleInput = document.getElementById("title");
     var imageInput = document.getElementById("image");
@@ -68,32 +140,7 @@ function createPost() {
     }
 }
 
-// Função para editar uma postagem existente
-function editPost(index) {
-    var posts = JSON.parse(localStorage.getItem("posts"));
-    var post = posts[index];
-    var updatedTitle = prompt("Novo título:", post.title);
-    var updatedText = prompt("Novo texto:", post.text);
-
-    if (updatedTitle !== null && updatedText !== null) {
-        post.title = updatedTitle;
-        post.text = updatedText;
-        localStorage.setItem("posts", JSON.stringify(posts));
-        loadPosts();
-    }
-}
-
-// Função para excluir uma postagem existente
-function deletePost(index) {
-    var confirmDelete = confirm("Tem certeza que deseja excluir esta postagem?");
-
-    if (confirmDelete) {
-        var posts = JSON.parse(localStorage.getItem("posts"));
-        posts.splice(index, 1);
-        localStorage.setItem("posts", JSON.stringify(posts));
-        loadPosts();
-    }
-}
-
-// Carregar as postagens quando a página inicial for carregada
-window.onload = loadPosts;
+window.onload = function () {
+    loadPosts();
+    loadAdminPosts();
+};
