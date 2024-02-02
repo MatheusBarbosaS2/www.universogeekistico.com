@@ -123,18 +123,42 @@ function addPost(title, image, text) {
     moveImageToFolder(image);
 }
 
+function displayImagePreview(input) {
+    var preview = document.getElementById("image-preview");
+    var file = input.files[0];
+
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
 function createPost() {
     var titleInput = document.getElementById("title");
     var imageInput = document.getElementById("image");
     var textInput = document.getElementById("text");
 
     var title = titleInput.value;
-    var image = imageInput.value;
     var text = textInput.value;
 
-    if (title && image && text) {
-        addPost(title, image, text);
-        window.location.href = "index.html";
+    if (title && text) {
+        var imageFile = imageInput.files[0];
+        if (imageFile) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imageDataURL = e.target.result;
+                addPost(title, imageDataURL, text);
+                window.location.href = "index.html";
+            };
+            reader.readAsDataURL(imageFile);
+        } else {
+            alert("Por favor, selecione uma imagem.");
+        }
     } else {
         alert("Por favor, preencha todos os campos.");
     }
