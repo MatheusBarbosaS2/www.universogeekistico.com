@@ -63,10 +63,12 @@ function createPost() {
     var titleInput = document.getElementById("title");
     var imageInput = document.getElementById("image");
     var textInput = document.getElementById("text");
+
     // Pegar os valores do formulário
     var title = titleInput.value;
-    var image = URL.createObjectURL(imageInput.files[0]);
+    var image = URL.createObjectURL(imageInput.files[0]); // Correção para obter o caminho do arquivo
     var text = textInput.value;
+
     // Validar os valores
     if (title && image && text) {
         // Adicionar a postagem nova ao localStorage
