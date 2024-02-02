@@ -9,7 +9,7 @@
 <body>
     <h1>Criar uma postagem nova</h1>
     <p>Preencha os campos abaixo e clique em "Postar".</p>
-    <form id="postForm">
+    <div id="postForm" style="display: none;">
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
 
@@ -20,7 +20,7 @@
         <textarea id="text" name="text" required></textarea>
 
         <button type="button" onclick="createPost()">Postar</button>
-    </form>
+    </div>
     <a href="index.html">Voltar para o site</a>
     <script src="script.js"></script>
 </body>
