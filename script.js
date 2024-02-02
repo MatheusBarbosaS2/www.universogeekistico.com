@@ -65,7 +65,7 @@ function createPost() {
     var textInput = document.getElementById("text");
     // Pegar os valores do formulário
     var title = titleInput.value;
-    var image = imageInput.value;
+    var image = URL.createObjectURL(imageInput.files[0]);
     var text = textInput.value;
     // Validar os valores
     if (title && image && text) {
