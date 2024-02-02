@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,25 +45,8 @@
             font-size: 16px;
         }
     </style>
-</head>
-<body>
-    <h1>Universo Geekistico</h1>
-    <p>Um site de notícias para os fãs de cultura geek.</p>
-    <div id="posts">
-        <!-- Aqui vão aparecer as postagens novas -->
-    </div>
-    <a href="postagemnova.html">Criar uma postagem nova</a>
-
     <script>
         // script.js
-        // Adicionando uma função para excluir a postagem
-        function deletePost(index) {
-            var posts = JSON.parse(localStorage.getItem("posts"));
-            posts.splice(index, 1);
-            localStorage.setItem("posts", JSON.stringify(posts));
-            loadPosts();
-        }
-
         // Função para carregar as postagens do localStorage
         function loadPosts() {
             var postsDiv = document.getElementById("posts");
@@ -87,14 +69,14 @@
                     postText.className = "post-text";
 
                     postTitle.textContent = post.title;
-                    postImage.src = post.image; // Usar o caminho da imagem diretamente
+                    postImage.src = post.image;
                     postText.textContent = post.text;
 
                     deleteButton.textContent = "Excluir";
                     deleteButton.onclick = (function (index) {
                         return function () {
                             deletePost(index);
-                        };
+                        }
                     })(i);
 
                     postDiv.appendChild(postTitle);
@@ -107,8 +89,67 @@
             }
         }
 
+        // Função para adicionar uma postagem nova ao localStorage
+        function addPost(title, image, text) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            if (!posts) {
+                posts = [];
+            }
+            var post = {
+                title: title,
+                image: image,
+                text: text
+            };
+            posts.unshift(post);
+            localStorage.setItem("posts", JSON.stringify(posts));
+        }
+
+        // Função para excluir uma postagem
+        function deletePost(index) {
+            var posts = JSON.parse(localStorage.getItem("posts"));
+            posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+        }
+
+        // Função para criar uma postagem nova a partir do formulário
+        function createPost() {
+            var titleInput = document.getElementById("title");
+            var imageInput = document.getElementById("image");
+            var textInput = document.getElementById("text");
+
+            var title = titleInput.value;
+            var image = imageInput.value;
+            var text = textInput.value;
+
+            if (title && image && text) {
+                addPost(title, image, text);
+                loadPosts();
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+
         // Carregar as postagens quando a página inicial for carregada
         window.onload = loadPosts;
     </script>
+</head>
+<body>
+    <h1>Universo Geekistico</h1>
+    <p>Um site de notícias para os fãs de cultura geek.</p>
+    <div id="posts">
+        <!-- Aqui vão aparecer as postagens novas -->
+    </div>
+    <a href="postagemnova.html">Criar uma postagem nova</a>
+    <form>
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="image">Imagem:</label>
+        <input type="text" id="image" name="image" required>
+        <label for="text">Texto:</label>
+        <textarea id="text" name="text" required></textarea>
+        <button type="button" onclick="createPost()">Postar</button>
+    </form>
+    <a href="index.html">Voltar para o site</a>
 </body>
 </html>
