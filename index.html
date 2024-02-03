@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Universo Geekistico - Notícias sobre o mundo geek">
+    <meta name="keywords" content="geek, universo, notícias, filmes, séries, quadrinhos">
+    <meta name="author" content="Matheus Barbosa">
+
+    <!-- Adicione tags Open Graph para compartilhamento em redes sociais -->
+    <meta property="og:title" content="Universo Geekistico - Notícias">
+    <meta property="og:description" content="Fique por dentro das últimas notícias do mundo geek no Universo Geekistico.">
+    <meta property="og:image" content="https://www.universogeekistico.com.br/imagem/ug.png"> <!-- Substitua pela URL da imagem apropriada -->
+    <meta property="og:url" content="https://www.universogeekistico.com.br"> <!-- Substitua pela URL do seu site -->
+
+    <link rel="stylesheet" href="style.css">
+    <title>Universo Geekistico - Notícias</title>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="imagem/Logo UG.png" alt="Logo">
+            Universo Geekistico
+        </div>
+        <div id="social-buttons">
+            <a href="https://www.youtube.com/c/universogeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
+            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
+            <a href="https://www.instagram.com/universogeekistico" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com/ugeekistico?s=21" target="_blank"><img src="imagem/x.webp" alt="Twitter"></a>
+        </div>
+    </header>
+
+    <div class="noticias" id="noticias">
+        <div class="noticia" id="noticia1">
+            <div class="noticia-content">
+                <h2>RUMOR DIZ QUE HOMEM-ARANHA 4 VAI FUNDIR O ARANHAVERSO DA SONY COM O MCU!</h2>
+                <img src="imagem/HomemAranha0.jpg" alt="Notícia 1">
+                <p id="conteudoNoticia1">Há alguns meses, Kevin Feige, diretor criativo da Marvel Studios, revelou que o roteiro preliminar de ‘Homem-Aranha 4‘ já está pronto. Obviamente, o cineasta não quis dar detalhes sobre a trama, mas...</p>
+                <button onclick="expandirConteudo('conteudoNoticia1')">Saiba Mais</button>
+            </div>
+        </div>
+
+        <div class="noticia" id="noticia2">
+            <div class="noticia-content">
+                <h2>REVELADO! O ATOR DO GLEEN EM THE WALKING DEAD VAI INTERPRETAR O SENTINELA NO MCU!</h2>
+                <img src="imagem/GleenSentinela.jpg" alt="Notícia 2">
+                <p id="conteudoNoticia2">Criador das histórias em quadrinhos de Invencível, The Walking Dead e etc… Robert Kirkman entregou o jogo sobre a escalação de um herói de outra companhia! O idealizador da animação original do Prime Video revelou quem vai interpretar Sentinela na Marvel Studios...</p>
+                <button onclick="expandirConteudo('conteudoNoticia2')">Saiba Mais</button>
+            </div>
+        </div>
+
+        <div class="noticia" id="noticia3">
+            <div class="noticia-content">
+                <h2>LOKI TERÁ UMA 3ª TEMPORADA NO MCU?</h2>
+                <img src="imagem/Lokitemporada3.jpg" alt="Notícia 3">
+                <p id="conteudoNoticia3">Se você é fã do deus da mentira e espera notícias sobre a terceira temporada de Loki no streaming, então você está no lugar certo. Já adianto que o roteirista principal da série do MCU, Eric Martin, revelou...</p>
+                <button onclick="expandirConteudo('conteudoNoticia3')">Saiba Mais</button>
+            </div>
+        </div>
+
+        <div class="noticia" id="noticia4">
+            <div class="noticia-content">
+                <h2>LOKI TERÁ UMA 3ª TEMPORADA NO MCU?</h2>
+                <img src="imagem/SupermanAntiKryptonita.jpg" alt="Notícia 4">
+                <p id="conteudoNoticia4">A kryptonita é um artefato tão importante na história do Superman que se tornou uma metáfora icônica na cultura pop, um sinônimo de fraqueza, mas aconteceu algo nos quadrinhos que revolucionou essa noção...</p>
+                <button onclick="expandirConteudo('conteudoNoticia4')">Saiba Mais</button>
+            </div>
+        </div>
+
+        <!-- Adicione mais notícias semelhantes aqui -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
