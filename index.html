@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Universo Geekistico</title>
     <style>
-        /* styles.css content here */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -72,7 +71,7 @@
                     editButton.textContent = "Editar";
 
                     postTitle.textContent = post.title;
-                    postImage.src = "imagem/" + post.image;  // Alteração aqui
+                    postImage.src = post.image; // Alteração aqui
                     postText.textContent = post.text;
 
                     deleteButton.onclick = (function(index) {
@@ -140,7 +139,6 @@
     <meta charset="UTF-8">
     <title>Criar uma postagem nova</title>
     <style>
-        /* styles.css content here */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -165,7 +163,7 @@
 
             var post = {
                 title: title,
-                image: image,
+                image: "imagem/" + image, // Alteração aqui
                 text: text
             };
 
