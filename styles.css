@@ -23,7 +23,7 @@ p {
     border: 1px solid #000000;
     padding: 10px;
     margin-bottom: 10px;
-    transition: background-color 0.3s; /* Adiciona transição para suavizar a mudança de cor */
+    position: relative; /* Adiciona posição relativa para posicionar o link sobre a imagem */
 }
 
 .noticia:hover {
@@ -33,10 +33,19 @@ p {
 .noticia img {
     width: 5px;
     height: auto;
-    transition: width 0.3s; /* Adiciona transição para suavizar a mudança de tamanho */
+    transition: width 0.3s ease; /* Adiciona transição para o tamanho da imagem */
 }
 
 .noticia:hover img {
-    width: 100px; /* Tamanho maior ao passar o mouse */
-    height: auto;
+    width: 100px; /* Altera o tamanho da imagem ao passar o mouse */
+}
+
+.noticia_link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1; /* Garante que o link esteja acima da imagem */
+    cursor: pointer;
 }
