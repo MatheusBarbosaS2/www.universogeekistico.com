@@ -41,7 +41,7 @@ p {
 .noticia img {
     width: auto; /* Alterado para 100% para ocupar a largura total */
     height: 100px;
-    object-fit: cover;
+    
 }
 
 .news img:hover {
@@ -50,4 +50,5 @@ p {
 
 .news-area img {
     width: 100%; /* Definindo a largura da imagem dentro da área clicável */
+    object-fit: cover;
 }
