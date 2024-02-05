@@ -25,11 +25,6 @@ p {
     margin-bottom: 10px;
 }
 
-.noticia img {
-    width: 100%; /* Alterado para 100% para ocupar a largura total */
-    height: auto;
-}
-
 .news-area {
     cursor: pointer;
     width: 2550px; /* Definindo a largura da área clicável */
@@ -40,4 +35,9 @@ p {
 
 .news-area:hover {
     background-color: #f0f0f0;
+}
+
+.noticia img {
+    width: 100%; /* Alterado para 100% para ocupar a largura total */
+    height: auto;
 }
