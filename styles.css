@@ -49,7 +49,7 @@ p {
 }
 
 .news-area img {
-    width: 100px; /* Definindo a largura da imagem dentro da área clicável */
+    width: 200px; /* Definindo a largura da imagem dentro da área clicável */
     height: auto;
     object-fit: cover;
     align-content: center;
