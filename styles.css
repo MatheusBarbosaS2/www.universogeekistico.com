@@ -23,29 +23,28 @@ p {
     border: 1px solid #000000;
     padding: 10px;
     margin-bottom: 10px;
-    position: relative; /* Adiciona posição relativa para posicionar o link sobre a imagem */
-}
-
-.noticia:hover {
-    background-color: #333333; /* Cor mais clara ao passar o mouse */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .noticia img {
-    width: 5px;
+    width: 100%;
     height: auto;
-    transition: width 0.3s ease; /* Adiciona transição para o tamanho da imagem */
 }
 
-.noticia:hover img {
-    width: 100px; /* Altera o tamanho da imagem ao passar o mouse */
-}
-
-.noticia_link {
+/* Nova classe para a área de clique */
+.noticia-overlay {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    z-index: 1; /* Garante que o link esteja acima da imagem */
+    width: 2550px;
+    height: 423px;
     cursor: pointer;
+    opacity: 0;
+}
+
+/* Adiciona um efeito de transição suave */
+.noticia:hover .noticia-overlay {
+    opacity: 1;
 }
