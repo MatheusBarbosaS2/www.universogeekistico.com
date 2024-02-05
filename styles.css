@@ -28,7 +28,7 @@ p {
 .news-area {
     cursor: pointer;
     width: 2550px; /* Definindo a largura da área clicável */
-    max-width: 100%; /* Garantindo que a largura máxima seja igual à largura da tela */
+    max-width: 50%; /* Garantindo que a largura máxima seja igual à largura da tela */
     height: 423px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
