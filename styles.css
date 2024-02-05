@@ -53,5 +53,5 @@ p {
     width: 200px; /* Definindo a largura da imagem dentro da área clicável */
     height: auto;
     object-fit: cover;
-    align-content: center;
+    display: inline-block;
 }
