@@ -42,7 +42,6 @@ p {
 .noticia img {
     width: auto; /* Alterado para 100% para ocupar a largura total */
     height: 200px;
-    align-content: center;
 }
 
 .news-img:hover {
@@ -53,4 +52,5 @@ p {
     width: 100px; /* Definindo a largura da imagem dentro da área clicável */
     height: auto;
     object-fit: cover;
+    align-content: center;
 }
