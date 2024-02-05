@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Use AJAX ou Fetch API para carregar dinamicamente as notícias no elemento #noticias-container.
     // Exemplo básico:
-    fetch('noticias/noticia1.html')
+    fetch('noticia1.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('noticias-container').innerHTML = data;
@@ -23,13 +23,19 @@ function incrementarVisualizacoes(noticiaId) {
     localStorage.setItem(noticiaId + '_visualizacoes', visualizacoes);
 
     // Atualizar a exibição na notícia
-    document.getElementById(noticiaId + '_visualizacoes').innerText = visualizacoes + ' visualizações';
+    const visualizacoesElement = document.getElementById(noticiaId + '_visualizacoes');
+    if (visualizacoesElement) {
+        visualizacoesElement.innerText = visualizacoes + ' visualizações';
+    }
 }
 
 function adicionarLinkNoticiaCompleta(noticiaId) {
     // Adicionar link para a notícia completa
-    const linkElement = document.createElement('a');
-    linkElement.href = 'noticias/' + noticiaId + '.html';
-    linkElement.innerText = 'Ver notícia completa';
-    document.getElementById(noticiaId + '_link').appendChild(linkElement);
+    const linkElement = document.getElementById(noticiaId + '_link');
+    if (linkElement) {
+        const link = document.createElement('a');
+        link.href = 'noticia1.html';
+        link.innerText = 'Ver notícia completa';
+        linkElement.appendChild(link);
+    }
 }
