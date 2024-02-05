@@ -44,7 +44,7 @@ p {
     object-fit: cover;
 }
 
-.noticia img:hover {
+.news img:hover {
     opacity: 0.5;
 }
 
