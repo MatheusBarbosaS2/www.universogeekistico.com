@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Chama a função para a notícia1.html
+
+    fetchNewsData("noticia2.html");
     fetchNewsData("noticia1.html");
 
     // Pode adicionar mais notícias chamando a função para outros arquivos, por exemplo:
