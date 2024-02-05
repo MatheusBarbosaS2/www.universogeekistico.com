@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Exemplo de notícia
     const news = {
-        title: "Título da Notícia 1",
+        title: "MARVEL IRÁ TRAZER OS ‘ETERNOS’ NOVAMENTE AO MCU!",
         description: "Descrição curta da Notícia 1...",
         thumbnail: "caminho/para/imagem-menor.jpg",
         fullDescriptionUrl: "noticia1.html",
