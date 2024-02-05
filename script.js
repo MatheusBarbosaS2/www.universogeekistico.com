@@ -1,37 +1,41 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
     const newsContainer = document.getElementById("news-container");
 
-    // Exemplo de notícia
-    const news = {
-        title: "Título da Notícia 1",
-        description: "Descrição curta da Notícia 1...",
-        thumbnail: "caminho/para/imagem-menor.jpg",
-        fullDescription: "<p>Descrição completa da Notícia 1...</p><img src='caminho/para/imagem-maior.jpg' alt='Thumbnail Maior'><p>Número de visualizações: 1000</p>",
-        author: "Matheus Barbosa",
-        views: 1000
-    };
+    // Função para obter dinamicamente o conteúdo da notícia
+    async function fetchNewsData(newsUrl) {
+        try {
+            const response = await fetch(newsUrl);
+            const newsHtml = await response.text();
+            const parser = new DOMParser();
+            const newsDoc = parser.parseFromString(newsHtml, "text/html");
 
-    // Adiciona a notícia ao container
-    newsContainer.innerHTML += `
-        <div class="news-area" onclick="showFullDescription('${news.fullDescription}')">
-            <h2>${news.title}</h2>
-            <p>${news.description}</p>
-            <img src="${news.thumbnail}" alt="Thumbnail">
-            <p>Número de visualizações: ${news.views}</p>
-        </div>
-    `;
+            // Extrai informações do documento da notícia
+            const title = newsDoc.querySelector("h2").textContent;
+            const description = newsDoc.querySelector("p").textContent;
+            const thumbnail = newsDoc.querySelector("img").getAttribute("src");
+            const fullDescriptionUrl = newsUrl;  // Mantém a URL da notícia original
+            const views = parseInt(newsDoc.querySelector("p:last-of-type").textContent.match(/\d+/)[0]);
+
+            // Adiciona a notícia ao container
+            newsContainer.innerHTML += `
+                <div class="news-area" onclick="window.location.href='${fullDescriptionUrl}'">
+                    <h2>${title}</h2>
+                    <p>${description}</p>
+                    <img src="${thumbnail}" alt="Thumbnail">
+                    <p>Número de visualizações: ${views}</p>
+                </div>
+            `;
+        } catch (error) {
+            console.error("Erro ao obter notícia:", error);
+        }
+    }
+
+    // Chama a função para a notícia1.html
+    fetchNewsData("noticia1.html");
+
+    // Pode adicionar mais notícias chamando a função para outros arquivos, por exemplo:
+    // fetchNewsData("noticia2.html");
+    // fetchNewsData("noticia3.html");
+    // ...
+
 });
-
-function showFullDescription(fullDescription) {
-    const modal = document.createElement("div");
-    modal.className = "modal";
-    modal.innerHTML = fullDescription;
-
-    document.body.appendChild(modal);
-
-    modal.addEventListener("click", function () {
-        modal.remove();
-    });
-}
