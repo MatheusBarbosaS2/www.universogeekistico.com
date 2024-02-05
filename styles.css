@@ -41,8 +41,8 @@ p {
 
 .noticia img {
     width: auto; /* Alterado para 100% para ocupar a largura total */
-    height: 100px;
-    
+    height: 200px;
+    align-content: center;
 }
 
 .news-img:hover {
