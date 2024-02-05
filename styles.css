@@ -23,28 +23,21 @@ p {
     border: 1px solid #000000;
     padding: 10px;
     margin-bottom: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
 }
 
 .noticia img {
-    width: 100%;
+    width: 100%; /* Alterado para 100% para ocupar a largura total */
     height: auto;
 }
 
-/* Nova classe para a área de clique */
-.noticia-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2550px;
-    height: 423px;
+.news-area {
     cursor: pointer;
-    opacity: 0;
+    width: 2550px; /* Definindo a largura da área clicável */
+    max-width: 100%; /* Garantindo que a largura máxima seja igual à largura da tela */
+    margin: 0 auto; /* Centralizando a área clicável na tela */
+    box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
 }
 
-/* Adiciona um efeito de transição suave */
-.noticia:hover .noticia-overlay {
-    opacity: 1;
+.news-area:hover {
+    background-color: #f0f0f0;
 }
