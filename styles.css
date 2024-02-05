@@ -20,6 +20,10 @@ p{
     margin-bottom: 10px;
 }
 
+.noticia: hover {
+    background-color:#1111111;
+}
+
 .noticia img {
     max-width: 50%;
     height: auto;
