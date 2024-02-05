@@ -23,7 +23,7 @@ p {
     border: 1px solid #000000;
     padding: 10px;
     margin-bottom: 10px;
-    transition: background-color 0.3s; /* Adiciona uma transição suave para a mudança de cor */
+    transition: background-color 0.3s; /* Adiciona transição para suavizar a mudança de cor */
 }
 
 .noticia:hover {
@@ -31,6 +31,12 @@ p {
 }
 
 .noticia img {
-    width: 100%; /* Faz com que a imagem ocupe 100% da largura do container */
+    width: 5px;
+    height: auto;
+    transition: width 0.3s; /* Adiciona transição para suavizar a mudança de tamanho */
+}
+
+.noticia:hover img {
+    width: 100px; /* Tamanho maior ao passar o mouse */
     height: auto;
 }
