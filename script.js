@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         thumbnail: "imagem/eternosdenovo.jpeg",
         fullDescriptionUrl: "noticia1.html",
         author: "Matheus Barbosa",
-        views:
+        views: 0
     };
 
     // Adiciona a notícia ao container
