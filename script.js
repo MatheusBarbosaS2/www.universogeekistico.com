@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const news = {
         title: "MARVEL IRÁ TRAZER OS ‘ETERNOS’ NOVAMENTE AO MCU!",
         description: "Os Eternos chegaram como uma grande promessa para a Fase 4 do MCU. Infelizmente, a equipe de seres poderosos não virou unan...",
-        thumbnail: "imagem/eternosdenovo.jpg",
+        thumbnail: "imagem/eternosdenovo.jpeg",
         fullDescriptionUrl: "noticia1.html",
         author: "Matheus Barbosa",
         views:
