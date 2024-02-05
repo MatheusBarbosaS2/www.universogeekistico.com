@@ -29,6 +29,7 @@ p {
     cursor: pointer;
     width: 2550px; /* Definindo a largura da área clicável */
     max-width: 100%; /* Garantindo que a largura máxima seja igual à largura da tela */
+    height: 423px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
 }
@@ -38,6 +39,6 @@ p {
 }
 
 .noticia img {
-    width: 100%; /* Alterado para 100% para ocupar a largura total */
+    width: 100px; /* Alterado para 100% para ocupar a largura total */
     height: auto;
 }
