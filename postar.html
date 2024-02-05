@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postar Notícia</title>
+</head>
+<body>
+    <h1>Postar Notícia</h1>
+    <form id="postForm" action="processar_post.php" method="post" enctype="multipart/form-data">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required><br>
+        
+        <label for="descricao1">Descrição 1:</label>
+        <textarea id="descricao1" name="descricao1" required></textarea><br>
+        
+        <label for="descricao2">Descrição 2:</label>
+        <textarea id="descricao2" name="descricao2" required></textarea><br>
+
+        <label for="imagem">Upload de Imagem (jpg, jpeg, png):</label>
+        <input type="file" id="imagem" name="imagem" accept=".jpg, .jpeg, .png" required><br>
+
+        <button type="submit">Postar</button>
+    </form>
+</body>
+</html>
