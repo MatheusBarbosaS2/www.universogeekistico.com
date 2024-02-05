@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
     }
 
+    // Função para abrir a notícia em uma nova janela ou guia com dimensão específica
+    function openNewsInWindow(newsUrl, width, height) {
+        const windowFeatures = `width=${width},height=${height},resizable=yes,scrollbars=yes,status=yes`;
+        window.open(newsUrl, '_blank', windowFeatures);
+    }
+
     // Função para obter dinamicamente o conteúdo da notícia
     async function fetchNewsData(newsUrl) {
         try {
@@ -24,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Adiciona a notícia ao container
             newsContainer.innerHTML += `
-                <div class="news-area" onclick="window.location.href='${fullDescriptionUrl}'">
+                <div class="news-area" onclick="openNewsInWindow('${fullDescriptionUrl}', 2550, 423)">
                     <h2>${title}</h2>
                     <p>${description}</p>
                     <img src="${thumbnail}" alt="Thumbnail">
@@ -37,9 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Chama a função para a notícia1.html
-
     fetchNewsData("noticia2.html");
-
     
     fetchNewsData("noticia1.html");
 
