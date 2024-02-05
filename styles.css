@@ -49,6 +49,6 @@ p {
 }
 
 .news-area img {
-    width: 100%; /* Definindo a largura da imagem dentro da área clicável */
+    width: 100px; /* Definindo a largura da imagem dentro da área clicável */
     object-fit: cover;
 }
