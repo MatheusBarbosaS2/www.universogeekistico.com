@@ -1,41 +1,24 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Use AJAX ou Fetch API para carregar dinamicamente as notícias no elemento #noticias-container.
-    // Exemplo básico:
-    fetch('noticia1.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('noticias-container').innerHTML = data;
+// script.js
+document.addEventListener("DOMContentLoaded", function () {
+    const newsContainer = document.getElementById("news-container");
 
-            // Incrementar o número de visualizações
-            incrementarVisualizacoes('noticia1');
+    // Exemplo de notícia
+    const news = {
+        title: "Título da Notícia 1",
+        description: "Descrição curta da Notícia 1...",
+        thumbnail: "caminho/para/imagem-menor.jpg",
+        fullDescriptionUrl: "noticia1.html",
+        author: "Matheus Barbosa",
+        views: 1000
+    };
 
-            // Adicionar link para a notícia completa
-            adicionarLinkNoticiaCompleta('noticia1');
-        });
+    // Adiciona a notícia ao container
+    newsContainer.innerHTML += `
+        <div class="news-area" onclick="window.location.href='${news.fullDescriptionUrl}'">
+            <h2>${news.title}</h2>
+            <p>${news.description}</p>
+            <img src="${news.thumbnail}" alt="Thumbnail">
+            <p>Número de visualizações: ${news.views}</p>
+        </div>
+    `;
 });
-
-function incrementarVisualizacoes(noticiaId) {
-    // Implemente a lógica para incrementar o número de visualizações
-    // Pode ser feito usando cookies, armazenamento local, servidor backend, etc.
-    // Exemplo usando armazenamento local:
-    let visualizacoes = localStorage.getItem(noticiaId + '_visualizacoes') || 0;
-    visualizacoes++;
-    localStorage.setItem(noticiaId + '_visualizacoes', visualizacoes);
-
-    // Atualizar a exibição na notícia
-    const visualizacoesElement = document.getElementById(noticiaId + '_visualizacoes');
-    if (visualizacoesElement) {
-        visualizacoesElement.innerText = visualizacoes + ' visualizações';
-    }
-}
-
-function adicionarLinkNoticiaCompleta(noticiaId) {
-    // Adicionar link para a notícia completa
-    const linkElement = document.getElementById(noticiaId + '_link');
-    if (linkElement) {
-        const link = document.createElement('a');
-        link.href = 'noticia1.html';
-        link.innerText = 'Ver notícia completa';
-        linkElement.appendChild(link);
-    }
-}
