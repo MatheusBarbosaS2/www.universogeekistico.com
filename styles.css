@@ -47,3 +47,7 @@ p {
 .noticia img:hover {
     opacity: 0.5;
 }
+
+.news-area img {
+    width: 100%; /* Definindo a largura da imagem dentro da área clicável */
+}
