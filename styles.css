@@ -30,6 +30,6 @@ p{
 }
 
 .noticia img {
-    max-width: 50%;
+    width: 50px;
     height: auto;
 }
