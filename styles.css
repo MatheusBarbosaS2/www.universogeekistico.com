@@ -43,3 +43,7 @@ p {
     height: 100px;
     object-fit: cover;
 }
+
+.noticia img:hover {
+    opacity: 0.5;
+}
