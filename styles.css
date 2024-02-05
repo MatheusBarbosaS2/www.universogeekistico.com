@@ -32,6 +32,7 @@ p {
     height: 423px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
+    align-content: center;
 }
 
 .news-area:hover {
