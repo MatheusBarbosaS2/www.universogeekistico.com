@@ -40,5 +40,5 @@ p {
 
 .noticia img {
     width: 100px; /* Alterado para 100% para ocupar a largura total */
-    height: auto;
+    height: 20px;
 }
