@@ -45,6 +45,7 @@ p2 {
     text-align: left; /* Alinha o conteúdo à esquerda */
     display: flex; /* Torna o conteúdo flexível para alinhar itens horizontalmente */
     flex-direction: column; /* Empilha os itens verticalmente */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
 }
 
 .news-area:hover {
@@ -58,7 +59,7 @@ p2 {
 }
 
 .news-area img {
-    width: 100px; /* Definindo a largura da imagem */
+    width: 150px; /* Definindo a largura da imagem */
     height: auto;
     object-fit: cover;
     margin: 0 10px; /* Margem à direita e à esquerda da imagem */
@@ -71,4 +72,5 @@ p2 {
 
 .news-area p {
     color: #ffffff;
+    margin-top: 10px; /* Espaçamento acima do texto para separá-lo da imagem */
 }
