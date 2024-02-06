@@ -33,7 +33,7 @@ p {
     height: 423px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
-    align-content: center;
+    text-align: center; /* Alinha o conteúdo no centro horizontalmente */
 }
 
 .news-area:hover {
@@ -49,4 +49,6 @@ p {
     width: 200px; /* Definindo a largura da imagem dentro da área clicável */
     height: auto;
     object-fit: cover;
+    margin-left: auto; /* Margem à esquerda automática */
+    margin-right: auto; /* Margem à direita automática */
 }
