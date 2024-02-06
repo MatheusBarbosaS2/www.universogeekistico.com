@@ -45,7 +45,6 @@ p2 {
     text-align: left; /* Alinha o conteúdo à esquerda */
     display: flex; /* Torna o conteúdo flexível para alinhar itens horizontalmente */
     flex-direction: column; /* Empilha os itens verticalmente */
-    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
 }
 
 .news-area:hover {
