@@ -26,11 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
             newsContainer.innerHTML += `
                 <div class="news-area" onclick="window.location.href='${fullDescriptionUrl}'">
                     <h2>${title}</h2>
+                    <div class="image-container">
+                        <img src="${thumbnail}" alt="Thumbnail">
+                    </div>
                     <p>${description}</p>
-                    <img src="${thumbnail}" alt="Thumbnail">
                     <p>Número de visualizações: ${views}</p>
                 </div>
             `;
+
         } catch (error) {
             console.error("Erro ao obter notícia:", error);
         }
