@@ -20,6 +20,11 @@ p {
     color: #ffffff;
 }
 
+p2 {
+    text-align: center;
+    color: #ffffff;
+}
+
 .noticia {
     border: 1px solid #000000;
     padding: 10px;
