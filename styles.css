@@ -35,22 +35,31 @@ p {
     cursor: pointer;
     width: 2550px; /* Definindo a largura da área clicável */
     max-width: 50%; /* Garantindo que a largura máxima seja igual à largura da tela */
-    height: 550px;
+    height: 500px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
     text-align: center; /* Alinha o conteúdo no centro horizontalmente */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
+    align-items: center;
 }
 
-.news-area:hover {
-    background-color: #0e0e0e;
+.image-container {
+    width: 300px; /* Definindo a largura do contêiner de imagem */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
 }
 
 .news-area img {
-    width: 300px; /* Definindo a largura da imagem dentro da área clicável */
-    height: auto;
+    max-width: 100%; /* Garantindo que a imagem não ultrapasse o contêiner */
+    max-height: 100%; /* Garantindo que a imagem não ultrapasse o contêiner */
     object-fit: cover;
     margin: 10px auto; /* Margem acima e abaixo para espaçamento */
+}
+
+.news-area img:hover {
+    background-color: #0e0e0e;
 }
