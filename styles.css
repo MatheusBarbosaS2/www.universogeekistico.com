@@ -37,7 +37,7 @@ p {
 }
 
 .news-area:hover {
-    background-color: #eeeeeee;
+    background-color: #eeeeee;
 }
 
 .noticia img {
@@ -45,13 +45,8 @@ p {
     height: 200px;
 }
 
-.news-img:hover {
-    opacity: 0.5;
-}
-
 .news-area img {
     width: 200px; /* Definindo a largura da imagem dentro da área clicável */
     height: auto;
     object-fit: cover;
-    align-items: center;
 }
