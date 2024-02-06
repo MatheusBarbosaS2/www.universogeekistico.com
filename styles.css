@@ -60,6 +60,6 @@ p {
     margin: 10px auto; /* Margem acima e abaixo para espaçamento */
 }
 
-.news-area img:hover {
+.news-area:hover {
     background-color: #0e0e0e;
 }
