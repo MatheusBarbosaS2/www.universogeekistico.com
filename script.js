@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
             newsContainer.innerHTML += `
                 <div class="news-area" onclick="window.location.href='${fullDescriptionUrl}'">
                     <h2>${title}</h2>
+                    <p>${description}</p>
                     <div class="image-container">
                         <img src="${thumbnail}" alt="Thumbnail">
                     </div>
-                    <p>${description}</p>
                     <p>Número de visualizações: ${views}</p>
                 </div>
             `;
