@@ -60,7 +60,7 @@ p2 {
 
 .news-area img {
     max-width: 100%; /* Garantindo que a imagem não ultrapasse o contêiner */
-    max-height: 100%; /* Garantindo que a imagem não ultrapasse o contêiner */
+    height: 550px; /* Garantindo que a imagem não ultrapasse o contêiner */
     object-fit: cover;
     margin: 10px auto; /* Margem acima e abaixo para espaçamento */
 }
