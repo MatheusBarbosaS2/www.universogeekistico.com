@@ -54,7 +54,7 @@ p2 {
 
 .news-area img {
     width: auto; /* Garantindo que a imagem não ultrapasse o contêiner */
-    height: 400px; /* Garantindo que a imagem não ultrapasse o contêiner */
+    height: auto; /* Garantindo que a imagem não ultrapasse o contêiner */
     object-fit: cover;
     margin: 10px auto; /* Margem acima e abaixo para espaçamento */
 }
@@ -69,8 +69,8 @@ p2 {
 }
 
 .image-container {
-    width: 300px; /* Definindo a largura do contêiner de imagem */
-    height: 200px;
+    width: auto; /* Definindo a largura do contêiner de imagem */
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
