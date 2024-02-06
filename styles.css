@@ -54,7 +54,6 @@ p2 {
 .image-container {
     display: flex; /* Torna o contêiner de imagem flexível */
     justify-content: flex-end; /* Alinha a imagem à direita do contêiner */
-    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
 }
 
 .news-area img {
