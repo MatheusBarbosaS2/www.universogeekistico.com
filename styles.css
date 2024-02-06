@@ -38,9 +38,9 @@ p2 {
 
 .news-area {
     cursor: pointer;
-    width: 100%; /* Ajustado para ocupar a largura total */
-    max-width: 800px; /* Ajustado para um valor adequado */
-    height: auto; /* Ajustado para altura automática */
+     width: 2550px; /* Definindo a largura da área clicável */
+    max-width: 100%; /* Garantindo que a largura máxima seja igual à largura da tela */
+    height: 500px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
     text-align: left; /* Alinha o conteúdo à esquerda */
