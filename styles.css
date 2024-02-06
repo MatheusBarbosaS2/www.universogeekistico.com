@@ -58,7 +58,7 @@ p2 {
 }
 
 .news-area img {
-    width: 50px; /* Definindo a largura da imagem */
+    width: auto; /* Definindo a largura da imagem */
     height: auto;
     object-fit: cover;
     margin: 0 10px; /* Margem à direita e à esquerda da imagem */
