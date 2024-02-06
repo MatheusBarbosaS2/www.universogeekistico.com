@@ -38,25 +38,31 @@ p2 {
 
 .news-area {
     cursor: pointer;
-     width: 2550px; /* Definindo a largura da área clicável */
-    max-width: 100%; /* Garantindo que a largura máxima seja igual à largura da tela */
-    height: 300px;
+    width: 100%; /* Ajustado para ocupar a largura total */
+    max-width: 800px; /* Ajustado para um valor adequado */
+    height: auto; /* Ajustado para altura automática */
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
     text-align: left; /* Alinha o conteúdo à esquerda */
     display: flex; /* Torna o conteúdo flexível para alinhar itens horizontalmente */
-    align-items: center; /* Centraliza verticalmente os itens */
+    flex-direction: column; /* Empilha os itens verticalmente */
 }
 
 .news-area:hover {
     background-color: #0e0e0e;
 }
 
+.image-container {
+    display: flex; /* Torna o contêiner de imagem flexível */
+    justify-content: flex-end; /* Alinha a imagem à direita do contêiner */
+    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+}
+
 .news-area img {
-    width: auto; /* Garantindo que a imagem não ultrapasse o contêiner */
-    height: auto; /* Garantindo que a imagem não ultrapasse o contêiner */
+    width: 300px; /* Definindo a largura da imagem */
+    height: auto;
     object-fit: cover;
-    margin: 10px auto; /* Margem acima e abaixo para espaçamento */
+    margin: 0 10px; /* Margem à direita e à esquerda da imagem */
 }
 
 .news-area h2 {
@@ -66,13 +72,4 @@ p2 {
 
 .news-area p {
     color: #ffffff;
-}
-
-.image-container {
-    width: auto; /* Definindo a largura do contêiner de imagem */
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
 }
