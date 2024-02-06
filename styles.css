@@ -30,7 +30,7 @@ p {
     cursor: pointer;
     width: 2550px; /* Definindo a largura da área clicável */
     max-width: 50%; /* Garantindo que a largura máxima seja igual à largura da tela */
-    height: 423px;
+    height: 500px;
     margin: 0 auto; /* Centralizando a área clicável na tela */
     box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
     text-align: center; /* Alinha o conteúdo no centro horizontalmente */
