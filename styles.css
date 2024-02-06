@@ -78,6 +78,6 @@ p2 {
     content: '\A'; /* Adiciona uma quebra de linha virtual */
     white-space: pre; /* Mantém a formatação de quebra de linha virtual */
     display: block; /* Faz com que o conteúdo gerado seja exibido como um bloco separado */
-    max-width: 100%; /* Evita que a quebra de linha virtual ultrapasse a largura máxima do contêiner */
+    max-width: 70%; /* Evita que a quebra de linha virtual ultrapasse a largura máxima do contêiner */
     overflow: hidden; /* Oculta qualquer parte do conteúdo que ultrapasse a largura máxima do contêiner */
 }
