@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Extrai informações do documento da notícia
             const title = newsDoc.querySelector("h2").textContent;
             const descriptionElement = newsDoc.querySelector("p");
-            const description = truncateText(descriptionElement.textContent, 150); // Limite para 150 caracteres
+            const description = truncateText(descriptionElement.textContent, 250); // Limite para 150 caracteres
             const thumbnail = newsDoc.querySelector("img").getAttribute("src");
             const fullDescriptionUrl = newsUrl;  // Mantém a URL da notícia original
             const views = parseInt(newsDoc.querySelector("p:last-of-type").textContent.match(/\d+/)[0]);
