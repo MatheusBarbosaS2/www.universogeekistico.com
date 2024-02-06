@@ -66,6 +66,7 @@ p {
     color: #ffffff;
     margin: 10px 0; /* Espaçamento acima e abaixo do texto */
     word-wrap: break-word; /* Ativa a quebra de palavras para evitar que palavras longas causem overflow */
+    max-width: 50%; /* Evita que a quebra de linha virtual ultrapasse a largura máxima do contêiner */
 }
 
 .news-area p::after {
