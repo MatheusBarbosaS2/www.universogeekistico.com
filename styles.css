@@ -74,10 +74,12 @@ p2 {
     word-wrap: break-word; /* Ativa a quebra de palavras para evitar que palavras longas causem overflow */
 }
 
-/* Adiciona quebra de linha após um número específico de caracteres (ex. 50) */
 .news-area p::after {
     content: '\A'; /* Adiciona uma quebra de linha virtual */
     white-space: pre; /* Mantém a formatação de quebra de linha virtual */
     display: block; /* Faz com que o conteúdo gerado seja exibido como um bloco separado */
+    /* Adiciona uma quebra de linha após 50 caracteres */
+    word-break: break-all;
+    max-width: 50ch;
 }
 
