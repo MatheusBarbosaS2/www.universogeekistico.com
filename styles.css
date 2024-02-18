@@ -1,0 +1,69 @@
+body {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    align-items: center;
+}
+
+h2 {
+    text-align: left;
+    color: #ffffff;
+}
+
+p {
+    text-align: left;
+    color: #ffffff;
+}
+
+.noticia {
+    border: 1px solid #000000;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.noticia img {
+    width: auto; /* Alterado para 100% para ocupar a largura total */
+    height: 200px;
+}
+
+.news-area {
+    cursor: pointer;
+    width: 100%; /* Ajustado para ocupar a largura total */
+    height: 200px; /* Ajustado para altura automática */
+    margin: 0 auto; /* Centralizando a área clicável na tela */
+    box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
+    text-align: left; /* Alinha o conteúdo à esquerda */
+    display: flex; /* Torna o conteúdo flexível para alinhar itens horizontalmente */
+    flex-direction: column; /* Empilha os itens verticalmente */
+}
+
+.news-area:hover {
+    background-color: #0e0e0e;
+}
+
+.image-container {
+    display: flex; /* Torna o contêiner de imagem flexível */
+    justify-content: flex-end; /* Alinha a imagem à direita do contêiner */
+}
+
+.news-area img {
+    width: 150px; /* Definindo a largura da imagem */
+    height: auto;
+    margin: 0 10px; /* Margem à direita e à esquerda da imagem */
+}
+
+.news-area h2 {
+    color: #ffffff;
+}
+
+.news-area p {
+    color: #ffffff;
+    margin: 10px 0; /* Espaçamento acima e abaixo do texto */
+    word-wrap: break-word; /* Ativa a quebra de palavras para evitar que palavras longas causem overflow */
+    max-width: 75%; /* Evita que a quebra de linha virtual ultrapasse a largura máxima do contêiner */
+}
