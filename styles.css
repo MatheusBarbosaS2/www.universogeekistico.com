@@ -1,69 +1,129 @@
 body {
-    background-color: #000000;
+    margin: 0;
     font-family: Arial, sans-serif;
-    margin: 20px;
+    background-color: #f4f4f4;
+    color: #030303;
 }
 
-h1 {
-    text-align: center;
-    color: #ffffff;
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-h2 {
-    text-align: left;
-    color: #ffffff;
+#logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-p {
-    text-align: left;
-    color: #ffffff;
+#logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+#social-buttons a {
+    margin-right: 10px;
+}
+
+#social-buttons img {
+    width: 30px;
+    transition: filter 0.3s ease;
+}
+
+#social-buttons a:hover img {
+    filter: brightness(1.5);
+}
+
+#social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+}
+
+#social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+}
+
+#social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+}
+
+#social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+}
+
+.noticias {
+    max-width: 800px;
+    height: auto;
+    margin: 20px auto;
 }
 
 .noticia {
-    border: 1px solid #000000;
-    padding: 10px;
-    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .noticia img {
-    width: auto; /* Alterado para 100% para ocupar a largura total */
-    height: 200px;
-}
-
-.news-area {
-    cursor: pointer;
-    width: 100%; /* Ajustado para ocupar a largura total */
-    height: 200px; /* Ajustado para altura automática */
-    margin: 0 auto; /* Centralizando a área clicável na tela */
-    box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
-    text-align: left; /* Alinha o conteúdo à esquerda */
-    display: flex; /* Torna o conteúdo flexível para alinhar itens horizontalmente */
-    flex-direction: column; /* Empilha os itens verticalmente */
-}
-
-.news-area:hover {
-    background-color: #0e0e0e;
-}
-
-.image-container {
-    display: flex; /* Torna o contêiner de imagem flexível */
-    justify-content: flex-end; /* Alinha a imagem à direita do contêiner */
-}
-
-.news-area img {
-    width: 150px; /* Definindo a largura da imagem */
+    /*max-width: 100%;*/
+    width: 350px;
     height: auto;
-    margin: 0 10px; /* Margem à direita e à esquerda da imagem */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
-.news-area h2 {
-    color: #ffffff;
+.noticia-content {
+    padding: 15px;
 }
 
-.news-area p {
-    color: #ffffff;
-    margin: 10px 0; /* Espaçamento acima e abaixo do texto */
-    word-wrap: break-word; /* Ativa a quebra de palavras para evitar que palavras longas causem overflow */
-    max-width: 75%; /* Evita que a quebra de linha virtual ultrapasse a largura máxima do contêiner */
+.noticia h2 {
+    margin-top: 0;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+/* Estilo do slideshow */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.mySlides {
+    display: none;
+    width: 100%;
+    height: auto;
+}
+
+/* Estilo dos botões de navegação */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
