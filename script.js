@@ -1,49 +1,72 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const newsContainer = document.getElementById("news-container");
+function expandirConteudo(noticiaId) {
+    // Redirecionar para a página da notícia correspondente
+    window.location.href = `noticia.html#${noticiaId}`;
+}
 
-    // Função para truncar texto
-    function truncateText(text, maxLength) {
-        return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-    }
+// Ajustar os detalhes da notícia na página "noticia.html"
+document.addEventListener('DOMContentLoaded', function () {
+    // Obter o ID da notícia da URL
+    const noticiaId = window.location.hash.substring(1);
 
-    // Função para obter dinamicamente o conteúdo da notícia
-    async function fetchNewsData(newsUrl) {
-        try {
-            const response = await fetch(newsUrl);
-            const newsHtml = await response.text();
-            const parser = new DOMParser();
-            const newsDoc = parser.parseFromString(newsHtml, "text/html");
-
-            // Extrai informações do documento da notícia
-            const title = newsDoc.querySelector("h2").textContent;
-            const descriptionElement = newsDoc.querySelector("p");
-            const description = truncateText(descriptionElement.textContent, 250); // Limite para 150 caracteres
-            const thumbnail = newsDoc.querySelector("img").getAttribute("src");
-            const fullDescriptionUrl = newsUrl;  // Mantém a URL da notícia original
-            const views = parseInt(newsDoc.querySelector("p:last-of-type").textContent.match(/\d+/)[0]);
-
-            // Adiciona a notícia ao container
-            newsContainer.innerHTML += `
-                <div class="news-area" onclick="window.location.href='${fullDescriptionUrl}'">
-                    <h2>${title}</h2>
-                    <p>${description}</p>
-                    <div class="image-container">
-                        <img src="${thumbnail}" alt="Thumbnail">
-                    </div>
-                    <p>Número de visualizações: ${views}</p>
-                </div>
-            `;
-
-        } catch (error) {
-            console.error("Erro ao obter notícia:", error);
+    // Dados das notícias
+    const noticias = {
+        "noticia1": {
+            "titulo": "MARVEL IRÁ TRAZER OS ‘ETERNOS’ NOVAMENTE AO MCU!",
+            "imagem": "imagem/eternoswhatif.jpg",
+            "conteudo": "Os Eternos chegaram como uma grande promessa para a Fase 4 do MCU..."
+        },
+        "noticia2": {
+            "titulo": "VAZOU FOTOS DA NOVA SÉRIE DO DEMOLIDOR REVELA FRASE DA CAMPANHA DO REI DO CRIME PARA PREFEITO!",
+            "imagem": "imagem/wilsonfiskprefeitopropagranda.png",
+            "conteudo": "Mais fotos do set de Demolidor: Renascido chegaram online e estão repletas de grandes momentos..."
+        },
+        "noticia3": {
+            "titulo": "LOKI TERÁ UMA 3ª TEMPORADA NO MCU?",
+            "imagem": "imagem/Lokitemporada3.jpg",
+            "conteudo": "Se você é fã do deus da mentira e espera notícias sobre a terceira temporada de Loki no streaming..."
+        },
+        "noticia4": {
+            "titulo": "LOKI TERÁ UMA 3ª TEMPORADA NO MCU?",
+            "imagem": "imagem/SupermanAntiKryptonita.jpg",
+            "conteudo": "A kryptonita é um artefato tão importante na história do Superman que se tornou uma metáfora icônica na cultura pop..."
         }
+        // Adicione mais notícias conforme necessário
+    };
+
+    // Preencher os detalhes da notícia na página "noticia.html"
+    if (noticiaId && noticias[noticiaId]) {
+        document.getElementById('titulo').innerText = noticias[noticiaId].titulo;
+        document.getElementById('imagem').src = noticias[noticiaId].imagem;
+        document.getElementById('conteudo').innerText = noticias[noticiaId].conteudo;
+    }
+});
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+
+    if (n > slides.length) {
+        slideIndex = 1;
     }
 
-    fetchNewsData("noticia2.html");
-    // Chama a função para a notícia1.html
-    fetchNewsData("noticia1.html");
-    
-    // Adicione mais notícias chamando a função para outros arquivos, por exemplo:
-    // fetchNewsData("noticia3.html");
-    // ...
-});
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(function () {
+        slides[slideIndex - 1].style.display = "none";
+        plusSlides(1);
+    }, 10000); // Troca de slide a cada 3 segundos
+}
