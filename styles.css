@@ -183,12 +183,12 @@ footer {
     
     #social-buttons {
         top: 50px
-        display: flexbox; /* Oculta os botões de redes sociais */
     }
 
     #social-buttons a {
         margin-right: 20px; /* Reduz a margem direita em 10px */
         margin-left: -10px; /* Compensa o ajuste movendo os botões para a esquerda */
+        display: flexbox; /* Oculta os links de navegação */
     }
 
     #social-buttons img {
