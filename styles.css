@@ -182,10 +182,18 @@ footer {
     }
     
     #social-buttons {
+        top: 50px
+        display: flexbox; /* Oculta os botões de redes sociais */
+    }
+
+    #social-buttons a {
         margin-right: 20px; /* Reduz a margem direita em 10px */
         margin-left: -10px; /* Compensa o ajuste movendo os botões para a esquerda */
-        display: flexbox; /* Oculta os botões de redes sociais */
-        width: 15px;
+    }
+
+    #social-buttons img {
+    width: 15px;
+    transition: filter 0.3s ease;
     }
     
     .recent-news-title, .weekly-news-title {
