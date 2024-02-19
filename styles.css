@@ -168,6 +168,7 @@ footer {
 @media only screen and (max-width: 600px) {
     .logo {
         width: 150px;
+        margin: 5px;
     }
 
     .nav-links li a {
