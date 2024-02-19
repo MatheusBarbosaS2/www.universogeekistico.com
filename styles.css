@@ -177,6 +177,7 @@ footer {
     
     .nav-links {
         display: flexbox; /* Oculta os links de navegação */
+        padding: 0px 10px; /* Ajusta o padding para expandir a área do botão */
         font-size: 18px; /* Tamanho das letras */
     }
     
