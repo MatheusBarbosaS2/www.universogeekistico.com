@@ -1,69 +1,165 @@
-body {
-    background-color: #000000;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
-    margin: 20px;
 }
 
-h1 {
-    text-align: center;
-    color: #ffffff;
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    z-index: 999; /* Garante que o cabeçalho esteja acima das faixas pretas laterais */
+    background-color: #000000;
+    padding: 0;
+    color: white;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-h2 {
-    text-align: left;
-    color: #ffffff;
+.logo {
+    margin: 0;
+    width: 200px; /* Largura do logo */
+    height: auto; /* Permite que a altura do logo se ajuste automaticamente mantendo a proporção */
 }
 
-p {
-    text-align: left;
-    color: #ffffff;
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-.noticia {
-    border: 1px solid #000000;
-    padding: 10px;
-    margin-bottom: 10px;
+.nav-links li {
+    display: inline;
 }
 
-.noticia img {
-    width: auto; /* Alterado para 100% para ocupar a largura total */
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    margin: 0; /* Espaçamento entre os botões de navegação */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave na cor de fundo */
+    padding: 10px 20px; /* Ajusta o padding para expandir a área do botão */
+    font-size: 18px; /* Tamanho das letras */
+}
+
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Define a cor de fundo ao passar o mouse */
+    padding: 10px 20px; /* Ajusta o padding para expandir a área do botão */
+}
+
+#social-buttons a {
+    margin-right: 50px; /* Reduz a margem direita em 10px */
+    margin-left: -40px; /* Compensa o ajuste movendo os botões para a esquerda */
+}
+
+#social-buttons img {
+    width: 35px;
+    transition: filter 0.3s ease;
+}
+
+#social-buttons a:hover img {
+    filter: brightness(1.5);
+}
+
+#social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+}
+
+#social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+}
+
+#social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+}
+
+#social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+}
+
+.left-panel, .right-panel {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: black;
+}
+
+.left-panel {
+    left: 0;
+}
+
+.right-panel {
+    right: 0;
+}
+
+.content {
+    margin-top: 100px; /* Ajusta a margem superior para evitar que o conteúdo fique atrás do cabeçalho */
+    margin-left: 300px; /* Largura do painel esquerdo */
+    margin-right: 300px; /* Largura do painel direito */
+}
+
+main {
+    background-color: white;
+    padding: 20px;
+}
+
+.logo {
+    margin: -35px;
+    width: 375px; /* Define a largura da imagem do logotipo como 200px */
+    height: auto; /* Permite que a altura da imagem se ajuste automaticamente mantendo a proporção */
+}
+
+/* Estilos para o rodapé */
+/* Estilos para o rodapé */
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hide {
+    display: none !important;
+}
+
+.recent-news-title {
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 10px; /* 100px de diferença do topo */
+    margin-left: 80px; /* 350px de diferença da margem esquerda */
+    color: #000; /* Cor do texto */
+    font-size: 30px; /* Tamanho da fonte */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+.weekly-news-title {
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: -50px; /* 100px de diferença do topo */
+    margin-left: 725px; /* 350px de diferença da margem esquerda */
+    color: #000; /* Cor do texto */
+    font-size: 30px; /* Tamanho da fonte */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+.post-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-left: 80px;
+    margin-right: 10px;
+}
+
+.post {
+    width: 45%;
     height: 200px;
-}
-
-.news-area {
-    cursor: pointer;
-    width: 100%; /* Ajustado para ocupar a largura total */
-    height: 200px; /* Ajustado para altura automática */
-    margin: 0 auto; /* Centralizando a área clicável na tela */
-    box-sizing: border-box; /* Considerando borda e preenchimento dentro da largura definida */
-    text-align: left; /* Alinha o conteúdo à esquerda */
-    display: flex; /* Torna o conteúdo flexível para alinhar itens horizontalmente */
-    flex-direction: column; /* Empilha os itens verticalmente */
-}
-
-.news-area:hover {
-    background-color: #0e0e0e;
-}
-
-.image-container {
-    display: flex; /* Torna o contêiner de imagem flexível */
-    justify-content: flex-end; /* Alinha a imagem à direita do contêiner */
-}
-
-.news-area img {
-    width: 150px; /* Definindo a largura da imagem */
-    height: auto;
-    margin: 0 10px; /* Margem à direita e à esquerda da imagem */
-}
-
-.news-area h2 {
-    color: #ffffff;
-}
-
-.news-area p {
-    color: #ffffff;
-    margin: 10px 0; /* Espaçamento acima e abaixo do texto */
-    word-wrap: break-word; /* Ativa a quebra de palavras para evitar que palavras longas causem overflow */
-    max-width: 75%; /* Evita que a quebra de linha virtual ultrapasse a largura máxima do contêiner */
+    background-color: #ccc; /* Cinza */
 }
