@@ -1,49 +1,16 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const newsContainer = document.getElementById("news-container");
-
-    // Função para truncar texto
-    function truncateText(text, maxLength) {
-        return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+// Função para ocultar o cabeçalho e o rodapé ao rolar para baixo e mostrá-los ao rolar para cima
+let lastScrollTop = 0;
+window.addEventListener("scroll", function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+        document.querySelector("header").classList.add("hide");
+    } else if (currentScroll > lastScrollTop && bottomOffset > 100) {
+        // Scroll para baixo
+        document.querySelector("footer").classList.add("hide");
+    } else {
+        // Scroll para cima
+        document.querySelector("header").classList.remove("hide");
+        document.querySelector("footer").classList.remove("hide");
     }
-
-    // Função para obter dinamicamente o conteúdo da notícia
-    async function fetchNewsData(newsUrl) {
-        try {
-            const response = await fetch(newsUrl);
-            const newsHtml = await response.text();
-            const parser = new DOMParser();
-            const newsDoc = parser.parseFromString(newsHtml, "text/html");
-
-            // Extrai informações do documento da notícia
-            const title = newsDoc.querySelector("h2").textContent;
-            const descriptionElement = newsDoc.querySelector("p");
-            const description = truncateText(descriptionElement.textContent, 250); // Limite para 150 caracteres
-            const thumbnail = newsDoc.querySelector("img").getAttribute("src");
-            const fullDescriptionUrl = newsUrl;  // Mantém a URL da notícia original
-            const views = parseInt(newsDoc.querySelector("p:last-of-type").textContent.match(/\d+/)[0]);
-
-            // Adiciona a notícia ao container
-            newsContainer.innerHTML += `
-                <div class="news-area" onclick="window.location.href='${fullDescriptionUrl}'">
-                    <h2>${title}</h2>
-                    <p>${description}</p>
-                    <div class="image-container">
-                        <img src="${thumbnail}" alt="Thumbnail">
-                    </div>
-                    <p>Número de visualizações: ${views}</p>
-                </div>
-            `;
-
-        } catch (error) {
-            console.error("Erro ao obter notícia:", error);
-        }
-    }
-
-    fetchNewsData("noticia2.html");
-    // Chama a função para a notícia1.html
-    fetchNewsData("noticia1.html");
-    
-    // Adicione mais notícias chamando a função para outros arquivos, por exemplo:
-    // fetchNewsData("noticia3.html");
-    // ...
-});
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Para o Firefox
+}, false);
