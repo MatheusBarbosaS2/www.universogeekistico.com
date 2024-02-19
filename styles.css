@@ -203,6 +203,12 @@ footer {
     height: 100%;
     background-color: black;
     }
+
+    .content {
+    margin-top: 10px; /* Ajusta a margem superior para evitar que o conteúdo fique atrás do cabeçalho */
+    margin-left: 50px; /* Largura do painel esquerdo */
+    margin-right: 50px; /* Largura do painel direito */
+    }
     
     .recent-news-title, .weekly-news-title {
         margin-left: 10px; /* Reduz a margem esquerda dos títulos */
