@@ -1,27 +1,49 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Universo Geekistico</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Universo Geekistico</h1>
-        <p2>Bem-vindo ao Universo Geekistico, o melhor lugar para notícias sobre Marvel, DC e muito mais!</p2>
+        <a href="index.html">
+            <img src="imagem/LOGO UG (1).png" alt="Universo Geekistico Logo" class="logo">
+        </a>        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="cinemaetv.html">Cinema & TV</a></li>
+                <li><a href="jogos.html">Jogos</a></li>
+                <li><a href="quadrinhos.html">Quadrinhos</a></li>
+                <li><a href="curiosidades.html">Curiosidades</a></li>
+            </ul>
+        </nav>
+        <div id="social-buttons">
+            <a href="https://www.youtube.com/@UniversoGeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
+            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
+            <a href="https://www.instagram.com/universogeekistico/" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com/UGeekistico" target="_blank"><img src="imagem/x.webp" alt="X"></a>
+        </div>
     </header>
-
-    <main id="news-container">
-        <!-- Notícias serão adicionadas aqui dinamicamente via JavaScript -->
-    </main>
+    <div class="left-panel"></div>
+    <div class="content">
+        <main>
+            <h1 class="recent-news-title">Notícias Recentes:</h1>
+            <h1 class="weekly-news-title">Notícias da Semana:</h1>
+            <div class="post-container">
+                <div class="post"></div>
+                <div class="post"></div>
+            </div>
+        </main>              
+    </div>
+    <div class="right-panel"></div>
 
     <footer>
-        <p>Por Matheus Barbosa | <a href="https://universogeekistico.com.br">universogeekistico.com.br</a></p>
-        <img src="imagem/logoug.png" alt="Logo Universo Geekistico">
+        <div class="footer-content">
+            <p>&copy; 2024 Universo Geekistico. Todos os direitos reservados.</p>
+        </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
