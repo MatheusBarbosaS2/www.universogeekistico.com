@@ -182,6 +182,8 @@ footer {
     }
     
     #social-buttons {
+        margin-right: 20px; /* Reduz a margem direita em 10px */
+        margin-left: -10px; /* Compensa o ajuste movendo os botões para a esquerda */
         display: inline-flex; /* Oculta os botões de redes sociais */
         width: 15px;
     }
