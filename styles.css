@@ -210,8 +210,13 @@ footer {
     margin-right: 50px; /* Largura do painel direito */
     }
     
-    .recent-news-title, .weekly-news-title {
-        margin-left: 10px; /* Reduz a margem esquerda dos títulos */
+    .recent-news-title {
+        font-family:Arial, Helvetica, sans-serif;
+        margin-top: 10px; /* 100px de diferença do topo */
+        margin-left: 80px; /* 350px de diferença da margem esquerda */
+        color: #000; /* Cor do texto */
+        font-size: 12px; /* Tamanho da fonte */
+        font-weight: bold; /* Deixa o texto em negrito */
     }
     
     .post-container {
