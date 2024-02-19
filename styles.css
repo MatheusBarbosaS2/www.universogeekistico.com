@@ -177,10 +177,12 @@ footer {
     
     .nav-links {
         display: flexbox; /* Oculta os links de navegação */
+        font-size: 18px; /* Tamanho das letras */
     }
     
     #social-buttons {
         display: inline-flex; /* Oculta os botões de redes sociais */
+        width: 15px;
     }
     
     .recent-news-title, .weekly-news-title {
