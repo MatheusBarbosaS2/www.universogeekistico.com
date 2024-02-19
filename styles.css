@@ -195,6 +195,14 @@ footer {
     width: 15px;
     transition: filter 0.3s ease;
     }
+
+    .left-panel, .right-panel {
+    position: fixed;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    background-color: black;
+    }
     
     .recent-news-title, .weekly-news-title {
         margin-left: 10px; /* Reduz a margem esquerda dos títulos */
