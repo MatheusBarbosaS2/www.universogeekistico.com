@@ -176,11 +176,11 @@ footer {
     }
     
     .nav-links {
-        display: none; /* Oculta os links de navegação */
+        display: flexbox; /* Oculta os links de navegação */
     }
     
     #social-buttons {
-        display: none; /* Oculta os botões de redes sociais */
+        display: inline-flex; /* Oculta os botões de redes sociais */
     }
     
     .recent-news-title, .weekly-news-title {
