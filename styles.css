@@ -162,7 +162,53 @@ footer {
     width: 45%;
     height: 200px;
     background-color: #ccc; /* Cinza */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+    cursor: pointer; /* Transforma o retângulo em um cursor de link */
+    position: relative; /* Permite posicionar a imagem absolutamente */
 }
+
+.post:hover {
+    background-color: #ddd; /* Altera a cor de fundo ao passar o mouse */
+}
+
+.post-title {
+    margin-top: 20px;
+    max-width: 60%; /* Limita o texto a 60% da largura */
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-text {
+    top: -5px;
+    margin: 10px;
+    font-size: 14px;
+    overflow: hidden; /* Impede que o texto vaze para fora do retângulo */
+    display: -webkit-box; /* Define o modelo de layout de caixa flexível do WebKit */
+    -webkit-line-clamp: 3; /* Limita o número de linhas a 3 */
+    -webkit-box-orient: vertical; /* Orientação vertical das linhas */
+    line-height: 1.5em; /* Define a altura de uma linha */
+    max-width: 63%; /* Limita o texto a 60% da largura */
+    position: relative;
+}
+
+.post-image {
+    position: absolute; /* Permite posicionar a imagem absolutamente */
+    right: 10px;
+    margin: 10px;
+    width: 160px; /* Define a largura da imagem */
+    height: auto; /* Permite que a altura da imagem se ajuste automaticamente mantendo a proporção */
+}
+
+
+
+
+
+
 
 /* Adicionando uma media query para ajustar o layout em dispositivos com largura de até 768px */
 @media only screen and (max-width: 768px) {
@@ -212,10 +258,10 @@ footer {
     
     .recent-news-title {
         font-family:Arial, Helvetica, sans-serif;
-        margin-top: 100px; /* 100px de diferença do topo */
-        margin-left: 20px; /* 350px de diferença da margem esquerda */
+        margin-top: 50px; /* 100px de diferença do topo */
+        margin-left: 80px; /* 350px de diferença da margem esquerda */
         color: #000; /* Cor do texto */
-        font-size: 16px; /* Tamanho da fonte */
+        font-size: 12px; /* Tamanho da fonte */
         font-weight: bold; /* Deixa o texto em negrito */
     }
     
