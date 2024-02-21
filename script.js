@@ -32,3 +32,31 @@ postTexts.forEach(postText => {
         postText.textContent = slicedText.trim() + '...'; // Adiciona os três pontos ao final do texto cortado
     }
 });
+
+// Script.js
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Obter o elemento da contagem de visualizações
+    const viewCountElement = document.getElementById("viewCount");
+
+    // Verificar se há um valor armazenado para a contagem de visualizações
+    let viewCount = localStorage.getItem("viewCount");
+
+    // Se não houver um valor armazenado, definir a contagem como 0
+    if (!viewCount) {
+        viewCount = 0;
+    } else {
+        // Caso contrário, converter o valor para um número
+        viewCount = parseInt(viewCount);
+    }
+
+    // Incrementar a contagem de visualizações
+    viewCount++;
+
+    // Atualizar o elemento da contagem de visualizações
+    viewCountElement.textContent = viewCount;
+
+    // Armazenar a contagem atualizada no armazenamento local
+    localStorage.setItem("viewCount", viewCount.toString());
+});
+
