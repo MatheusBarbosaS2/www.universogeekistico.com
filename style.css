@@ -79,7 +79,7 @@ body {
     margin: 20px auto;
   }
   
-  .noticia {
+  .noticias {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -87,12 +87,13 @@ body {
     overflow: hidden;
   }
   
-  .noticia img {
-    height: 80%;
-    object-fit: cover;
+  .noticias img {
+    max-width: 80%;
+    height: auto;
     display: block;
-    margin: 0 auto;
-  }   
+    margin: 10px auto; /* centraliza horizontalmente */
+    border-radius: 8px;
+  }  
   
   .noticia-content {
     padding: 15px;
