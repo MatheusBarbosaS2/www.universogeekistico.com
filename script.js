@@ -1,11 +1,12 @@
-const BIN_ID = '682283338a456b79669c7e82';
-const API_KEY = '$2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T.';
-const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const BIN_ID = '682283338a456b79669c7e82'; // ID do seu bin
+const API_KEY = '$2a$10$VUiibudHGmpI/hZuygtMo.YrQTkd4vZB74mYmj7IceU28n635BTgW'; // Sua X-Master-Key
+const BASE_URL = `https://api.jsonbin.io/v3/b/682283338a456b79669c7e82`; // URL da API para o bin
 const HEADERS = {
   'Content-Type': 'application/json',
   'X-Master-Key': API_KEY
 };
 
+// Função para buscar os posts
 async function fetchPosts() {
   try {
     const response = await fetch(BASE_URL + '/latest', { headers: HEADERS });
@@ -17,6 +18,7 @@ async function fetchPosts() {
   }
 }
 
+// Função para salvar os posts (atualizar o bin)
 async function savePosts(posts) {
   try {
     await fetch(BASE_URL, {
@@ -29,6 +31,7 @@ async function savePosts(posts) {
   }
 }
 
+// Função para expandir/colapsar o conteúdo da postagem
 function expandirConteudo(idParagrafo, idBotao) {
   const p = document.getElementById(idParagrafo);
   const btn = document.getElementById(idBotao);
@@ -43,6 +46,7 @@ function expandirConteudo(idParagrafo, idBotao) {
   }
 }
 
+// Função para atualizar a lista de postagens no dropdown
 async function atualizarListaDePosts() {
   const select = document.getElementById('select-post');
   if (!select) return;
@@ -58,6 +62,7 @@ async function atualizarListaDePosts() {
   });
 }
 
+// Função para exibir as postagens na página
 async function exibirPosts() {
   const container = document.getElementById('noticias-container');
   if (!container) return;
@@ -103,6 +108,7 @@ async function exibirPosts() {
   });
 }
 
+// Função para carregar as postagens e a lista ao carregar a página
 window.onload = function () {
   atualizarListaDePosts();
   exibirPosts();
@@ -138,7 +144,7 @@ if (form) {
       };
 
       const posts = await fetchPosts();
-      posts.unshift(postagem);
+      posts.unshift(postagem); // Adiciona a nova postagem no início da lista
       await savePosts(posts);
 
       alert('Notícia publicada com sucesso!');
@@ -164,7 +170,7 @@ if (btnExcluir) {
     }
 
     const posts = await fetchPosts();
-    const postRemovido = posts.splice(index, 1);
+    const postRemovido = posts.splice(index, 1); // Remove o post selecionado
     await savePosts(posts);
 
     alert(`Postagem "${postRemovido[0].titulo}" foi excluída com sucesso!`);
