@@ -1,3 +1,34 @@
+const BIN_ID = '682283338a456b79669c7e82';
+const API_KEY = '$2a$10$VUiibudHGmpI/hZuygtMo.YrQTkd4vZB74mYmj7IceU28n635BTgW';
+const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const HEADERS = {
+  'Content-Type': 'application/json',
+  'X-Master-Key': API_KEY
+};
+
+async function fetchPosts() {
+  try {
+    const response = await fetch(BASE_URL + '/latest', { headers: HEADERS });
+    const data = await response.json();
+    return data.record || [];
+  } catch (error) {
+    console.error("Erro ao buscar posts:", error);
+    return [];
+  }
+}
+
+async function savePosts(posts) {
+  try {
+    await fetch(BASE_URL, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify(posts)
+    });
+  } catch (error) {
+    console.error("Erro ao salvar posts:", error);
+  }
+}
+
 function expandirConteudo(idParagrafo, idBotao) {
   const p = document.getElementById(idParagrafo);
   const btn = document.getElementById(idBotao);
@@ -12,12 +43,12 @@ function expandirConteudo(idParagrafo, idBotao) {
   }
 }
 
-function atualizarListaDePosts() {
+async function atualizarListaDePosts() {
   const select = document.getElementById('select-post');
   if (!select) return;
 
+  const posts = await fetchPosts();
   select.innerHTML = '<option value="">Selecione um título...</option>';
-  const posts = JSON.parse(localStorage.getItem('posts')) || [];
 
   posts.forEach((post, index) => {
     const option = document.createElement('option');
@@ -27,13 +58,12 @@ function atualizarListaDePosts() {
   });
 }
 
-function exibirPosts() {
+async function exibirPosts() {
   const container = document.getElementById('noticias-container');
   if (!container) return;
 
-  container.innerHTML = ''; // Limpa antes de adicionar novamente
-
-  const posts = JSON.parse(localStorage.getItem('posts')) || [];
+  container.innerHTML = '';
+  const posts = await fetchPosts();
 
   posts.forEach((post, index) => {
     const div = document.createElement('div');
@@ -81,7 +111,7 @@ window.onload = function () {
 // Formulário de postagem
 const form = document.getElementById('form-postagem');
 if (form) {
-  form.addEventListener('submit', function (event) {
+  form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const titulo = document.getElementById('titulo').value;
@@ -96,7 +126,7 @@ if (form) {
     }
 
     const reader = new FileReader();
-    reader.onload = function () {
+    reader.onload = async function () {
       const imagemBase64 = reader.result;
 
       const postagem = {
@@ -107,9 +137,9 @@ if (form) {
         data: new Date().toLocaleString()
       };
 
-      let posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const posts = await fetchPosts();
       posts.unshift(postagem);
-      localStorage.setItem('posts', JSON.stringify(posts));
+      await savePosts(posts);
 
       alert('Notícia publicada com sucesso!');
       form.reset();
@@ -121,10 +151,10 @@ if (form) {
   });
 }
 
-// Excluir postagem
+// Botão de excluir
 const btnExcluir = document.getElementById('excluir-post');
 if (btnExcluir) {
-  btnExcluir.addEventListener('click', function () {
+  btnExcluir.addEventListener('click', async function () {
     const select = document.getElementById('select-post');
     const index = select.value;
 
@@ -133,9 +163,9 @@ if (btnExcluir) {
       return;
     }
 
-    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const posts = await fetchPosts();
     const postRemovido = posts.splice(index, 1);
-    localStorage.setItem('posts', JSON.stringify(posts));
+    await savePosts(posts);
 
     alert(`Postagem "${postRemovido[0].titulo}" foi excluída com sucesso!`);
     atualizarListaDePosts();
