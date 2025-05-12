@@ -1,9 +1,9 @@
 const BIN_ID = '682283338a456b79669c7e82'; // ID do seu bin
-const API_KEY = '$2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T.'; // Sua X-Master-Key
-const BASE_URL = `https://api.jsonbin.io/v3/b/682283338a456b79669c7e82`; // URL da API para o bin
+const API_KEY = '$2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T.'; // Sua API Key
+const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`; // URL da API para o bin
 const HEADERS = {
   'Content-Type': 'application/json',
-  'X-Master-Key': $2a$10$VUiibudHGmpI/hZuygtMo.YrQTkd4vZB74mYmj7IceU28n635BTgW
+  'X-Access-Key': API_KEY // Usando apenas a API Key para autenticação
 };
 
 // Função para buscar os posts
