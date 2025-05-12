@@ -1,0 +1,187 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #030303;
+  }
+  
+  header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  #logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  #menu {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  #menu a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #menu a:hover {
+    color: #0084ff;
+    text-decoration:solid;
+  }
+  
+  #social-buttons a {
+    margin-right: 10px;
+  }
+  
+  #social-buttons img {
+    width: 30px;
+    transition: filter 0.3s ease;
+  }
+  
+  #social-buttons a:hover img {
+    filter: brightness(1.5);
+  }
+  
+  #social-buttons a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+  }
+  
+  #social-buttons a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+  }
+  
+  #social-buttons a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+  }
+  
+  #social-buttons a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+  }
+  
+  .noticias {
+    max-width: 700px;
+    margin: 20px auto;
+  }
+  
+  .noticia {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  .noticia img {
+    width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }  
+  
+  .noticia-content {
+    padding: 15px;
+  }
+  
+  .noticia h2 {
+    margin: 0;
+    padding: 10px 15px 0;
+  }
+  
+  .noticia p {
+    padding: 10px 15px;
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .autor {
+    font-style: italic;
+    color: #555;
+    display: block;
+    margin: 5px 0 10px;
+  }  
+  
+  button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    margin: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+  form input[type="text"],
+  form textarea,
+  form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+  }
+  
+  footer {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 1px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center; /* Centraliza todo o conteúdo */
+    align-items: center;
+    z-index: 1000;
+    font-size: 14px;
+  }
+  
+  #footer-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaço entre ícones e texto */
+    flex-wrap: wrap;
+  }
+  
+  #footer-social a {
+    margin-left: 10px;
+  }
+  
+  #footer-social img {
+    width: 25px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+  }
+  
+  #footer-social a:hover img[src*="youtube"] {
+    content: url('imagem/youtube_vermelho.png');
+  }
+  #footer-social a:hover img[src*="tiktok"] {
+    content: url('imagem/tiktok_cor.png');
+  }
+  #footer-social a:hover img[src*="instagram"] {
+    content: url('imagem/instagram_cor.png');
+  }
+  #footer-social a:hover img[src*="x"] {
+    content: url('imagem/x_azul.png');
+  }
+  
