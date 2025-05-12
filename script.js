@@ -1,5 +1,5 @@
 const BIN_ID = '682283338a456b79669c7e82';
-const API_KEY = '$2a$10$VUiibudHGmpI/hZuygtMo.YrQTkd4vZB74mYmj7IceU28n635BTgW';
+const API_KEY = '$2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T.';
 const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 const HEADERS = {
   'Content-Type': 'application/json',
