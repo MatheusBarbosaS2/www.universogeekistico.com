@@ -37,9 +37,8 @@ function exibirPosts() {
     const h2 = document.createElement('h2');
     h2.textContent = post.titulo;
 
-    // Verifica se a imagem é base64 ou URL
     const img = document.createElement('img');
-    img.src = post.imagem.startsWith('data:image') ? post.imagem : post.imagem;
+    img.src = post.imagem;
     img.alt = post.titulo;
 
     const autor = document.createElement('p');
@@ -75,28 +74,32 @@ document.getElementById('form-postagem')?.addEventListener('submit', function (e
 
   const titulo = document.getElementById('titulo').value.trim();
   const autor = document.getElementById('autor').value.trim();
-  const imagem = document.getElementById('imagem').value.trim();
   const conteudo = document.getElementById('conteudo').value.trim();
+  const inputImagem = document.getElementById('imagem');
   const data = new Date().toLocaleDateString('pt-BR');
 
-  if (!titulo || !autor || !imagem || !conteudo) {
+  if (!titulo || !autor || !conteudo || !inputImagem.files[0]) {
     alert('Preencha todos os campos!');
     return;
   }
 
-  const novaPostagem = { titulo, autor, imagem, conteudo, data };
+  const fileReader = new FileReader();
 
-  // Recupera os posts atuais do localStorage
-  const posts = JSON.parse(localStorage.getItem('posts')) || [];
+  fileReader.onload = function (event) {
+    const imagemBase64 = event.target.result;
 
-  // Adiciona a nova postagem no início
-  posts.unshift(novaPostagem);
+    const novaPostagem = { titulo, autor, imagem: imagemBase64, conteudo, data };
 
-  // Salva de volta no localStorage
-  localStorage.setItem('posts', JSON.stringify(posts));
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.unshift(novaPostagem);
 
-  alert('✅ Postagem publicada com sucesso!');
-  window.location.reload(); // Recarrega a página para mostrar o novo post
+    localStorage.setItem('posts', JSON.stringify(posts));
+
+    alert('✅ Postagem publicada com sucesso!');
+    window.location.reload();
+  };
+
+  fileReader.readAsDataURL(inputImagem.files[0]); // Converte a imagem para base64
 });
 
 // Carrega os posts ao abrir a página
