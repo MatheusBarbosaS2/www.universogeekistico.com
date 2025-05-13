@@ -2,11 +2,11 @@ const OWNER = 'MatheusBarbosaS2'; // Nome de usuário do GitHub
 const REPO = 'www.universogeekistico.com'; // Nome do repositório
 const FILE_PATH = 'posts.json'; // Caminho do arquivo no repositório
 const BRANCH = 'main'; // Nome da branch, geralmente 'main' ou 'master'
-const TOKEN = 'ghp_11AZNTFVY0QqdpY7Kjq1ey_AonMY9QpqTnIxhgW5nLpH0jip4pd0z9cL1CMpeS2DOR6OJUEBBOaECEG3j5'; // Seu token de autenticação
+const TOKEN = 'SEU_TOKEN_AQUI'; // Substitua pelo seu token de autenticação
 
-const API_URL = 'https://api.github.com/repos/MatheusBarbosaS2/www.universogeekistico.com/contents/posts.json?ref=main';
+const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`;
 
-// Buscar conteúdo JSON do GitHub
+// Função para buscar as postagens do GitHub
 async function fetchPosts() {
   try {
     const res = await fetch(API_URL, {
@@ -17,8 +17,8 @@ async function fetchPosts() {
     });
 
     const data = await res.json();
-    const content = atob(data.content);
-    const sha = data.sha;
+    const content = atob(data.content); // Decodifica o conteúdo Base64
+    const sha = data.sha; // Sha do arquivo JSON para atualização posterior
     return { posts: JSON.parse(content), sha };
   } catch (error) {
     console.error("Erro ao buscar posts do GitHub:", error);
@@ -26,7 +26,7 @@ async function fetchPosts() {
   }
 }
 
-// Salvar conteúdo JSON no GitHub
+// Função para salvar as postagens de volta no GitHub
 async function savePosts(posts, sha) {
   try {
     const res = await fetch(API_URL, {
@@ -49,7 +49,7 @@ async function savePosts(posts, sha) {
   }
 }
 
-// Função para expandir o conteúdo das postagens
+// Função para expandir o conteúdo da postagem
 function expandirConteudo(idParagrafo, idBotao) {
   const p = document.getElementById(idParagrafo);
   const btn = document.getElementById(idBotao);
@@ -64,28 +64,12 @@ function expandirConteudo(idParagrafo, idBotao) {
   }
 }
 
-// Atualizar a lista de posts no formulário
-async function atualizarListaDePosts() {
-  const select = document.getElementById('select-post');
-  if (!select) return;
-
-  const { posts } = await fetchPosts();
-  select.innerHTML = '<option value="">Selecione um título...</option>';
-
-  posts.forEach((post, index) => {
-    const option = document.createElement('option');
-    option.value = index;
-    option.textContent = post.titulo;
-    select.appendChild(option);
-  });
-}
-
-// Exibir as postagens na página
+// Função para exibir as postagens na página
 async function exibirPosts() {
   const container = document.getElementById('noticias-container');
   if (!container) return;
 
-  container.innerHTML = '';
+  container.innerHTML = ''; // Limpa o conteúdo anterior
   const { posts } = await fetchPosts();
 
   posts.forEach((post, index) => {
@@ -126,73 +110,7 @@ async function exibirPosts() {
   });
 }
 
-// Função chamada ao carregar a página para exibir as postagens
+// Chama a função ao carregar a página
 window.onload = function () {
-  atualizarListaDePosts();
   exibirPosts();
 };
-
-// Formulário de postagem
-const form = document.getElementById('form-postagem');
-if (form) {
-  form.addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    const titulo = document.getElementById('titulo').value;
-    const autor = document.getElementById('autor').value;
-    const conteudo = document.getElementById('conteudo').value;
-    const imagemInput = document.getElementById('imagem');
-    const imagem = imagemInput.files[0];
-
-    if (!titulo || !autor || !conteudo || !imagem) {
-      alert("Preencha todos os campos e selecione uma imagem.");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = async function () {
-      const imagemBase64 = reader.result;
-
-      const novaPostagem = {
-        titulo,
-        autor,
-        conteudo,
-        imagem: imagemBase64,
-        data: new Date().toLocaleString()
-      };
-
-      const { posts, sha } = await fetchPosts();
-      posts.unshift(novaPostagem);
-      await savePosts(posts, sha);
-
-      alert('Notícia publicada com sucesso!');
-      form.reset();
-      atualizarListaDePosts();
-      exibirPosts();
-    };
-
-    reader.readAsDataURL(imagem);
-  });
-}
-
-// Botão de excluir
-const btnExcluir = document.getElementById('excluir-post');
-if (btnExcluir) {
-  btnExcluir.addEventListener('click', async function () {
-    const select = document.getElementById('select-post');
-    const index = select.value;
-
-    if (index === "") {
-      alert("Selecione uma postagem para excluir.");
-      return;
-    }
-
-    const { posts, sha } = await fetchPosts();
-    const postRemovido = posts.splice(index, 1);
-    await savePosts(posts, sha);
-
-    alert(`Postagem "${postRemovido[0].titulo}" foi excluída com sucesso!`);
-    atualizarListaDePosts();
-    exibirPosts();
-  });
-}
