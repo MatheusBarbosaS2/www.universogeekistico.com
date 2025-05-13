@@ -1,37 +1,54 @@
-const BIN_ID = '682283338a456b79669c7e82'; // ID do seu bin
-const API_KEY = '$2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T.'; // Sua API Key
-const BASE_URL = `https://api.jsonbin.io/v3/b/682283338a456b79669c7e82`; // URL da API para o bin
-const HEADERS = {
-  'Content-Type': 'application/json',
-  'X-Access-Key': $2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T. // Usando apenas a API Key para autenticação
-};
+const OWNER = 'MatheusBarbosaS2'; // Nome de usuário do GitHub
+const REPO = 'www.universogeekistico.com'; // Nome do repositório
+const FILE_PATH = 'posts.json'; // Caminho do arquivo no repositório
+const BRANCH = 'main'; // Nome da branch, geralmente 'main' ou 'master'
+const TOKEN = 'ghp_11AZNTFVY0QqdpY7Kjq1ey_AonMY9QpqTnIxhgW5nLpH0jip4pd0z9cL1CMpeS2DOR6OJUEBBOaECEG3j5'; // Seu token de autenticação
 
-// Função para buscar os posts
+const API_URL = `https://api.github.com/repos/MatheusBarbosaS2/www.universogeekistico.com/contents/posts.json`;
+
+// Buscar conteúdo JSON do GitHub
 async function fetchPosts() {
   try {
-    const response = await fetch(BASE_URL + '/latest', { headers: HEADERS });
-    const data = await response.json();
-    return data.record || [];
-  } catch (error) {
-    console.error("Erro ao buscar posts:", error);
-    return [];
-  }
-}
-
-// Função para salvar os posts (atualizar o bin)
-async function savePosts(posts) {
-  try {
-    await fetch(BASE_URL, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify(posts)
+    const res = await fetch(API_URL, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        Accept: 'application/vnd.github.v3+json'
+      }
     });
+
+    const data = await res.json();
+    const content = atob(data.content);
+    const sha = data.sha;
+    return { posts: JSON.parse(content), sha };
   } catch (error) {
-    console.error("Erro ao salvar posts:", error);
+    console.error("Erro ao buscar posts do GitHub:", error);
+    return { posts: [], sha: null };
   }
 }
 
-// Função para expandir/colapsar o conteúdo da postagem
+// Salvar conteúdo JSON no GitHub
+async function savePosts(posts, sha) {
+  try {
+    const res = await fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        Accept: 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: 'Atualizando posts via site',
+        content: btoa(JSON.stringify(posts, null, 2)),
+        sha,
+        branch: BRANCH
+      })
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error("Erro ao salvar posts no GitHub:", error);
+  }
+}
+
 function expandirConteudo(idParagrafo, idBotao) {
   const p = document.getElementById(idParagrafo);
   const btn = document.getElementById(idBotao);
@@ -46,12 +63,11 @@ function expandirConteudo(idParagrafo, idBotao) {
   }
 }
 
-// Função para atualizar a lista de postagens no dropdown
 async function atualizarListaDePosts() {
   const select = document.getElementById('select-post');
   if (!select) return;
 
-  const posts = await fetchPosts();
+  const { posts } = await fetchPosts();
   select.innerHTML = '<option value="">Selecione um título...</option>';
 
   posts.forEach((post, index) => {
@@ -62,13 +78,12 @@ async function atualizarListaDePosts() {
   });
 }
 
-// Função para exibir as postagens na página
 async function exibirPosts() {
   const container = document.getElementById('noticias-container');
   if (!container) return;
 
   container.innerHTML = '';
-  const posts = await fetchPosts();
+  const { posts } = await fetchPosts();
 
   posts.forEach((post, index) => {
     const div = document.createElement('div');
@@ -108,7 +123,6 @@ async function exibirPosts() {
   });
 }
 
-// Função para carregar as postagens e a lista ao carregar a página
 window.onload = function () {
   atualizarListaDePosts();
   exibirPosts();
@@ -135,7 +149,7 @@ if (form) {
     reader.onload = async function () {
       const imagemBase64 = reader.result;
 
-      const postagem = {
+      const novaPostagem = {
         titulo,
         autor,
         conteudo,
@@ -143,9 +157,9 @@ if (form) {
         data: new Date().toLocaleString()
       };
 
-      const posts = await fetchPosts();
-      posts.unshift(postagem); // Adiciona a nova postagem no início da lista
-      await savePosts(posts);
+      const { posts, sha } = await fetchPosts();
+      posts.unshift(novaPostagem);
+      await savePosts(posts, sha);
 
       alert('Notícia publicada com sucesso!');
       form.reset();
@@ -169,9 +183,9 @@ if (btnExcluir) {
       return;
     }
 
-    const posts = await fetchPosts();
-    const postRemovido = posts.splice(index, 1); // Remove o post selecionado
-    await savePosts(posts);
+    const { posts, sha } = await fetchPosts();
+    const postRemovido = posts.splice(index, 1);
+    await savePosts(posts, sha);
 
     alert(`Postagem "${postRemovido[0].titulo}" foi excluída com sucesso!`);
     atualizarListaDePosts();
