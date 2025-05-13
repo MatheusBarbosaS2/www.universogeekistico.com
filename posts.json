@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "titulo": "Novo Trailer de Deadpool 3!",
+    "autor": "Matheus",
+    "conteudo": "Foi divulgado hoje o novo trailer de Deadpool 3 e os fãs foram à loucura com a aparição do Wolverine...",
+    "imagem": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBx...",
+    "data": "13/05/2025 22:31:00"
+  },
+  {
+    "titulo": "Outra Notícia Antiga",
+    "autor": "Marcela",
+    "conteudo": "Texto da notícia antiga...",
+    "imagem": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...",
+    "data": "10/05/2025 18:02:00"
+  }
+]
