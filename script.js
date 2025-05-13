@@ -67,7 +67,7 @@ async function exibirPosts() {
     h2.textContent = post.titulo || "Sem título";
 
     const img = document.createElement('img');
-    img.src = post.imagem || "imagem/sem-imagem.jpg"; // Imagem padrão
+    img.src = post.imagem || "imagem/sem-imagem.jpg";
     img.alt = post.titulo || "Imagem da notícia";
 
     const autor = document.createElement('p');
@@ -97,7 +97,7 @@ async function exibirPosts() {
   });
 }
 
-// Função para expandir o conteúdo da postagem
+// Função para expandir ou esconder o conteúdo do post
 function expandirConteudo(idParagrafo, idBotao) {
   const p = document.getElementById(idParagrafo);
   const btn = document.getElementById(idBotao);
@@ -111,6 +111,67 @@ function expandirConteudo(idParagrafo, idBotao) {
     btn.innerText = "Saiba Mais";
   }
 }
+
+// Função para salvar os posts atualizados no GitHub
+async function savePosts(novosPosts, shaAtual) {
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+
+  const novoConteudoBase64 = btoa(JSON.stringify(novosPosts, null, 2));
+
+  const body = {
+    message: '📰 Nova postagem adicionada via site',
+    content: novoConteudoBase64,
+    sha: shaAtual,
+    branch: BRANCH
+  };
+
+  try {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+      throw new Error(`Erro ao salvar: ${res.status} - ${res.statusText}`);
+    }
+
+    console.log("✅ Postagem salva com sucesso no GitHub!");
+  } catch (error) {
+    console.error("❌ Erro ao salvar postagem:", error);
+  }
+}
+
+// Lidar com envio do formulário de nova postagem
+document.getElementById('form-postagem')?.addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const titulo = document.getElementById('titulo').value.trim();
+  const autor = document.getElementById('autor').value.trim();
+  const imagem = document.getElementById('imagem').value.trim();
+  const conteudo = document.getElementById('conteudo').value.trim();
+  const data = new Date().toLocaleDateString('pt-BR');
+
+  if (!titulo || !autor || !imagem || !conteudo) {
+    alert('Preencha todos os campos!');
+    return;
+  }
+
+  const novaPostagem = { titulo, autor, imagem, conteudo, data };
+
+  const { posts, sha } = await fetchPosts();
+
+  posts.unshift(novaPostagem); // Adiciona a nova postagem no início
+
+  await savePosts(posts, sha);
+
+  alert('✅ Postagem publicada com sucesso!');
+  window.location.reload(); // Recarrega a página para mostrar o novo post
+});
 
 // Carrega os posts ao abrir a página
 window.onload = () => {
