@@ -3,7 +3,7 @@ const API_KEY = '$2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T.'; 
 const BASE_URL = `https://api.jsonbin.io/v3/b/682283338a456b79669c7e82`; // URL da API para o bin
 const HEADERS = {
   'Content-Type': 'application/json',
-  'X-Access-Key': API_KEY // Usando apenas a API Key para autenticação
+  'X-Access-Key': $2a$10$iIvaKOYkYNNcxnN6z4mfgeXMBfjVB9qT.8s76CI3oJCRRhlFiV4T. // Usando apenas a API Key para autenticação
 };
 
 // Função para buscar os posts
