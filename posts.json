@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "titulo": "Notícia 1",
+    "autor": "Autor 1",
+    "imagem": "imagem1.jpg",
+    "conteudo": "Este é o conteúdo da primeira notícia. Esta parte será visível inicialmente...",
+    "data": "2025-05-13"
+  },
+  {
+    "titulo": "Notícia 2",
+    "autor": "Autor 2",
+    "imagem": "imagem2.jpg",
+    "conteudo": "Conteúdo da segunda notícia. Esta parte será visível inicialmente...",
+    "data": "2025-05-14"
+  }
+]
