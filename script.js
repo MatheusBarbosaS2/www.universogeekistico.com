@@ -2,9 +2,9 @@ const OWNER = 'MatheusBarbosaS2'; // Nome de usuário do GitHub
 const REPO = 'www.universogeekistico.com'; // Nome do repositório
 const FILE_PATH = 'posts.json'; // Caminho do arquivo no repositório
 const BRANCH = 'main'; // Nome da branch, geralmente 'main' ou 'master'
-const TOKEN = 'SEU_TOKEN_AQUI'; // Substitua pelo seu token de autenticação
+const TOKEN = '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'; // Substitua pelo seu token de autenticação
 
-const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`;
+const API_URL = 'https://api.github.com/repos/MatheusBarbosaS2/www.universogeekistico.com/contents/posts.json?ref=main';
 
 // Função para buscar as postagens do GitHub
 async function fetchPosts() {
