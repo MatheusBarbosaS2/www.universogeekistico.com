@@ -1,73 +1,96 @@
-// Função para carregar posts a partir de um arquivo JSON
-function carregarPostsDeArquivo() {
-  fetch('posts.json')
-    .then(response => response.json())
-    .then(posts => {
-      if (posts && Array.isArray(posts)) {
-        localStorage.setItem('posts', JSON.stringify(posts));
-        exibirPosts(); // Exibe os posts depois de carregá-los
-      }
-    })
-    .catch(error => {
-      console.error('Erro ao carregar os posts:', error);
-    });
+// Função para carregar e exibir postagens
+function carregarPostagens() {
+  const posts = JSON.parse(localStorage.getItem('posts')) || [];
+  const selectPost = document.getElementById('select-post');
+
+  // Limpa o select antes de adicionar as opções
+  selectPost.innerHTML = '<option value="">Selecione um título...</option>';
+
+  // Adiciona as postagens no select
+  posts.forEach((post, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = post.titulo;
+    selectPost.appendChild(option);
+  });
+
+  // Exibe as postagens na tela
+  const listaPostagens = document.getElementById('lista-postagens');
+  listaPostagens.innerHTML = ''; // Limpa a lista antes de adicionar novos posts
+
+  posts.forEach((post) => {
+    const postagemElement = document.createElement('div');
+    postagemElement.classList.add('postagem');
+    postagemElement.innerHTML = `
+      <h2>${post.titulo}</h2>
+      <p><strong>Autor:</strong> ${post.autor}</p>
+      <p><strong>Data:</strong> ${post.data}</p>
+      <img src="${post.imagem}" alt="Imagem da postagem" class="imagem-postagem">
+      <p>${post.conteudo}</p>
+    `;
+    listaPostagens.appendChild(postagemElement);
+  });
 }
 
-// Exibe os posts no container
-function exibirPosts() {
-  const container = document.getElementById('noticias-container');
-  if (!container) return;
+// Função para salvar nova postagem
+document.getElementById('form-postagem')?.addEventListener('submit', function (e) {
+  e.preventDefault();
 
-  container.innerHTML = '';
+  const titulo = document.getElementById('titulo').value.trim();
+  const autor = document.getElementById('autor').value.trim();
+  const imagemUrl = document.getElementById('imagem').value.trim();
+  const conteudo = document.getElementById('conteudo').value.trim();
+  const data = new Date().toLocaleDateString('pt-BR');
 
-  const posts = JSON.parse(localStorage.getItem('posts')) || [];
-
-  if (posts.length === 0) {
-    container.innerHTML = "<p style='text-align:center;'>Nenhuma notícia disponível no momento.</p>";
+  if (!titulo || !autor || !imagemUrl || !conteudo) {
+    alert('Preencha todos os campos!');
     return;
   }
 
-  posts.forEach((post, index) => {
-    const div = document.createElement('div');
-    div.className = 'noticia';
+  // Função para verificar se a URL da imagem é válida
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  };
 
-    const h2 = document.createElement('h2');
-    h2.textContent = post.titulo;
+  if (!isValidUrl(imagemUrl)) {
+    alert('Por favor, insira uma URL de imagem válida.');
+    return;
+  }
 
-    const img = document.createElement('img');
-    img.src = post.imagem.startsWith('data:image') ? post.imagem : post.imagem;
-    img.alt = post.titulo;
+  // Cria um novo objeto de postagem
+  const novaPostagem = { titulo, autor, imagem: imagemUrl, conteudo, data };
 
-    const autor = document.createElement('p');
-    autor.className = 'autor';
-    autor.textContent = `Por ${post.autor} - ${post.data || 'Data desconhecida'}`;
+  // Recupera as postagens armazenadas e adiciona a nova postagem
+  const posts = JSON.parse(localStorage.getItem('posts')) || [];
+  posts.unshift(novaPostagem); // Adiciona a nova postagem no começo da lista
+  localStorage.setItem('posts', JSON.stringify(posts));
 
-    const p = document.createElement('p');
-    const pId = `conteudoPostagem${index}`;
-    p.id = pId;
-    p.setAttribute('data-fulltext', post.conteudo);
-    p.textContent = post.conteudo.slice(0, 100) + "...";
+  alert('✅ Postagem publicada com sucesso!');
+  window.location.reload(); // Atualiza a página para mostrar a nova postagem
+});
 
-    const btn = document.createElement('button');
-    btn.textContent = "Saiba Mais";
-    btn.id = `botaoPostagem${index}`;
-    btn.onclick = () => expandirConteudo(pId, btn.id);
+// Função para excluir postagem
+document.getElementById('excluir-post')?.addEventListener('click', function () {
+  const selectPost = document.getElementById('select-post');
+  const indexPost = selectPost.value;
 
-    div.appendChild(h2);
-    div.appendChild(img);
-    div.appendChild(autor);
-    div.appendChild(p);
-    div.appendChild(btn);
+  if (indexPost === '') {
+    alert('Selecione uma postagem para excluir.');
+    return;
+  }
 
-    container.appendChild(div);
-  });
+  const posts = JSON.parse(localStorage.getItem('posts'));
+  posts.splice(indexPost, 1); // Remove a postagem selecionada
 
-  preencherSelectDeletar();
-}
+  localStorage.setItem('posts', JSON.stringify(posts));
+  alert('✅ Postagem excluída com sucesso!');
+  window.location.reload(); // Atualiza a página para refletir a exclusão
+});
 
-// Inicialização
-window.onload = () => {
-  console.log("🚀 Página carregada");
-  carregarPostsDeArquivo();  // Carrega os posts de 'posts.json'
-  criarBotoesExportarImportar();
-};
+// Carrega as postagens ao iniciar a página
+window.onload = carregarPostagens;
