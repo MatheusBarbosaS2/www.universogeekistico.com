@@ -4,7 +4,7 @@ const FILE_PATH = 'posts.json'; // Caminho do arquivo no repositório
 const BRANCH = 'main'; // Nome da branch, geralmente 'main' ou 'master'
 const TOKEN = 'ghp_11AZNTFVY0QqdpY7Kjq1ey_AonMY9QpqTnIxhgW5nLpH0jip4pd0z9cL1CMpeS2DOR6OJUEBBOaECEG3j5'; // Seu token de autenticação
 
-const API_URL = `https://api.github.com/repos/MatheusBarbosaS2/www.universogeekistico.com/contents/posts.json`;
+const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`;
 
 // Buscar conteúdo JSON do GitHub
 async function fetchPosts() {
@@ -49,6 +49,7 @@ async function savePosts(posts, sha) {
   }
 }
 
+// Função para expandir o conteúdo das postagens
 function expandirConteudo(idParagrafo, idBotao) {
   const p = document.getElementById(idParagrafo);
   const btn = document.getElementById(idBotao);
@@ -63,6 +64,7 @@ function expandirConteudo(idParagrafo, idBotao) {
   }
 }
 
+// Atualizar a lista de posts no formulário
 async function atualizarListaDePosts() {
   const select = document.getElementById('select-post');
   if (!select) return;
@@ -78,6 +80,7 @@ async function atualizarListaDePosts() {
   });
 }
 
+// Exibir as postagens na página
 async function exibirPosts() {
   const container = document.getElementById('noticias-container');
   if (!container) return;
@@ -123,6 +126,7 @@ async function exibirPosts() {
   });
 }
 
+// Função chamada ao carregar a página para exibir as postagens
 window.onload = function () {
   atualizarListaDePosts();
   exibirPosts();
