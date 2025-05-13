@@ -28,20 +28,23 @@
   </header>
 
   <form id="form-postagem">
-  <input type="text" id="titulo" placeholder="Título da Notícia" required>
-  <input type="text" id="autor" placeholder="Autor da Notícia" required>
-  <textarea id="conteudo" placeholder="Conteúdo da Notícia" required></textarea>
-  <input type="file" id="imagem" accept="image/*" required>
-  <button type="submit">Publicar</button>
-
-  <hr>
-
-  <label for="select-post">Excluir Postagem:</label>
-  <select id="select-post">
-    <option value="">Selecione um título...</option>
-  </select>
-  <button type="button" id="excluir-post">Excluir</button>
-</form>
+    <input type="text" id="titulo" placeholder="Título da Notícia" required>
+    <input type="text" id="autor" placeholder="Autor da Notícia" required>
+    <textarea id="conteudo" placeholder="Conteúdo da Notícia" required></textarea>
+    
+    <!-- Campo para inserir o link da imagem -->
+    <input type="url" id="imagem" placeholder="URL da Imagem" required>
+    
+    <button type="submit">Publicar</button>
+  
+    <hr>
+  
+    <label for="select-post">Excluir Postagem:</label>
+    <select id="select-post">
+      <option value="">Selecione um título...</option>
+    </select>
+    <button type="button" id="excluir-post">Excluir</button>
+  </form>  
 
   <div class="noticias" id="noticias-container">
     <!-- Aqui os posts serão carregados dinamicamente -->
