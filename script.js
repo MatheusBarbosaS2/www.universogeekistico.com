@@ -4,7 +4,7 @@ const FILE_PATH = 'posts.json'; // Caminho do arquivo no repositório
 const BRANCH = 'main'; // Nome da branch, geralmente 'main' ou 'master'
 const TOKEN = 'ghp_11AZNTFVY0QqdpY7Kjq1ey_AonMY9QpqTnIxhgW5nLpH0jip4pd0z9cL1CMpeS2DOR6OJUEBBOaECEG3j5'; // Seu token de autenticação
 
-const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`;
+const API_URL = `const API_URL = 'https://api.github.com/repos/MatheusBarbosaS2/www.universogeekistico.com/contents/posts.json?ref=main';`;
 
 // Buscar conteúdo JSON do GitHub
 async function fetchPosts() {
