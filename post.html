@@ -27,6 +27,26 @@
     </div>
   </header>
 
+  <section class="formulario-postagem">
+  <h2>Criar Nova Publicação</h2>
+  <form id="form-postagem">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required>
+
+    <label for="autor">Autor:</label>
+    <input type="text" id="autor" name="autor" required>
+
+    <label for="imagem">URL da Imagem:</label>
+    <input type="text" id="imagem" name="imagem" required>
+
+    <label for="conteudo">Conteúdo:</label>
+    <textarea id="conteudo" name="conteudo" rows="5" required></textarea>
+
+    <button type="submit">Publicar</button>
+  </form>
+</section>
+
+
   <div class="noticias" id="noticias-container">
     <!-- Aqui os posts serão carregados dinamicamente -->
   </div>
