@@ -140,11 +140,13 @@ header {
 button {
   background-color: #000;
   color: #fff;
-  padding: 10px;
+  padding: 14px 24px;       /* Aumenta o espaço interno (vertical e horizontal) */
   margin: 15px 5px 15px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;          /* Aumenta o tamanho da fonte */
+  font-weight: bold;        /* (Opcional) Deixa o texto mais forte e visível */
 }
 
 button:hover {
@@ -158,33 +160,6 @@ button:hover {
   align-items: center;
   padding: 10px 14px;
   gap: 10px;
-}
-
-/* Botão de like específico */
-/* Botão de like específico */
-.botao-like {
-  background-color: #333;
-  color: white;
-  padding: 10px 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 50px; /* adiciona espaço à direita */
-  transition: all 0.2s ease; /* suaviza a animação */
-}
-
-.botao-like.curtido {
-  background-color: #ff2b2b; /* Um tom diferente para botão curtido */
-  font-weight: bold;
-}
-
-.botao-like:hover {
-  background-color: #ff2b2b;
-}
-
-/* Animação ao clicar */
-.botao-like:active {
-  transform: scale(0.95); /* encolhe o botão levemente */
 }
 
 /* Modal Pix */
