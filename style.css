@@ -98,18 +98,17 @@ header {
   position: relative;
 }
 
-/* Estilo para o h1 */
 .noticia h1 {
   margin: 0;
   padding: 10px 15px 0;
   font-size: 50px;
   font-weight: bold;
-  color: transparent; /* O texto fica transparente para a imagem aparecer no fundo */
+  color: transparent;
   background-image: url('https://i.pinimg.com/originals/ea/53/50/ea53502f7b5062d184b87d44ebfea1f2.gif');
-  background-size: cover; /* Faz a imagem cobrir toda a área do texto */
-  background-clip: text; /* Faz a imagem aparecer apenas dentro das letras */
-  -webkit-background-clip: text; /* Necessário para navegadores baseados em WebKit (como o Chrome) */
-  animation: animarTitulo 6s infinite; /* Chama a animação */
+  background-size: cover;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: animarTitulo 6s infinite;
 }
 
 .noticia h2 {
@@ -144,7 +143,6 @@ button:hover {
   background-color: #333;
 }
 
-/* Botões agrupados no rodapé da notícia */
 .botao-container {
   display: flex;
   justify-content: flex-end;
@@ -153,8 +151,6 @@ button:hover {
   gap: 10px;
 }
 
-/* Botão de like específico */
-/* Botão de like específico */
 .botao-like {
   background-color: #333;
   color: white;
@@ -162,12 +158,12 @@ button:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 50px; /* adiciona espaço à direita */
-  transition: all 0.2s ease; /* suaviza a animação */
+  margin-right: 50px;
+  transition: all 0.2s ease;
 }
 
 .botao-like.curtido {
-  background-color: #ff2b2b; /* Um tom diferente para botão curtido */
+  background-color: #ff2b2b;
   font-weight: bold;
 }
 
@@ -175,12 +171,10 @@ button:hover {
   background-color: #ff2b2b;
 }
 
-/* Animação ao clicar */
 .botao-like:active {
-  transform: scale(0.95); /* encolhe o botão levemente */
+  transform: scale(0.95);
 }
 
-/* Modal Pix */
 #pix-modal {
   position: fixed;
   top: 0; left: 0;
@@ -284,18 +278,64 @@ footer {
   transition: filter 0.3s ease;
 }
 
-#footer-social a:hover img[src*="youtube"] {
-  content: url('imagem/youtube_vermelho.png');
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+  #menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #logo {
+    font-size: 18px;
+  }
+
+  .noticia {
+    max-width: 90%;
+    margin: 10px;
+  }
+
+  .noticia h1 {
+    font-size: 32px;
+  }
+
+  .noticia p {
+    font-size: 14px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 8px 1px;
+  }
+
+  #footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #footer-social {
+    margin-top: 10px;
+  }
 }
 
-#footer-social a:hover img[src*="tiktok"] {
-  content: url('imagem/tiktok_cor.png');
+/* Media Queries para tablets */
+@media (max-width: 1024px) {
+  #logo {
+    font-size: 22px;
+  }
+
+  .noticia {
+    max-width: 80%;
+    margin: 15px auto;
+  }
+
+  .noticia h1 {
+    font-size: 40px;
+  }
 }
 
-#footer-social a:hover img[src*="instagram"] {
-  content: url('imagem/instagram_cor.png');
-}
-
-#footer-social a:hover img[src*="x"] {
-  content: url('imagem/x_azul.png');
+/* Media Queries para notebooks */
+@media (max-width: 1366px) {
+  .noticia {
+    max-width: 750px;
+  }
 }
