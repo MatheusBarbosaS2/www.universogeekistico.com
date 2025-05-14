@@ -1,50 +1,45 @@
-// Função: Alterna entre texto resumido e completo
-document.querySelectorAll('.noticia-content').forEach(conteudo => {
-  const paragrafo = conteudo.querySelector('p');
-  const textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
+// ----------- FUNCIONALIDADE PARA NOTÍCIAS (Saiba mais) ---------------
+if (window.location.pathname.includes("noticias.html")) {
+  document.querySelectorAll('.noticia-content').forEach(conteudo => {
+    const paragrafo = conteudo.querySelector('p');
+    const textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
 
-  // Armazena o texto completo no atributo se ainda não existir
-  if (!paragrafo.getAttribute('data-completo')) {
-    paragrafo.setAttribute('data-completo', textoCompleto);
-  }
+    if (!paragrafo.getAttribute('data-completo')) {
+      paragrafo.setAttribute('data-completo', textoCompleto);
+    }
 
-  // Limita o texto a 100 caracteres e adiciona reticências
-  let textoResumido = textoCompleto;
-  if (textoCompleto.length > 100) {
-    textoResumido = textoCompleto.substring(0, 100) + '...';
-  }
+    let textoResumido = textoCompleto;
+    if (textoCompleto.length > 100) {
+      textoResumido = textoCompleto.substring(0, 100) + '...';
+    }
 
-  // Define o texto inicial como resumido
-  paragrafo.textContent = textoResumido;
+    paragrafo.textContent = textoResumido;
 
-  // Cria e adiciona o botão "Saiba mais"
-  const botaoSaibaMais = document.createElement('button');
-  botaoSaibaMais.textContent = 'Saiba mais';
-  botaoSaibaMais.classList.add('saiba-mais');
-  conteudo.appendChild(botaoSaibaMais);
-
-  // Alterna entre mostrar mais ou menos
-  botaoSaibaMais.addEventListener('click', () => {
-    if (paragrafo.textContent === textoResumido) {
-      paragrafo.textContent = textoCompleto;
-      botaoSaibaMais.textContent = 'Mostrar menos';
-    } else {
-      paragrafo.textContent = textoResumido;
-      botaoSaibaMais.textContent = 'Saiba mais';
+    const botao = conteudo.querySelector('.saiba-mais');
+    if (botao) {
+      botao.addEventListener('click', () => {
+        if (botao.textContent === 'Saiba mais') {
+          paragrafo.textContent = textoCompleto;
+          botao.textContent = 'Mostrar menos';
+        } else {
+          paragrafo.textContent = textoResumido;
+          botao.textContent = 'Saiba mais';
+        }
+      });
     }
   });
-});
+}
 
-// Função: Abrir o modal Pix com o código e QR Code do botão clicado
+// ----------- MODAL PIX (funciona em qualquer página) ---------------
+
 document.querySelectorAll('.comprar').forEach(botao => {
   botao.addEventListener('click', () => {
     const codigoPix = botao.getAttribute('data-pix');
     const qrCodePix = botao.getAttribute('data-qrcode');
 
-    // Preenche o campo de texto com o código Pix
+    // Preenche os dados no modal
     document.getElementById('pix-codigo').value = codigoPix;
 
-    // Define o QR Code no <img>
     const qrImage = document.getElementById('pix-qrcode');
     if (qrImage) {
       qrImage.src = qrCodePix;
@@ -55,16 +50,33 @@ document.querySelectorAll('.comprar').forEach(botao => {
   });
 });
 
-// Função: Copiar o código Pix para a área de transferência
-function copiarPix() {
-  const codigo = document.getElementById('pix-codigo');
-  codigo.select();
-  codigo.setSelectionRange(0, 99999); // Compatível com mobile
-  document.execCommand('copy');
-  alert('Código Pix copiado!');
+// Botão para copiar o código PIX
+const copiarBotao = document.getElementById('copiar-btn');
+if (copiarBotao) {
+  copiarBotao.addEventListener('click', copiarPix);
 }
 
-// Função: Fechar o modal Pix
-function fecharPix() {
+function copiarPix() {
+  const codigo = document.getElementById('pix-codigo');
+  if (!codigo) return;
+
+  codigo.select();
+  codigo.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+  try {
+    document.execCommand('copy');
+    alert('Código Pix copiado!');
+  } catch (err) {
+    alert('Erro ao copiar o código Pix.');
+  }
+}
+
+// Botão para fechar o modal
+const fecharBotao = document.getElementById('fechar-btn');
+if (fecharBotao) {
+  fecharBotao.addEventListener('click', fecharModal);
+}
+
+function fecharModal() {
   document.getElementById('pix-modal').style.display = 'none';
 }
