@@ -31,7 +31,6 @@ if (window.location.pathname.includes("noticias.html")) {
 }
 
 // ----------- MODAL PIX (funciona em qualquer página) ---------------
-
 document.querySelectorAll('.comprar').forEach(botao => {
   botao.addEventListener('click', () => {
     const codigoPix = botao.getAttribute('data-pix');
@@ -81,11 +80,12 @@ function fecharModal() {
   document.getElementById('pix-modal').style.display = 'none';
 }
 
+// ----------- FUNCIONALIDADE DO BOTÃO DE LIKE -------------------
 document.querySelectorAll('.like-button').forEach(button => {
   const noticiaId = button.getAttribute('data-id');
   const countSpan = button.querySelector('.like-count');
 
-  // Carrega do localStorage
+  // Carrega os likes salvos no localStorage
   let storedLikes = parseInt(localStorage.getItem(`likes-${noticiaId}`)) || 0;
   let liked = localStorage.getItem(`liked-${noticiaId}`) === 'true';
 
@@ -97,6 +97,7 @@ document.querySelectorAll('.like-button').forEach(button => {
     button.style.opacity = 0.7;
   }
 
+  // Adiciona o evento de clique no botão de like
   button.addEventListener('click', () => {
     if (!liked) {
       storedLikes++;
@@ -112,9 +113,10 @@ document.querySelectorAll('.like-button').forEach(button => {
       button.style.opacity = 1;
     }
 
+    // Atualiza o contador de likes
     countSpan.textContent = storedLikes;
 
-    // Salva no localStorage
+    // Salva os dados no localStorage
     localStorage.setItem(`likes-${noticiaId}`, storedLikes);
     localStorage.setItem(`liked-${noticiaId}`, liked);
   });
