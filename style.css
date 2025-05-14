@@ -112,54 +112,59 @@ header {
   max-height: none; /* Corrigir aqui */
 }  
 
+/* Sobretela preta com modal central */
 #pix-modal {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9); /* <- fundo preto opaco */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); /* FUNDO PRETO OPAQUE */
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 10000;
 }
 
+/* Caixa branca central com o conteúdo */
 .pix-content {
-  background: white;
+  background: #fff;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 90vw;
-  width: 400px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
   text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Campo do código Pix */
 #pix-codigo {
   width: 100%;
   height: 80px;
-  resize: none;
-  margin-bottom: 15px;
   padding: 10px;
+  margin-bottom: 15px;
   font-size: 14px;
-  border-radius: 6px;
   border: 1px solid #ccc;
-  word-break: break-all;
-  box-sizing: border-box;
+  border-radius: 6px;
+  resize: none;
+  word-break: break-word;
 }
 
+/* QR Code ajustável */
 #pix-qrcode {
   width: 100%;
   max-width: 300px;
   margin-bottom: 15px;
 }
 
+/* Botões */
 .pix-content button {
+  padding: 10px 16px;
   margin: 5px;
-  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
   background-color: black;
   color: white;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
