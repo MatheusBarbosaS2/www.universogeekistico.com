@@ -99,6 +99,11 @@ header {
   padding: 15px;
 }
 
+.noticia h1 {
+  margin: 100px;
+  padding: 10px 15px 0;
+}
+
 .noticia h2 {
   margin: 0;
   padding: 10px 15px 0;
