@@ -8,28 +8,30 @@
 </head>
 <body>
 
-    <header>
-        <div id="logo">
-          <img src="imagem/logo ug.png" alt="Logo">
-          Universo Geekistico
-        </div>
-        <nav id="menu">
-          <a href="index.html">Home</a>
-          <a href="noticias.html">Notícias</a>
-          <a href="loja.html">Loja</a>
-          <a href="sobre.html">Sobre</a>
-        </nav>
-        <div id="social-buttons">
-            <a href="https://www.youtube.com/@UniversoGeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
-            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
-            <a href="https://www.instagram.com/universogeekistico/" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
-            <a href="https://x.com/UGeekistico" target="_blank"><img src="imagem/x.webp" alt="X"></a>
-          </div>          
-      </header>
+  <header>
+    <div id="logo">
+      <img src="imagem/logo ug.png" alt="Logo">
+      Universo Geekistico
+    </div>
+    <nav id="menu">
+      <a href="index.html">Home</a>
+      <a href="noticias.html">Notícias</a>
+      <a href="loja.html">Loja</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+    <div id="social-buttons">
+      <a href="https://www.youtube.com/@UniversoGeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
+      <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
+      <a href="https://www.instagram.com/universogeekistico/" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
+      <a href="https://x.com/UGeekistico" target="_blank"><img src="imagem/x.webp" alt="X"></a>
+    </div>          
+  </header>
 
-  <div class="noticias" id="noticias-container">
-    <!-- Notícias renderizadas pelo JS -->
-  </div>
+  <main>
+    <div class="noticias" id="noticias-container">
+      <!-- As postagens serão injetadas aqui -->
+    </div>
+  </main>
 
   <footer>
     <div id="footer-content">
@@ -43,6 +45,49 @@
     </div>
   </footer> 
 
-  <script src="script.js"></script>
+  <script>
+    function carregarPostagens() {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const container = document.getElementById('noticias-container');
+      container.innerHTML = '';
+
+      posts.forEach((post, index) => {
+        const postagemElement = document.createElement('div');
+        postagemElement.classList.add('noticias');
+
+        const conteudoCurto = post.conteudo.slice(0, 300) + (post.conteudo.length > 300 ? '...' : '');
+
+        postagemElement.innerHTML = `
+          <div class="noticia-content">
+            <h2>${post.titulo}</h2>
+            <span class="autor"><strong>Autor:</strong> ${post.autor} | <strong>Data:</strong> ${post.data}</span>
+            <img src="${post.imagem}" alt="Imagem da postagem" class="imagem-postagem">
+            <p class="texto-postagem" id="texto-${index}">${conteudoCurto}</p>
+            ${post.conteudo.length > 300 ? `<button onclick="mostrarMais(${index})" id="botao-${index}">Saiba mais</button>` : ''}
+          </div>
+        `;
+
+        container.appendChild(postagemElement);
+      });
+    }
+
+    function mostrarMais(index) {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const texto = document.getElementById(`texto-${index}`);
+      const botao = document.getElementById(`botao-${index}`);
+      const completo = posts[index].conteudo;
+
+      if (botao.innerText === "Saiba mais") {
+        texto.innerText = completo;
+        botao.innerText = "Mostrar menos";
+      } else {
+        texto.innerText = completo.slice(0, 300) + '...';
+        botao.innerText = "Saiba mais";
+      }
+    }
+
+    window.onload = carregarPostagens;
+  </script>
+
 </body>
 </html>
