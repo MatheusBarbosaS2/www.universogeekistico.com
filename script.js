@@ -80,3 +80,22 @@ if (fecharBotao) {
 function fecharModal() {
   document.getElementById('pix-modal').style.display = 'none';
 }
+
+// ------------ BOTÃO DE LIKE -------------------
+document.querySelectorAll('.like-button').forEach(button => {
+  let liked = false;
+  let countSpan = button.querySelector('.like-count');
+
+  button.addEventListener('click', () => {
+    let currentCount = parseInt(countSpan.textContent);
+    if (!liked) {
+      countSpan.textContent = currentCount + 1;
+      liked = true;
+      button.style.opacity = 0.7;
+    } else {
+      countSpan.textContent = currentCount - 1;
+      liked = false;
+      button.style.opacity = 1;
+    }
+  });
+});
