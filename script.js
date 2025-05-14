@@ -18,6 +18,7 @@ if (window.location.pathname.includes("noticias.html")) {
     const botao = conteudo.querySelector('.saiba-mais');
     if (botao) {
       botao.addEventListener('click', () => {
+        // Garantir que o botão 'Saiba mais' altera o texto corretamente
         if (botao.textContent === 'Saiba mais') {
           paragrafo.textContent = textoCompleto;
           botao.textContent = 'Mostrar menos';
@@ -28,56 +29,6 @@ if (window.location.pathname.includes("noticias.html")) {
       });
     }
   });
-}
-
-// ----------- MODAL PIX (funciona em qualquer página) ---------------
-document.querySelectorAll('.comprar').forEach(botao => {
-  botao.addEventListener('click', () => {
-    const codigoPix = botao.getAttribute('data-pix');
-    const qrCodePix = botao.getAttribute('data-qrcode');
-
-    // Preenche os dados no modal
-    document.getElementById('pix-codigo').value = codigoPix;
-
-    const qrImage = document.getElementById('pix-qrcode');
-    if (qrImage) {
-      qrImage.src = qrCodePix;
-    }
-
-    // Exibe o modal
-    document.getElementById('pix-modal').style.display = 'flex';
-  });
-});
-
-// Botão para copiar o código PIX
-const copiarBotao = document.getElementById('copiar-btn');
-if (copiarBotao) {
-  copiarBotao.addEventListener('click', copiarPix);
-}
-
-function copiarPix() {
-  const codigo = document.getElementById('pix-codigo');
-  if (!codigo) return;
-
-  codigo.select();
-  codigo.setSelectionRange(0, 99999); // Para dispositivos móveis
-
-  try {
-    document.execCommand('copy');
-    alert('Código Pix copiado!');
-  } catch (err) {
-    alert('Erro ao copiar o código Pix.');
-  }
-}
-
-// Botão para fechar o modal
-const fecharBotao = document.getElementById('fechar-btn');
-if (fecharBotao) {
-  fecharBotao.addEventListener('click', fecharModal);
-}
-
-function fecharModal() {
-  document.getElementById('pix-modal').style.display = 'none';
 }
 
 // ----------- FUNCIONALIDADE DO BOTÃO DE LIKE -------------------
@@ -99,6 +50,7 @@ document.querySelectorAll('.like-button').forEach(button => {
 
   // Adiciona o evento de clique no botão de like
   button.addEventListener('click', () => {
+    // Evitar conflitos de evento entre os dois botões
     if (!liked) {
       storedLikes++;
       liked = true;
