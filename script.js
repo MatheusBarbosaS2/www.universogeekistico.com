@@ -83,19 +83,31 @@ function fecharModal() {
 
 // ------------ BOTÃO DE LIKE -------------------
 document.querySelectorAll('.like-button').forEach(button => {
-  let liked = false;
-  let countSpan = button.querySelector('.like-count');
+  const noticiaId = button.getAttribute('data-id');
+  const countSpan = button.querySelector('.like-count');
+
+  // Carrega do localStorage
+  let storedLikes = parseInt(localStorage.getItem(`likes-${noticiaId}`)) || 0;
+  let liked = localStorage.getItem(`liked-${noticiaId}`) === 'true';
+
+  // Mostra a contagem salva
+  countSpan.textContent = storedLikes;
+  button.style.opacity = liked ? 0.7 : 1;
 
   button.addEventListener('click', () => {
-    let currentCount = parseInt(countSpan.textContent);
     if (!liked) {
-      countSpan.textContent = currentCount + 1;
+      storedLikes++;
       liked = true;
-      button.style.opacity = 0.7;
     } else {
-      countSpan.textContent = currentCount - 1;
+      storedLikes--;
       liked = false;
-      button.style.opacity = 1;
     }
+
+    countSpan.textContent = storedLikes;
+    button.style.opacity = liked ? 0.7 : 1;
+
+    // Salva no localStorage
+    localStorage.setItem(`likes-${noticiaId}`, storedLikes);
+    localStorage.setItem(`liked-${noticiaId}`, liked);
   });
 });
