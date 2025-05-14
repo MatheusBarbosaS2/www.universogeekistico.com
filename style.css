@@ -147,7 +147,7 @@ button:hover {
 /* Botão de like específico */
 /* Botão de like específico */
 .botao-like {
-  background-color: #e91e63;
+  background-color: #333;
   color: white;
   padding: 10px 14px;
   border: none;
@@ -157,8 +157,13 @@ button:hover {
   transition: all 0.2s ease; /* suaviza a animação */
 }
 
+.botao-like.curtido {
+  background-color: #ff2b2b; /* Um tom diferente para botão curtido */
+  font-weight: bold;
+}
+
 .botao-like:hover {
-  background-color: #c2185b;
+  background-color: #ff2b2b;
 }
 
 /* Animação ao clicar */
