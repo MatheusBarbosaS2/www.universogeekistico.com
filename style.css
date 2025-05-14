@@ -323,8 +323,9 @@ footer {
   #menu {
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    width: 120%;
     align-items: flex-start;
+    font-size: 28px;
   }
 
   .noticia h1 {
