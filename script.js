@@ -35,11 +35,22 @@ document.querySelectorAll('.noticia-content').forEach(conteudo => {
   });
 });
 
-// Função: Abrir o modal Pix com o código do botão clicado
+// Função: Abrir o modal Pix com o código e QR Code do botão clicado
 document.querySelectorAll('.comprar').forEach(botao => {
   botao.addEventListener('click', () => {
     const codigoPix = botao.getAttribute('data-pix');
+    const qrCodePix = botao.getAttribute('data-qrcode');
+
+    // Preenche o campo de texto com o código Pix
     document.getElementById('pix-codigo').value = codigoPix;
+
+    // Define o QR Code no <img>
+    const qrImage = document.getElementById('pix-qrcode');
+    if (qrImage) {
+      qrImage.src = qrCodePix;
+    }
+
+    // Exibe o modal
     document.getElementById('pix-modal').style.display = 'flex';
   });
 });
