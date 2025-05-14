@@ -286,7 +286,7 @@ footer {
   }
 
   #logo {
-    font-size: 18px;
+    font-size: 20px; /* Aumenta o tamanho do logo */
   }
 
   .noticia {
@@ -295,16 +295,26 @@ footer {
   }
 
   .noticia h1 {
-    font-size: 32px;
+    font-size: 36px; /* Aumenta o título */
   }
 
   .noticia p {
-    font-size: 14px;
+    font-size: 16px; /* Aumenta o tamanho da fonte do texto */
+  }
+
+  button {
+    font-size: 18px; /* Aumenta o tamanho da fonte dos botões */
+    padding: 12px 20px; /* Aumenta o tamanho dos botões */
+  }
+
+  .botao-like {
+    font-size: 18px; /* Aumenta o tamanho da fonte do botão like */
+    padding: 12px 20px; /* Aumenta o tamanho do botão like */
   }
 
   footer {
-    font-size: 12px;
-    padding: 8px 1px;
+    font-size: 16px; /* Aumenta o tamanho da fonte do rodapé */
+    padding: 12px 1px; /* Aumenta o padding do rodapé */
   }
 
   #footer-content {
