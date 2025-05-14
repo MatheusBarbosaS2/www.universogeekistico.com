@@ -97,15 +97,15 @@
   </footer>
 
 <!-- Modal PIX -->
-<div id="pix-modal" style="display: none;">
+<div id="pix-modal">
   <div class="pix-content">
     <h2>Código Pix Copia e Cola</h2>
     <textarea id="pix-codigo" readonly></textarea>
+    <img id="pix-qrcode" src="" alt="QR Code Pix">
     <div>
-      <img id="pix-qrcode" src="" alt="QR Code Pix">
+      <button id="copiar-btn">Copiar Código Pix</button>
+      <button onclick="fecharModal()">Fechar</button>
     </div>
-    <button id="copiar-btn">Copiar Código Pix</button>
-    <button id="fechar-btn">Fechar</button>
   </div>
 </div>
 
