@@ -22,3 +22,23 @@ document.querySelectorAll('.noticia-content').forEach(conteudo => {
     }
   });
 });
+
+// Inicializa com o pix
+document.querySelectorAll('.comprar').forEach(botao => {
+  botao.addEventListener('click', () => {
+    const codigoPix = botao.getAttribute('data-pix');
+    document.getElementById('pix-codigo').value = codigoPix;
+    document.getElementById('pix-modal').style.display = 'flex';
+  });
+});
+
+function copiarPix() {
+  const textarea = document.getElementById('pix-codigo');
+  textarea.select();
+  document.execCommand('copy');
+  alert('Código Pix copiado!');
+}
+
+function fecharPix() {
+  document.getElementById('pix-modal').style.display = 'none';
+}
