@@ -190,10 +190,11 @@ button:hover {
 /* Modal Pix */
 #pix-modal {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: none;
   align-items: center;
   justify-content: center;
@@ -202,46 +203,76 @@ button:hover {
 
 .pix-content {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 30px;
+  border-radius: 10px;
   width: 95vw;
-  max-width: 600px;
-  max-height: 90vh;
+  max-width: 700px;
+  max-height: 95vh;
   overflow-y: auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
 #pix-codigo {
   width: 100%;
-  height: 80px;
+  height: 100px;
   resize: none;
-  margin-bottom: 15px;
-  padding: 10px;
-  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  word-break: break-all;
+  word-break: break-word;
   box-sizing: border-box;
 }
 
 #pix-qrcode {
   width: 100%;
   max-width: 300px;
-  margin-bottom: 15px;
+  margin: 0 auto 20px;
+  display: block;
 }
 
-.pix-content button {
-  margin: 5px;
-  padding: 8px 16px;
-  background-color: black;
+/* Estilo para o formulário dentro do modal */
+.pix-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.pix-content form input[type="text"],
+.pix-content form input[type="email"],
+.pix-content form input[type="file"],
+.pix-content form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.pix-content form label {
+  text-align: left;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.pix-content form button[type="submit"] {
+  background-color: #000;
   color: white;
   border: none;
+  padding: 12px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.pix-content button:hover {
+.pix-content form button[type="submit"]:hover {
   background-color: #333;
 }
 
