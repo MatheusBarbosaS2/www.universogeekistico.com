@@ -81,7 +81,6 @@ function fecharModal() {
   document.getElementById('pix-modal').style.display = 'none';
 }
 
-// ------------ BOTÃO DE LIKE -------------------
 document.querySelectorAll('.like-button').forEach(button => {
   const noticiaId = button.getAttribute('data-id');
   const countSpan = button.querySelector('.like-count');
@@ -90,21 +89,30 @@ document.querySelectorAll('.like-button').forEach(button => {
   let storedLikes = parseInt(localStorage.getItem(`likes-${noticiaId}`)) || 0;
   let liked = localStorage.getItem(`liked-${noticiaId}`) === 'true';
 
-  // Mostra a contagem salva
+  // Atualiza a interface inicial
   countSpan.textContent = storedLikes;
-  button.style.opacity = liked ? 0.7 : 1;
+  if (liked) {
+    button.classList.add('curtido');
+    button.childNodes[0].textContent = '💖 Curtido ';
+    button.style.opacity = 0.7;
+  }
 
   button.addEventListener('click', () => {
     if (!liked) {
       storedLikes++;
       liked = true;
+      button.classList.add('curtido');
+      button.childNodes[0].textContent = '💖 Curtido ';
+      button.style.opacity = 0.7;
     } else {
       storedLikes--;
       liked = false;
+      button.classList.remove('curtido');
+      button.childNodes[0].textContent = '❤️ Curtir ';
+      button.style.opacity = 1;
     }
 
     countSpan.textContent = storedLikes;
-    button.style.opacity = liked ? 0.7 : 1;
 
     // Salva no localStorage
     localStorage.setItem(`likes-${noticiaId}`, storedLikes);
