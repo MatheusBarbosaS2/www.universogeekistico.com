@@ -98,9 +98,18 @@ header {
   position: relative;
 }
 
+/* Estilo para o h1 */
 .noticia h1 {
-  margin: 100px;
+  margin: 0;
   padding: 10px 15px 0;
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent; /* O texto fica transparente para a imagem aparecer no fundo */
+  background-image: url('https://i.pinimg.com/originals/ea/53/50/ea53502f7b5062d184b87d44ebfea1f2.gif');
+  background-size: cover; /* Faz a imagem cobrir toda a área do texto */
+  background-clip: text; /* Faz a imagem aparecer apenas dentro das letras */
+  -webkit-background-clip: text; /* Necessário para navegadores baseados em WebKit (como o Chrome) */
+  animation: animarTitulo 6s infinite; /* Chama a animação */
 }
 
 .noticia h2 {
