@@ -138,6 +138,23 @@ header {
   height: 100px;
   margin: 10px 0;
   resize: none;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  font-family: monospace;
+  font-size: 14px;
+}
+
+#pix-qrcode {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  margin: 10px auto;
 }
 
 .autor {
