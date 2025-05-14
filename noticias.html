@@ -3,91 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Notícias - Universo Geekistico</title>
+  <title>Notícias - Universo Geekístico</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <header>
     <div id="logo">
-      <img src="imagem/logo ug.png" alt="Logo">
-      Universo Geekistico
+      <img src="imagem/logo.png" alt="Logo" />
+      Universo Geekístico
     </div>
     <nav id="menu">
-      <a href="index.html">Home</a>
+      <a href="index.html">Início</a>
       <a href="noticias.html">Notícias</a>
-      <a href="loja.html">Loja</a>
-      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
     </nav>
     <div id="social-buttons">
-      <a href="https://www.youtube.com/@UniversoGeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
-      <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
-      <a href="https://www.instagram.com/universogeekistico/" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
-      <a href="https://x.com/UGeekistico" target="_blank"><img src="imagem/x.webp" alt="X"></a>
-    </div>          
+      <a href="#"><img src="imagem/youtube.png" alt="YouTube" /></a>
+      <a href="#"><img src="imagem/tiktok.png" alt="TikTok" /></a>
+      <a href="#"><img src="imagem/instagram.png" alt="Instagram" /></a>
+      <a href="#"><img src="imagem/x.png" alt="X" /></a>
+    </div>
   </header>
 
-  <main>
-    <div class="noticias" id="noticias-container">
-      <!-- As postagens serão injetadas aqui -->
+  <main class="noticias">
+
+    <div class="noticia">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/0/0d/Homem_Aranha.jpg" alt="Homem-Aranha">
+      <div class="noticia-content">
+        <h2>Homem-Aranha no Aranhaverso 3: O que esperar?</h2>
+        <span class="autor">Por Matheus Silva</span>
+        <p class="resumo">
+          O terceiro filme da franquia “Aranhaverso” promete reunir ainda mais versões do herói. Fãs aguardam ansiosamente a continuação após o final chocante do segundo filme. 
+          Rumores apontam para participações especiais...
+        </p>
+        <button class="saiba-mais">Saiba mais</button>
+      </div>
     </div>
+
+    <div class="noticia">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/d/dc/Batman_%282022%29.jpg" alt="Batman">
+      <div class="noticia-content">
+        <h2>The Batman 2: Vilões confirmados!</h2>
+        <span class="autor">Por Marcela Lima</span>
+        <p class="resumo">
+          A sequência estrelada por Robert Pattinson já tem data de estreia e vilões confirmados. Segundo fontes, o Senhor Frio pode aparecer ao lado de um novo Charada. Gotham vai tremer com a nova ameaça.
+        </p>
+        <button class="saiba-mais">Saiba mais</button>
+      </div>
+    </div>
+
+    <div class="noticia">
+      <img src="https://upload.wikimedia.org/wikipedia/en/1/17/Avengers_Endgame_poster.jpg" alt="Vingadores">
+      <div class="noticia-content">
+        <h2>Marvel anuncia novo filme dos Vingadores</h2>
+        <span class="autor">Por João Carlos</span>
+        <p class="resumo">
+          A nova fase do MCU contará com uma equipe reformulada de Vingadores. Capitã Marvel, Sam Wilson e Shang-Chi estão entre os principais nomes. Mas será que o público ainda está empolgado?
+        </p>
+        <button class="saiba-mais">Saiba mais</button>
+      </div>
+    </div>
+
   </main>
 
   <footer>
     <div id="footer-content">
-      <span>&copy; 2025 Universo Geekístico - Todos os direitos reservados</span>
+      © 2025 Universo Geekístico
       <div id="footer-social">
-        <a href="#"><img src="imagem/youtube.png" alt="YouTube"></a>
-        <a href="#"><img src="imagem/tiktok.png" alt="TikTok"></a>
-        <a href="#"><img src="imagem/instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="imagem/x.webp" alt="X"></a>
+        <a href="#"><img src="imagem/youtube.png" alt="YouTube" /></a>
+        <a href="#"><img src="imagem/tiktok.png" alt="TikTok" /></a>
+        <a href="#"><img src="imagem/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="imagem/x.png" alt="X" /></a>
       </div>
     </div>
-  </footer> 
+  </footer>
 
-  <script>
-    function carregarPostagens() {
-      const posts = JSON.parse(localStorage.getItem('posts')) || [];
-      const container = document.getElementById('noticias-container');
-      container.innerHTML = '';
-
-      posts.forEach((post, index) => {
-        const postagemElement = document.createElement('div');
-        postagemElement.classList.add('noticias');
-
-        const conteudoCurto = post.conteudo.slice(0, 300) + (post.conteudo.length > 300 ? '...' : '');
-
-        postagemElement.innerHTML = `
-          <div class="noticia-content">
-            <h2>${post.titulo}</h2>
-            <span class="autor"><strong>Autor:</strong> ${post.autor} | <strong>Data:</strong> ${post.data}</span>
-            <img src="${post.imagem}" alt="Imagem da postagem" class="imagem-postagem">
-            <p class="texto-postagem" id="texto-${index}">${conteudoCurto}</p>
-            ${post.conteudo.length > 300 ? `<button onclick="mostrarMais(${index})" id="botao-${index}">Saiba mais</button>` : ''}
-          </div>
-        `;
-
-        container.appendChild(postagemElement);
-      });
-    }
-
-    function mostrarMais(index) {
-      const posts = JSON.parse(localStorage.getItem('posts')) || [];
-      const texto = document.getElementById(`texto-${index}`);
-      const botao = document.getElementById(`botao-${index}`);
-      const completo = posts[index].conteudo;
-
-      if (botao.innerText === "Saiba mais") {
-        texto.innerText = completo;
-        botao.innerText = "Mostrar menos";
-      } else {
-        texto.innerText = completo.slice(0, 300) + '...';
-        botao.innerText = "Saiba mais";
-      }
-    }
-
-    window.onload = carregarPostagens;
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
