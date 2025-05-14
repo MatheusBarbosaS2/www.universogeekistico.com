@@ -1,37 +1,43 @@
 // ----------- FUNCIONALIDADE PARA NOTÍCIAS (Saiba mais) ---------------
 if (window.location.pathname.includes("noticias.html")) {
-  document.querySelectorAll('.noticia-content').forEach(conteudo => {
-    const paragrafo = conteudo.querySelector('p');
-    const textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
+  // Espera até que o DOM esteja completamente carregado
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.noticia-content').forEach(conteudo => {
+      const paragrafo = conteudo.querySelector('p');
+      if (!paragrafo) return;  // Garante que exista o parágrafo
 
-    if (!paragrafo.getAttribute('data-completo')) {
-      paragrafo.setAttribute('data-completo', textoCompleto);
-    }
+      // Pega o texto completo
+      let textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
+      if (!textoCompleto) return;
 
-    let textoResumido = textoCompleto;
-    if (textoCompleto.length > 100) {
-      textoResumido = textoCompleto.substring(0, 100) + '...';
-    }
+      // Cria a versão resumida
+      let textoResumido = textoCompleto;
+      if (textoCompleto.length > 100) {
+        textoResumido = textoCompleto.substring(0, 100) + '...';
+      }
 
-    paragrafo.textContent = textoResumido;
+      // Define o texto resumido inicialmente
+      paragrafo.textContent = textoResumido;
 
-    const botao = conteudo.querySelector('.saiba-mais');
-    if (botao) {
-      botao.addEventListener('click', () => {
-        if (botao.textContent === 'Saiba mais') {
-          paragrafo.textContent = textoCompleto;
-          botao.textContent = 'Mostrar menos';
-        } else {
-          paragrafo.textContent = textoResumido;
-          botao.textContent = 'Saiba mais';
-        }
-      });
-    }
+      // Encontra o botão "Saiba mais"
+      const botao = conteudo.querySelector('.saiba-mais');
+      if (botao) {
+        botao.addEventListener('click', () => {
+          // Alterna entre mostrar o texto completo e resumido
+          if (botao.textContent === 'Saiba mais') {
+            paragrafo.textContent = textoCompleto;
+            botao.textContent = 'Mostrar menos';
+          } else {
+            paragrafo.textContent = textoResumido;
+            botao.textContent = 'Saiba mais';
+          }
+        });
+      }
+    });
   });
 }
 
 // ----------- MODAL PIX (funciona em qualquer página) ---------------
-
 document.querySelectorAll('.comprar').forEach(botao => {
   botao.addEventListener('click', () => {
     const codigoPix = botao.getAttribute('data-pix');
@@ -80,42 +86,3 @@ if (fecharBotao) {
 function fecharModal() {
   document.getElementById('pix-modal').style.display = 'none';
 }
-
-document.querySelectorAll('.like-button').forEach(button => {
-  const noticiaId = button.getAttribute('data-id');
-  const countSpan = button.querySelector('.like-count');
-
-  // Carrega do localStorage
-  let storedLikes = parseInt(localStorage.getItem(`likes-${noticiaId}`)) || 0;
-  let liked = localStorage.getItem(`liked-${noticiaId}`) === 'true';
-
-  // Atualiza a interface inicial
-  countSpan.textContent = storedLikes;
-  if (liked) {
-    button.classList.add('curtido');
-    button.childNodes[0].textContent = '💖 Curtido ';
-    button.style.opacity = 0.7;
-  }
-
-  button.addEventListener('click', () => {
-    if (!liked) {
-      storedLikes++;
-      liked = true;
-      button.classList.add('curtido');
-      button.childNodes[0].textContent = '💖 Curtido ';
-      button.style.opacity = 0.7;
-    } else {
-      storedLikes--;
-      liked = false;
-      button.classList.remove('curtido');
-      button.childNodes[0].textContent = '❤️ Curtir ';
-      button.style.opacity = 1;
-    }
-
-    countSpan.textContent = storedLikes;
-
-    // Salva no localStorage
-    localStorage.setItem(`likes-${noticiaId}`, storedLikes);
-    localStorage.setItem(`liked-${noticiaId}`, liked);
-  });
-});
