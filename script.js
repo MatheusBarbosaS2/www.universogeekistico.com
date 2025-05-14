@@ -1,29 +1,23 @@
 // ----------- FUNCIONALIDADE PARA NOTÍCIAS (Saiba mais) ---------------
 if (window.location.pathname.includes("noticias.html")) {
-  // Espera até que o DOM esteja completamente carregado
   window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.noticia-content').forEach(conteudo => {
       const paragrafo = conteudo.querySelector('p');
-      if (!paragrafo) return;  // Garante que exista o parágrafo
+      if (!paragrafo) return;
 
-      // Pega o texto completo
+      // Texto completo (pode estar no data-completo ou no próprio texto)
       let textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
       if (!textoCompleto) return;
 
-      // Cria a versão resumida
-      let textoResumido = textoCompleto;
-      if (textoCompleto.length > 100) {
-        textoResumido = textoCompleto.substring(0, 100) + '...';
-      }
+      // Texto resumido (até 100 caracteres)
+      let textoResumido = textoCompleto.length > 100 ? textoCompleto.substring(0, 100) + '...' : textoCompleto;
 
-      // Define o texto resumido inicialmente
       paragrafo.textContent = textoResumido;
 
-      // Encontra o botão "Saiba mais"
+      // Botão "Saiba mais"
       const botao = conteudo.querySelector('.saiba-mais');
       if (botao) {
         botao.addEventListener('click', () => {
-          // Alterna entre mostrar o texto completo e resumido
           if (botao.textContent === 'Saiba mais') {
             paragrafo.textContent = textoCompleto;
             botao.textContent = 'Mostrar menos';
@@ -34,6 +28,17 @@ if (window.location.pathname.includes("noticias.html")) {
         });
       }
     });
+
+    // ----------- MOSTRAR SÓ A NOTÍCIA SE ?id=X ESTIVER NA URL ---------------
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id) {
+      document.querySelectorAll('.noticia').forEach(noticia => {
+        if (noticia.getAttribute('data-id') !== id) {
+          noticia.style.display = 'none';
+        }
+      });
+    }
   });
 }
 
@@ -43,7 +48,6 @@ document.querySelectorAll('.comprar').forEach(botao => {
     const codigoPix = botao.getAttribute('data-pix');
     const qrCodePix = botao.getAttribute('data-qrcode');
 
-    // Preenche os dados no modal
     document.getElementById('pix-codigo').value = codigoPix;
 
     const qrImage = document.getElementById('pix-qrcode');
@@ -51,7 +55,6 @@ document.querySelectorAll('.comprar').forEach(botao => {
       qrImage.src = qrCodePix;
     }
 
-    // Exibe o modal
     document.getElementById('pix-modal').style.display = 'flex';
   });
 });
@@ -67,7 +70,7 @@ function copiarPix() {
   if (!codigo) return;
 
   codigo.select();
-  codigo.setSelectionRange(0, 99999); // Para dispositivos móveis
+  codigo.setSelectionRange(0, 99999);
 
   try {
     document.execCommand('copy');
@@ -86,3 +89,37 @@ if (fecharBotao) {
 function fecharModal() {
   document.getElementById('pix-modal').style.display = 'none';
 }
+
+// ----------- BOTÃO COMPARTILHAR NOTÍCIA ---------------
+// Seleciona todos os botões compartilhar e adiciona evento
+document.querySelectorAll('.compartilhar-btn').forEach(botao => {
+  botao.addEventListener('click', () => {
+    const noticia = botao.closest('.noticia');
+    if (!noticia) return;
+
+    const id = noticia.getAttribute('data-id');
+    if (!id) return;
+
+    // Monta o link da notícia com o id
+    const urlBase = window.location.origin + window.location.pathname;
+    const urlParaCompartilhar = `${urlBase}?id=${id}`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        text: "Confira esta notícia incrível no Universo Geekistico!",
+        url: urlParaCompartilhar
+      }).catch(err => console.error("Erro ao compartilhar", err));
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(urlParaCompartilhar).then(() => {
+        alert("Link da notícia copiado para a área de transferência!");
+      }).catch(err => {
+        console.error("Erro ao copiar link", err);
+        alert("Não foi possível copiar o link automaticamente. Copie manualmente: " + urlParaCompartilhar);
+      });
+    } else {
+      // Fallback antigo para copiar texto
+      prompt("Copie o link abaixo:", urlParaCompartilhar);
+    }
+  });
+});
