@@ -1,29 +1,41 @@
+// Função: Alterna entre texto resumido e completo
 document.querySelectorAll('.noticia-content').forEach(conteudo => {
   const paragrafo = conteudo.querySelector('p');
-  const textoCompleto = paragrafo.getAttribute('data-completo');
-  
-  // Limita o texto a 100 caracteres e adiciona os três pontinhos
+  const textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
+
+  // Armazena o texto completo no atributo se ainda não existir
+  if (!paragrafo.getAttribute('data-completo')) {
+    paragrafo.setAttribute('data-completo', textoCompleto);
+  }
+
+  // Limita o texto a 100 caracteres e adiciona reticências
   let textoResumido = textoCompleto;
   if (textoCompleto.length > 100) {
     textoResumido = textoCompleto.substring(0, 100) + '...';
   }
 
-  // Inicializa com o texto resumido
+  // Define o texto inicial como resumido
   paragrafo.textContent = textoResumido;
 
-  // Ação do botão "Saiba mais"
-  conteudo.querySelector('.saiba-mais').addEventListener('click', () => {
+  // Cria e adiciona o botão "Saiba mais"
+  const botaoSaibaMais = document.createElement('button');
+  botaoSaibaMais.textContent = 'Saiba mais';
+  botaoSaibaMais.classList.add('saiba-mais');
+  conteudo.appendChild(botaoSaibaMais);
+
+  // Alterna entre mostrar mais ou menos
+  botaoSaibaMais.addEventListener('click', () => {
     if (paragrafo.textContent === textoResumido) {
-      paragrafo.textContent = textoCompleto; // Exibe o texto completo
-      conteudo.querySelector('.saiba-mais').textContent = 'Mostrar menos';
+      paragrafo.textContent = textoCompleto;
+      botaoSaibaMais.textContent = 'Mostrar menos';
     } else {
-      paragrafo.textContent = textoResumido; // Exibe o texto resumido
-      conteudo.querySelector('.saiba-mais').textContent = 'Saiba mais';
+      paragrafo.textContent = textoResumido;
+      botaoSaibaMais.textContent = 'Saiba mais';
     }
   });
 });
 
-// Inicializa com o pix
+// Função: Abrir o modal Pix com o código do botão clicado
 document.querySelectorAll('.comprar').forEach(botao => {
   botao.addEventListener('click', () => {
     const codigoPix = botao.getAttribute('data-pix');
@@ -32,13 +44,16 @@ document.querySelectorAll('.comprar').forEach(botao => {
   });
 });
 
+// Função: Copiar o código Pix para a área de transferência
 function copiarPix() {
-  const textarea = document.getElementById('pix-codigo');
-  textarea.select();
+  const codigo = document.getElementById('pix-codigo');
+  codigo.select();
+  codigo.setSelectionRange(0, 99999); // Compatível com mobile
   document.execCommand('copy');
   alert('Código Pix copiado!');
 }
 
+// Função: Fechar o modal Pix
 function fecharPix() {
   document.getElementById('pix-modal').style.display = 'none';
 }
