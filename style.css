@@ -145,6 +145,7 @@ button:hover {
 }
 
 /* Botão de like específico */
+/* Botão de like específico */
 .botao-like {
   background-color: #e91e63;
   color: white;
@@ -153,10 +154,16 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   margin-right: 50px; /* adiciona espaço à direita */
+  transition: all 0.2s ease; /* suaviza a animação */
 }
 
 .botao-like:hover {
   background-color: #c2185b;
+}
+
+/* Animação ao clicar */
+.botao-like:active {
+  transform: scale(0.95); /* encolhe o botão levemente */
 }
 
 /* Modal Pix */
