@@ -42,7 +42,7 @@ header {
 
 #menu a:hover {
   color: #0084ff;
-  text-decoration:solid;
+  text-decoration: solid;
 }
 
 #social-buttons a {
@@ -77,26 +77,25 @@ header {
 .noticia {
   max-width: 700px;
   margin: 20px auto;
-}
-
-.noticia {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   overflow: hidden;
+  position: relative;
 }
 
 .noticias img {
   max-width: 80%;
   height: auto;
   display: block;
-  margin: 10px auto; /* centraliza horizontalmente */
+  margin: 10px auto;
   border-radius: 8px;
-}  
+}
 
 .noticia-content {
   padding: 15px;
+  position: relative;
 }
 
 h1 {
@@ -114,10 +113,47 @@ h1 {
   overflow: hidden;
   transition: max-height 0.3s ease;
   white-space: pre-wrap;
-  max-height: none; /* Corrigir aqui */
-}  
+  max-height: none;
+}
 
-/* Sobretela preta com modal central */
+button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  margin: 15px 5px 15px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* Botões agrupados no rodapé da notícia */
+.botao-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 15px 15px;
+  gap: 10px;
+}
+
+/* Botão de like específico */
+.botao-like {
+  background-color: #e91e63;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botao-like:hover {
+  background-color: #c2185b;
+}
+
+/* Modal Pix */
 #pix-modal {
   position: fixed;
   top: 0; left: 0;
@@ -178,20 +214,6 @@ h1 {
   color: #555;
   display: block;
   margin: 5px 15px 10px;
-}  
-
-button {
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
-  margin: 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #333;
 }
 
 form input[type="text"],
@@ -212,7 +234,7 @@ footer {
   width: 100%;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
-  justify-content: center; /* Centraliza todo o conteúdo */
+  justify-content: center;
   align-items: center;
   z-index: 1000;
   font-size: 14px;
@@ -221,7 +243,7 @@ footer {
 #footer-content {
   display: flex;
   align-items: center;
-  gap: 20px; /* Espaço entre ícones e texto */
+  gap: 20px;
   flex-wrap: wrap;
 }
 
@@ -238,12 +260,15 @@ footer {
 #footer-social a:hover img[src*="youtube"] {
   content: url('imagem/youtube_vermelho.png');
 }
+
 #footer-social a:hover img[src*="tiktok"] {
   content: url('imagem/tiktok_cor.png');
 }
+
 #footer-social a:hover img[src*="instagram"] {
   content: url('imagem/instagram_cor.png');
 }
+
 #footer-social a:hover img[src*="x"] {
   content: url('imagem/x_azul.png');
 }
