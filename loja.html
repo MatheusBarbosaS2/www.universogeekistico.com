@@ -156,18 +156,36 @@
     </div>
   </footer>
 
-<!-- Modal PIX -->
+<!-- Modal PIX com Formulário -->
 <div id="pix-modal">
   <div class="pix-content">
     <h2>Código Pix Copia e Cola</h2>
     <textarea id="pix-codigo" readonly></textarea>
     <img id="pix-qrcode" src="" alt="QR Code Pix">
-    <div>
-      <button id="copiar-btn">Copiar Código Pix</button>
-      <button onclick="fecharModal()">Fechar</button>
-    </div>
+
+    <!-- Formulário FormSubmit -->
+    <form action="https://formsubmit.co/universogeekistico@gmail.com" method="POST" enctype="multipart/form-data">
+      <!-- Nome do site -->
+      <input type="hidden" name="_subject" value="Comprovante - Loja Universo Geekistico">
+      <input type="hidden" name="nome_do_site" value="Loja - Universo Geekistico">
+
+      <input type="text" name="nome_completo" placeholder="Nome completo" required>
+      <input type="text" name="telefone" placeholder="Telefone" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="endereco" placeholder="Endereço" required>
+      <input type="text" name="bairro" placeholder="Bairro" required>
+      <input type="text" name="cidade" placeholder="Cidade" required>
+      <input type="text" name="estado" placeholder="Estado" required>
+
+      <label for="comprovante">Anexe o comprovante de pagamento:</label>
+      <input type="file" name="comprovante" accept=".jpg,.jpeg,.png,.pdf" required>
+
+      <button type="submit">Enviar Comprovante</button>
+      <button type="button" onclick="fecharModal()">Fechar</button>
+    </form>
   </div>
 </div>
+
 
   <script src="script.js"></script>
 
