@@ -7,24 +7,24 @@
 </head>
 <body>
 
-    <header>
-        <div id="logo">
-          <img src="imagem/logo ug.png" alt="Logo">
-          Universo Geekistico
-        </div>
-        <nav id="menu">
-          <a href="index.html">Home</a>
-          <a href="noticias.html">Notícias</a>
-          <a href="loja.html">Loja</a>
-          <a href="sobre.html">Sobre</a>
-        </nav>
-        <div id="social-buttons">
-            <a href="https://www.youtube.com/@UniversoGeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
-            <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
-            <a href="https://www.instagram.com/universogeekistico/" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
-            <a href="https://x.com/UGeekistico" target="_blank"><img src="imagem/x.webp" alt="X"></a>
-          </div>          
-      </header>
+  <header>
+    <div id="logo">
+      <img src="imagem/logo ug.png" alt="Logo">
+      Universo Geekistico
+    </div>
+    <nav id="menu">
+      <a href="index.html">Home</a>
+      <a href="noticias.html">Notícias</a>
+      <a href="loja.html">Loja</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+    <div id="social-buttons">
+      <a href="https://www.youtube.com/@UniversoGeekistico" target="_blank"><img src="imagem/youtube.png" alt="YouTube"></a>
+      <a href="https://www.tiktok.com/@universogeekistico" target="_blank"><img src="imagem/tiktok.png" alt="TikTok"></a>
+      <a href="https://www.instagram.com/universogeekistico/" target="_blank"><img src="imagem/instagram.png" alt="Instagram"></a>
+      <a href="https://x.com/UGeekistico" target="_blank"><img src="imagem/x.webp" alt="X"></a>
+    </div>
+  </header>
 
   <div class="noticias">
     <div class="noticia">
@@ -32,7 +32,7 @@
         <h2>Quadro Homem Aranha: Sem Volta Para Casa</h2>
         <img src="imagem/homemaranhanowayhome.jpg" alt="homemaranhanowayhome">
         <p>Item de edição limitada para decorar com seu Quadro Geek! Material produzido por nós mesmos de qualidade!</p>
-        <button>Comprar - R$ 17,90</button>
+        <button class="comprar" data-pix="00020126630014BR.GOV.BCB.PIX0128universogeekistico@gmail.com0209Quadro UG520400005303986540517.905802BR5924MATHEUS BARBOSA DA SILVA6008CURITIBA622605227YGAkcPYdzu45s1BHGffj36304901D">Comprar - R$ 17,90</button>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
         <h2>Quadro Motoqueiro Fantasma</h2>
         <img src="imagem/motoqueirofant.jpg" alt="motoqueirofant">
         <p>Item de edição limitada para decorar com seu Quadro Geek! Material produzido por nós mesmos de qualidade!</p>
-        <button>Comprar - R$ 14,90</button>
+        <button class="comprar" data-pix="00020126630014BR.GOV.BCB.PIX0128universogeekistico@gmail.com0209Quadro UG520400005303986540514.905802BR5924MATHEUS BARBOSA DA SILVA6008CURITIBA622605225g94odL93nEALTWWoOBAkO63044047">Comprar - R$ 14,90</button>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
         <h2>Quadro Capitão América com Mjolnir</h2>
         <img src="imagem/cap.jpg" alt="cap">
         <p>Item de edição limitada para decorar sua estante geek!</p>
-        <button>Comprar - R$ 14,90</button>
+        <button class="comprar" data-pix="00020126630014BR.GOV.BCB.PIX0128universogeekistico@gmail.com0209Quadro UG520400005303986540514.905802BR5924MATHEUS BARBOSA DA SILVA6008CURITIBA622605225g94odL93nEALTWWoOBAkO63044047">Comprar - R$ 14,90</button>
       </div>
     </div>
   </div>
@@ -65,7 +65,19 @@
         <a href="#"><img src="imagem/x.webp" alt="X"></a>
       </div>
     </div>
-  </footer> 
+  </footer>
+
+  <!-- Modal Pix -->
+  <div id="pix-modal" style="display: none;">
+    <div class="pix-content">
+      <h3>Código Pix Copia e Cola</h3>
+      <textarea id="pix-codigo" readonly></textarea>
+      <button onclick="copiarPix()">Copiar</button>
+      <button onclick="fecharPix()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
