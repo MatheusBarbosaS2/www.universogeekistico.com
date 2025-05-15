@@ -180,8 +180,10 @@
       <input type="text" name="estado" placeholder="Estado" required>
       <input type="text" name="cep" placeholder="CEP" required>
 
-      <label>Anexe o comprovante (imagem ou PDF):</label>
-      <input type="file" name="comprovante" accept=".jpg,.jpeg,.png,.pdf" required>
+      <div class="field">
+        <label for="arquivo">Comprovante (imagem ou PDF):</label>
+        <input type="file" id="arquivo" name="attachment" accept=".jpg,.jpeg,.png,.pdf" required />
+      </div>
 
       <button type="submit">Finalizar a Compra</button>
     </form>
