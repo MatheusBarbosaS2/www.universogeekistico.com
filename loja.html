@@ -157,11 +157,11 @@
   </footer>
 
 <!-- Modal PIX com Formulário -->
-<div id="pix-modal">
+<div id="pix-modal" style="display: none;">
   <div class="pix-content">
     <h2>Código Pix Copia e Cola</h2>
     <textarea id="pix-codigo" readonly></textarea>
-    <img id="pix-qrcode" src="" alt="QR Code Pix">
+    <img id="pix-qrcode" src="" alt="QR Code Pix" style="max-width: 200px; margin: 10px 0;">
 
     <form 
       action="https://formsubmit.co/universogeekistico@gmail.com" 
@@ -170,7 +170,10 @@
     >
       <input type="hidden" name="_subject" value="Loja - Universo Geekistico - Novo Comprovante Pix">
       <input type="hidden" name="_template" value="box">
-      
+
+      <!-- Campo para imagem do item clicado -->
+      <input type="hidden" name="imagem_produto" id="imagem-produto">
+
       <input type="text" name="nome_completo" placeholder="Nome completo" required>
       <input type="text" name="telefone" placeholder="Telefone" required>
       <input type="email" name="email" placeholder="E-mail" required>
