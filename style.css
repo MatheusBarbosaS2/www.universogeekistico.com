@@ -157,6 +157,16 @@ button:hover {
   gap: 10px;
 }
 
+.compartilhar-btn {
+  background-color: #000;
+  color: white;
+  margin-left: 300px;
+}
+
+.compartilhar-btn:hover {
+  background-color: #333;
+}
+
 #pix-modal {
   position: fixed;
   top: 0;
