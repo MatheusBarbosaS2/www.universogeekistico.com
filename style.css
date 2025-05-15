@@ -259,6 +259,7 @@ button:hover {
   color: #555;
   display: block;
   margin: 5px 15px 10px;
+  margin-left: 50px;
 }
 
 form input[type="text"],
