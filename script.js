@@ -5,16 +5,13 @@ if (window.location.pathname.includes("noticias.html")) {
       const paragrafo = conteudo.querySelector('p');
       if (!paragrafo) return;
 
-      // Texto completo (pode estar no data-completo ou no próprio texto)
       let textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
       if (!textoCompleto) return;
 
-      // Texto resumido (até 100 caracteres)
       let textoResumido = textoCompleto.length > 100 ? textoCompleto.substring(0, 100) + '...' : textoCompleto;
 
       paragrafo.textContent = textoResumido;
 
-      // Botão "Saiba mais"
       const botao = conteudo.querySelector('.saiba-mais');
       if (botao) {
         botao.addEventListener('click', () => {
@@ -59,7 +56,6 @@ document.querySelectorAll('.comprar').forEach(botao => {
   });
 });
 
-// Botão para copiar o código PIX
 const copiarBotao = document.getElementById('copiar-btn');
 if (copiarBotao) {
   copiarBotao.addEventListener('click', copiarPix);
@@ -80,7 +76,6 @@ function copiarPix() {
   }
 }
 
-// Botão para fechar o modal
 const fecharBotao = document.getElementById('fechar-btn');
 if (fecharBotao) {
   fecharBotao.addEventListener('click', fecharModal);
@@ -91,7 +86,6 @@ function fecharModal() {
 }
 
 // ----------- BOTÃO COMPARTILHAR NOTÍCIA ---------------
-// Seleciona todos os botões compartilhar e adiciona evento
 document.querySelectorAll('.compartilhar-btn').forEach(botao => {
   botao.addEventListener('click', () => {
     const noticia = botao.closest('.noticia');
@@ -100,7 +94,6 @@ document.querySelectorAll('.compartilhar-btn').forEach(botao => {
     const id = noticia.getAttribute('data-id');
     if (!id) return;
 
-    // Monta o link da notícia com o id
     const urlBase = window.location.origin + window.location.pathname;
     const urlParaCompartilhar = `${urlBase}?id=${id}`;
 
@@ -118,8 +111,34 @@ document.querySelectorAll('.compartilhar-btn').forEach(botao => {
         alert("Não foi possível copiar o link automaticamente. Copie manualmente: " + urlParaCompartilhar);
       });
     } else {
-      // Fallback antigo para copiar texto
       prompt("Copie o link abaixo:", urlParaCompartilhar);
     }
   });
 });
+
+// ----------- CARROSSEL DE VÍDEOS ESTILO INSTAGRAM ---------------
+const videos = document.querySelectorAll('.carousel-video');
+const prevBtn = document.querySelector('.carousel-prev');
+const nextBtn = document.querySelector('.carousel-next');
+let currentIndex = 0;
+
+function showVideo(index) {
+  videos.forEach((video, i) => {
+    video.classList.toggle('active', i === index);
+    if (i !== index) video.pause();
+  });
+}
+
+if (prevBtn && nextBtn && videos.length) {
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+    showVideo(currentIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % videos.length;
+    showVideo(currentIndex);
+  });
+
+  showVideo(currentIndex);
+}
