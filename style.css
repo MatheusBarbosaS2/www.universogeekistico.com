@@ -133,6 +133,51 @@ header {
   max-height: none;
 }
 
+.video-carousel {
+  position: relative;
+  max-width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-video {
+  display: none;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.carousel-video.active {
+  display: block;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 28px;
+  padding: 10px 14px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 button {
   background-color: #000;
   color: #fff;
