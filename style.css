@@ -133,34 +133,42 @@ header {
   max-height: none;
 }
 
+/* Carrossel geral */
 .carrossel {
   position: relative;
   max-width: 100%;
-  height: 400px;
+  height: auto; /* Ajuste para não forçar altura fixa */
   overflow: hidden;
   background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 0; /* Espaço superior/inferior como nas imagens */
 }
 
+/* Cada mídia (vídeo ou imagem) */
 .carrossel .midia {
   display: none;
   width: 100%;
-  height: 100%;
-}
-
-.carrossel .midia video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  height: auto;
+  text-align: center;
 }
 
 .carrossel .midia.ativa {
   display: block;
 }
 
+/* Aplicando o mesmo estilo das imagens para vídeos */
+.carrossel .midia video {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 8px;
+  background-color: #000;
+}
+
+/* Botões de navegação */
 .carrossel .anterior,
 .carrossel .proximo {
   position: absolute;
