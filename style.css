@@ -133,49 +133,55 @@ header {
   max-height: none;
 }
 
-.video-carousel {
+.carrossel {
   position: relative;
-  max-width: 90%;
-  margin: 0 auto;
+  max-width: 100%;
+  height: 400px;
   overflow: hidden;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.carousel-video {
+.carrossel .midia {
   display: none;
   width: 100%;
+  height: 100%;
+}
+
+.carrossel .midia video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 8px;
 }
 
-.carousel-video.active {
+.carrossel .midia.ativa {
   display: block;
 }
 
-.carousel-prev,
-.carousel-next {
+.carrossel .anterior,
+.carrossel .proximo {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 32px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
   border: none;
-  color: white;
-  font-size: 28px;
-  padding: 10px 14px;
   cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
   z-index: 10;
-  border-radius: 4px;
 }
 
-.carousel-prev {
+.carrossel .anterior {
   left: 10px;
 }
 
-.carousel-next {
+.carrossel .proximo {
   right: 10px;
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 button {
