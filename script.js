@@ -1,27 +1,22 @@
 // ----------- FUNCIONALIDADE PARA NOTÍCIAS (Saiba mais) ---------------
 if (window.location.pathname.includes("noticias.html")) {
-  window.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.noticia-content').forEach(conteudo => {
       const paragrafo = conteudo.querySelector('p');
       if (!paragrafo) return;
 
-      let textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
+      const textoCompleto = paragrafo.getAttribute('data-completo') || paragrafo.textContent;
       if (!textoCompleto) return;
 
-      let textoResumido = textoCompleto.length > 100 ? textoCompleto.substring(0, 100) + '...' : textoCompleto;
-
+      const textoResumido = textoCompleto.length > 100 ? textoCompleto.substring(0, 100) + '...' : textoCompleto;
       paragrafo.textContent = textoResumido;
 
       const botao = conteudo.querySelector('.saiba-mais');
       if (botao) {
         botao.addEventListener('click', () => {
-          if (botao.textContent === 'Saiba mais') {
-            paragrafo.textContent = textoCompleto;
-            botao.textContent = 'Mostrar menos';
-          } else {
-            paragrafo.textContent = textoResumido;
-            botao.textContent = 'Saiba mais';
-          }
+          const mostrarMais = botao.textContent === 'Saiba mais';
+          paragrafo.textContent = mostrarMais ? textoCompleto : textoResumido;
+          botao.textContent = mostrarMais ? 'Mostrar menos' : 'Saiba mais';
         });
       }
     });
@@ -58,31 +53,27 @@ document.querySelectorAll('.comprar').forEach(botao => {
 
 const copiarBotao = document.getElementById('copiar-btn');
 if (copiarBotao) {
-  copiarBotao.addEventListener('click', copiarPix);
-}
+  copiarBotao.addEventListener('click', () => {
+    const codigo = document.getElementById('pix-codigo');
+    if (!codigo) return;
 
-function copiarPix() {
-  const codigo = document.getElementById('pix-codigo');
-  if (!codigo) return;
+    codigo.select();
+    codigo.setSelectionRange(0, 99999);
 
-  codigo.select();
-  codigo.setSelectionRange(0, 99999);
-
-  try {
-    document.execCommand('copy');
-    alert('Código Pix copiado!');
-  } catch (err) {
-    alert('Erro ao copiar o código Pix.');
-  }
+    try {
+      document.execCommand('copy');
+      alert('Código Pix copiado!');
+    } catch (err) {
+      alert('Erro ao copiar o código Pix.');
+    }
+  });
 }
 
 const fecharBotao = document.getElementById('fechar-btn');
 if (fecharBotao) {
-  fecharBotao.addEventListener('click', fecharModal);
-}
-
-function fecharModal() {
-  document.getElementById('pix-modal').style.display = 'none';
+  fecharBotao.addEventListener('click', () => {
+    document.getElementById('pix-modal').style.display = 'none';
+  });
 }
 
 // ----------- BOTÃO COMPARTILHAR NOTÍCIA ---------------
@@ -116,29 +107,50 @@ document.querySelectorAll('.compartilhar-btn').forEach(botao => {
   });
 });
 
-// ----------- CARROSSEL DE VÍDEOS ESTILO INSTAGRAM ---------------
-const videos = document.querySelectorAll('.carousel-video');
-const prevBtn = document.querySelector('.carousel-prev');
-const nextBtn = document.querySelector('.carousel-next');
-let currentIndex = 0;
+// ----------- CARROSSEL DE VÍDEOS (estilo Instagram com botões anterior/próximo) ---------------
+document.addEventListener("DOMContentLoaded", () => {
+  const botoesProximo = document.querySelectorAll(".proximo");
+  const botoesAnterior = document.querySelectorAll(".anterior");
 
-function showVideo(index) {
-  videos.forEach((video, i) => {
-    video.classList.toggle('active', i === index);
-    if (i !== index) video.pause();
+  botoesProximo.forEach(botao => {
+    botao.addEventListener("click", () => {
+      const carrossel = botao.closest(".carrossel");
+      const midias = carrossel.querySelectorAll(".midia");
+      const ativo = carrossel.querySelector(".midia.ativa");
+      const indexAtual = Array.from(midias).indexOf(ativo);
+
+      ativo.classList.remove("ativa");
+      const proximoIndex = (indexAtual + 1) % midias.length;
+      midias[proximoIndex].classList.add("ativa");
+
+      // Pausa o vídeo anterior e toca o novo se for <video>
+      midias.forEach((m, i) => {
+        if (m.tagName === 'VIDEO') {
+          if (i === proximoIndex) m.play();
+          else m.pause();
+        }
+      });
+    });
   });
-}
 
-if (prevBtn && nextBtn && videos.length) {
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-    showVideo(currentIndex);
+  botoesAnterior.forEach(botao => {
+    botao.addEventListener("click", () => {
+      const carrossel = botao.closest(".carrossel");
+      const midias = carrossel.querySelectorAll(".midia");
+      const ativo = carrossel.querySelector(".midia.ativa");
+      const indexAtual = Array.from(midias).indexOf(ativo);
+
+      ativo.classList.remove("ativa");
+      const anteriorIndex = (indexAtual - 1 + midias.length) % midias.length;
+      midias[anteriorIndex].classList.add("ativa");
+
+      // Pausa o vídeo anterior e toca o novo se for <video>
+      midias.forEach((m, i) => {
+        if (m.tagName === 'VIDEO') {
+          if (i === anteriorIndex) m.play();
+          else m.pause();
+        }
+      });
+    });
   });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % videos.length;
-    showVideo(currentIndex);
-  });
-
-  showVideo(currentIndex);
-}
+});
