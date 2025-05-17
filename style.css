@@ -139,7 +139,7 @@ header {
   max-width: 100%;
   height: auto; /* Ajuste para não forçar altura fixa */
   overflow: hidden;
-  background-color: #000;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,24 +168,27 @@ header {
   background-color: #000;
 }
 
-/* Botões de navegação */
 .carrossel .anterior,
 .carrossel .proximo {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 32px;
-  background: rgba(0, 0, 0, 0.5);
+  width: 40px;              /* Mesma largura e altura */
+  height: 40px;
+  font-size: 24px;          /* Um pouco menor para caber melhor no botão */
+  background: #000;
   color: #fff;
   border: none;
   cursor: pointer;
-  padding: 10px;
   border-radius: 50%;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carrossel .anterior {
-  left: 10px;
+  left: 1px;
 }
 
 .carrossel .proximo {
