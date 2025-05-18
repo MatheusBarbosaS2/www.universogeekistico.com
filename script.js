@@ -123,11 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const proximoIndex = (indexAtual + 1) % midias.length;
       midias[proximoIndex].classList.add("ativa");
 
-      // Pausa o vídeo anterior e toca o novo se for <video>
       midias.forEach((m, i) => {
-        if (m.tagName === 'VIDEO') {
-          if (i === proximoIndex) m.play();
-          else m.pause();
+        const video = m.querySelector('video');
+        if (video) {
+          if (i === proximoIndex) video.play();
+          else video.pause();
         }
       });
     });
@@ -144,13 +144,76 @@ document.addEventListener("DOMContentLoaded", () => {
       const anteriorIndex = (indexAtual - 1 + midias.length) % midias.length;
       midias[anteriorIndex].classList.add("ativa");
 
-      // Pausa o vídeo anterior e toca o novo se for <video>
       midias.forEach((m, i) => {
-        if (m.tagName === 'VIDEO') {
-          if (i === anteriorIndex) m.play();
-          else m.pause();
+        const video = m.querySelector('video');
+        if (video) {
+          if (i === anteriorIndex) video.play();
+          else video.pause();
         }
       });
     });
   });
+});
+
+// ----------- CONTROLES DE VÍDEO ---------------
+document.querySelectorAll('.midia').forEach(midia => {
+  const video = midia.querySelector('video');
+  const playPauseBtn = midia.querySelector('.play-pause');
+  const retrocederBtn = midia.querySelector('.retroceder');
+  const avancarBtn = midia.querySelector('.avancar');
+  const volumeSlider = midia.querySelector('.controle-volume');
+  const volumeTexto = midia.querySelector('.volume-texto');
+
+  // Play/Pause
+  if (playPauseBtn) {
+    playPauseBtn.textContent = video.paused ? '▷ play' : '|| pausar';
+
+    playPauseBtn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playPauseBtn.textContent = '|| pausar';
+      } else {
+        video.pause();
+        playPauseBtn.textContent = '▷ play';
+      }
+    });
+
+    video.addEventListener('play', () => playPauseBtn.textContent = '|| pausar');
+    video.addEventListener('pause', () => playPauseBtn.textContent = '▷ play');
+  }
+
+  // Retroceder e Avançar
+  retrocederBtn?.addEventListener('click', () => {
+    video.currentTime = Math.max(0, video.currentTime - 10);
+  });
+
+  avancarBtn?.addEventListener('click', () => {
+    video.currentTime = Math.min(video.duration, video.currentTime + 10);
+  });
+
+  // Controle de Volume
+  if (volumeSlider && volumeTexto) {
+    // Set volume inicial do video
+    video.volume = volumeSlider.value;
+
+    // Atualiza texto
+    const atualizaTextoVolume = (val) => {
+      const pct = Math.round(val * 100);
+      volumeTexto.textContent = `🔊${pct}%`;
+    };
+
+    atualizaTextoVolume(volumeSlider.value);
+
+    // Quando o usuário muda o slider
+    volumeSlider.addEventListener('input', () => {
+      video.volume = volumeSlider.value;
+      atualizaTextoVolume(volumeSlider.value);
+    });
+
+    // Se o volume for alterado pelo vídeo por qualquer razão (ex: mutar via código)
+    video.addEventListener('volumechange', () => {
+      volumeSlider.value = video.volume;
+      atualizaTextoVolume(video.volume);
+    });
+  }
 });
