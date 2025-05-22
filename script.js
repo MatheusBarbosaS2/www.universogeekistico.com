@@ -88,6 +88,15 @@ document.querySelectorAll('.compartilhar-btn').forEach(botao => {
     const urlBase = window.location.origin + window.location.pathname;
     const urlParaCompartilhar = `${urlBase}?id=${id}`;
 
+    // Atualiza a URL no navegador sem recarregar a página
+    window.history.replaceState(null, '', `?id=${id}`);
+
+    // Mostra apenas a notícia correspondente ao ID
+    document.querySelectorAll('.noticia').forEach(n => {
+      n.style.display = (n.getAttribute('data-id') === id) ? '' : 'none';
+    });
+
+    // Compartilha ou copia o link
     if (navigator.share) {
       navigator.share({
         title: document.title,
